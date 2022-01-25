@@ -25,13 +25,27 @@ export const spacing = (
     return `${base * multiplier}px`;
 };
 
-export const BorderRadius: Record<string, CSS.Property.BorderRadius> = {
+interface BorderRadius {
+    small: CSS.Property.BorderRadius;
+    medium: CSS.Property.BorderRadius;
+    large: CSS.Property.BorderRadius;
+}
+
+export const BorderRadius: BorderRadius = {
     small: spacing(0.5),
     medium: spacing(1),
     large: spacing(1.5),
 };
 
-export const ZIndex: Record<string, CSS.Property.ZIndex> = {
+interface ZIndex {
+    negative: CSS.Property.ZIndex;
+    positive: CSS.Property.ZIndex;
+    dropdown: CSS.Property.ZIndex;
+    navbar: CSS.Property.ZIndex;
+    portal: CSS.Property.ZIndex;
+}
+
+export const ZIndex: ZIndex = {
     negative: -100,
     positive: 100,
     dropdown: 800,

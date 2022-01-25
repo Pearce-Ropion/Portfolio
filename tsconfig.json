@@ -2,6 +2,7 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "lib": ["ESNext", "DOM", "DOM.Iterable"],
+        "module": "commonjs",
 
         "declaration": true,
         "noEmit": true,
@@ -23,10 +24,11 @@
         "skipLibCheck": true,
 
         "allowJs": true,
-        "checkJs": false,
+        "checkJs": true,
         "resolveJsonModule": true,
         "forceConsistentCasingInFileNames": true,
 
+        "types": ["node"],
         "typeRoots": [
             "src/typing"
         ]
@@ -34,6 +36,7 @@
     "include": [
         "src/**/*",
         "utils/**/*",
+        "*.ts",
         "*.js",
     ],
     "exclude": [

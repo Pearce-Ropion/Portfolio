@@ -1,6 +1,15 @@
 import { mapValues } from 'lodash-es';
 
-export const Breakpoints: Record<string, number> = {
+interface Breakpoints {
+    mobileSmall: number;
+    mobile: number;
+    tabletSmall: number;
+    tablet: number;
+    tabletLarge: number;
+    desktopWide: number;
+}
+
+export const Breakpoints: Breakpoints = {
     mobileSmall: 380,
     mobile: 550,
     tabletSmall: 768,
@@ -9,7 +18,11 @@ export const Breakpoints: Record<string, number> = {
     desktopWide: 1920,
 };
 
-export const BreakpointsPixels: Record<string, string> = mapValues(
+type BreakpointsPixels = {
+    [key in keyof Breakpoints]: string;
+};
+
+export const BreakpointsPixels: BreakpointsPixels = mapValues(
     Breakpoints,
     (breakpoint: number): string => {
         return `${breakpoint}px`;

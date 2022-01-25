@@ -51,7 +51,7 @@ module.exports = {
             ],
         },
         {
-            files: ['*.spec.js'],
+            files: ['*.spec.ts'],
             env: {
                 'jest/globals': true,
             },

@@ -1,6 +1,6 @@
 import { CSSObject } from '@emotion/react';
 
-import { Families } from 'styles/tokens/font';
+import { FontFamily } from 'styles/tokens/font';
 import { spacing } from 'styles/tokens/layout';
 
 import 'normalize.css/normalize.css';
@@ -23,7 +23,7 @@ export const GlobalStyles: CSSObject = {
     },
 
     body: {
-        fontFamily: Families.sansSerif,
+        fontFamily: FontFamily.sansSerif,
         margin: spacing(0),
         textRendering: 'optimizeLegibility',
         WebkitFontSmoothing: 'antialiased',

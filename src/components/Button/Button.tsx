@@ -7,34 +7,35 @@ import { iconFactory, IconFactoryIconProp } from 'components/Icon';
 import { Link } from 'components/Link';
 
 import { Shadows, Transitions } from 'styles/tokens/animation';
-import { Families, Sizes, Weights } from 'styles/tokens/font';
+import { Colors } from 'styles/tokens/colors';
+import { FontFamily, FontSize, Weights } from 'styles/tokens/font';
 import { BorderRadius, spacing } from 'styles/tokens/layout';
 
 const buttonPadding = (
     borderWidth: CSS.Property.BorderWidth,
-    verticalPadding: CSS.Property.Padding = spacing(1.5, { em: true }),
-    horizontalPadding: CSS.Property.Padding = spacing(3, { em: true })
-): CSSObject => ({
-    padding: `calc(${verticalPadding} - ${borderWidth}) calc(${horizontalPadding} - ${borderWidth})`,
-});
-
+    verticalPadding: CSS.Property.Padding = '13px',
+    horizontalPadding: CSS.Property.Padding = '50px'
+): CSS.Property.Padding => {
+    return `calc(${verticalPadding} - ${borderWidth}) calc(${horizontalPadding} - ${borderWidth})`;
+};
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant: 'primary' | 'secondary' | 'link';
     to?: string;
     disabled?: boolean;
+    inverted?: boolean;
     outlined?: boolean;
     icon?: IconFactoryIconProp;
     iconPosition?: 'left' | 'right';
     marginLeft?: boolean;
     marginRight?: boolean;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 const StyledButton: StyledComponent<ButtonProps> = styled.button(
     {
         display: 'flex',
-        fontFamily: Families.sansSerif,
-        fontSize: Sizes.sm,
+        fontFamily: FontFamily.sansSerif,
+        fontSize: FontSize.sm,
         fontWeight: Weights.bold,
         lineHeight: 1,
         textAlign: 'center',
@@ -44,11 +45,12 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
         cursor: 'pointer',
         verticalAlign: 'middle',
         userSelect: 'none',
-        ...buttonPadding(0),
+        padding: buttonPadding(0),
     },
     ({
         variant,
         disabled,
+        inverted,
         marginLeft,
         marginRight,
     }: ButtonProps): CSSObject => {
@@ -59,7 +61,7 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
             styles.cursor = 'default';
         } else {
             const styled: CSSObject = {
-                boxShadow: Shadows.sm,
+                boxShadow: Shadows.small,
                 transform: 'translateY(-1)',
                 filter: 'brightness(1.1)',
             };
@@ -76,6 +78,30 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
             styles.marginRight = spacing(0.75);
         }
 
+        if (variant === 'primary') {
+            styles.color = Colors.neutral0;
+            styles.background = Colors.navy900;
+
+            if (inverted) {
+                styles.background = Colors.orange800;
+            }
+        }
+
+        if (variant === 'secondary') {
+            const borderWidth: CSS.Property.BorderWidth = '3px';
+
+            styles.color = Colors.navy900;
+            styles.background = 'transparent';
+            styles.border = `${borderWidth} solid ${Colors.navy900}`;
+
+            styles.padding = buttonPadding(borderWidth);
+
+            if (inverted) {
+                styles.color = Colors.yellow900;
+                styles.borderColor = Colors.yellow900;
+            }
+        }
+
         return styles;
     }
 );
@@ -83,7 +109,9 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
 export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
     const { to, disabled, icon, iconPosition, onClick } = props;
 
-    const handleClick: MouseEventHandler<HTMLButtonElement> = event => {
+    const handleClick: MouseEventHandler<
+        HTMLButtonElement | HTMLAnchorElement
+    > = event => {
         if (disabled) {
             event.preventDefault();
             event.stopPropagation();
@@ -111,11 +139,15 @@ export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
     );
 
     if (to) {
-        return <Link to={to}>{inner}</Link>;
+        return (
+            <Link to={to} onClick={handleClick}>
+                {inner}
+            </Link>
+        );
     }
 
     return (
-        <StyledButton {...props} onClick={handleClick}>
+        <StyledButton {...props} disabled={disabled} onClick={handleClick}>
             {children}
         </StyledButton>
     );

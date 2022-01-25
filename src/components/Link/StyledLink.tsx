@@ -3,10 +3,11 @@ import { CSSObject } from '@emotion/react';
 import styled, { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
 
+import { Colors } from 'styles/tokens/colors';
 import { spacing } from 'styles/tokens/layout';
 
-export const DEFAULT_LINK_COLOR = '#000';
-export const DEFAULT_LINK_COLOR_INVERTED = '#FFF';
+export const DEFAULT_LINK_COLOR = Colors.orange900;
+export const DEFAULT_LINK_COLOR_INVERTED = Colors.orange800;
 export const DEFAULT_LINK_BORDER = spacing(0.25);
 
 export interface LinkStylingProps {
