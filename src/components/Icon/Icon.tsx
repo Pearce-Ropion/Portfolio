@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { VFC } from 'react';
 
 import {
     DuotoneIcon,
@@ -13,7 +13,7 @@ export interface IconProps extends StandardIconProps, DuotoneIconProps {
     duotone?: boolean;
 }
 
-export const Icon: FC<IconProps> = ({ duotone, ...props }) => {
+export const Icon: VFC<IconProps> = ({ duotone, ...props }) => {
     if (duotone) {
         return <DuotoneIcon {...props} />;
     }

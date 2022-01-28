@@ -1,14 +1,18 @@
-import { AnchorHTMLAttributes } from 'react';
+import { AnchorHTMLAttributes, forwardRef, Ref } from 'react';
 import { CSSObject } from '@emotion/react';
-import styled, { StyledComponent } from '@emotion/styled';
+import eStyled from '@emotion/styled';
 import * as CSS from 'csstype';
 
+import { themeSelectors, useTheme } from 'state/theme';
+
+import { toEm } from 'utils/styles';
+import { withStyles } from 'utils/with-styles';
+
 import { Colors } from 'styles/tokens/colors';
-import { spacing } from 'styles/tokens/layout';
 
 export const DEFAULT_LINK_COLOR = Colors.orange900;
 export const DEFAULT_LINK_COLOR_INVERTED = Colors.orange800;
-export const DEFAULT_LINK_BORDER = spacing(0.25);
+export const DEFAULT_LINK_BORDER = toEm(0.125);
 
 export interface LinkStylingProps {
     styled?: boolean;
@@ -64,7 +68,20 @@ export interface StyledLinkProps
     extends LinkStylingProps,
         AnchorHTMLAttributes<HTMLAnchorElement> {}
 
-export const StyledLink: StyledComponent<StyledLinkProps> = styled.a(
-    baseLinkStyles,
-    dynamicLinkStyles
+export const StyledLink = forwardRef<HTMLAnchorElement, StyledLinkProps>(
+    ({ styled, inverted, ...props }, ref) => {
+        const themeIsInverted = useTheme(themeSelectors.inverted);
+
+        return withStyles<StyledLinkProps, HTMLAnchorElement>(
+            eStyled.a(
+                baseLinkStyles,
+                dynamicLinkStyles({
+                    styled,
+                    inverted: inverted || themeIsInverted,
+                })
+            ),
+            props,
+            ref
+        );
+    }
 );

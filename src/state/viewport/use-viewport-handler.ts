@@ -3,7 +3,7 @@ import { debounce, DebouncedFunc } from 'lodash-es';
 
 import { ViewportState, viewportStore } from 'state/viewport';
 
-export const useViewportModel = () => {
+export const useViewportHandler = () => {
     useEffect(() => {
         const { calculateVariables }: ViewportState = viewportStore.getState();
         calculateVariables();

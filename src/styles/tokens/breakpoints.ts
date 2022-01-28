@@ -1,30 +1,17 @@
-import { mapValues } from 'lodash-es';
+import { toPixels } from 'utils/styles';
 
-interface Breakpoints {
-    mobileSmall: number;
-    mobile: number;
-    tabletSmall: number;
-    tablet: number;
-    tabletLarge: number;
-    desktopWide: number;
+export enum Breakpoints {
+    mobileSmall = 380,
+    mobile = 550,
+    tabletSmall = 768,
+    tablet = 860,
+    tabletLarge = 960,
+    desktopWide = 1920,
 }
 
-export const Breakpoints: Breakpoints = {
-    mobileSmall: 380,
-    mobile: 550,
-    tabletSmall: 768,
-    tablet: 860,
-    tabletLarge: 960,
-    desktopWide: 1920,
-};
-
-type BreakpointsPixels = {
-    [key in keyof Breakpoints]: string;
-};
-
-export const BreakpointsPixels: BreakpointsPixels = mapValues(
-    Breakpoints,
-    (breakpoint: number): string => {
-        return `${breakpoint}px`;
-    }
-);
+export const BreakpointsPixels: Record<string, string> = Object.entries(
+    Breakpoints
+).reduce<Record<string, string>>((acc, [name, value]) => {
+    acc[name] = toPixels(value);
+    return acc;
+}, {});

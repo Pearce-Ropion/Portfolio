@@ -4,13 +4,13 @@ import { MaxWidth } from 'components/MaxWidth';
 
 import { useViewport, viewportSelectors } from 'state/viewport';
 
-import { spacing, SpacingMultiplier } from 'styles/tokens/layout';
+import { toPixels } from 'utils/styles';
 
 const MOBILE_SCALE = 0.75;
 
-export const ContainerSizes: Record<string, SpacingMultiplier> = {
-    small: 3,
-    medium: 5,
+export const ContainerSizes: Record<string, number> = {
+    small: 24,
+    medium: 40,
 };
 
 export interface ContainerProps extends HTMLAttributes<HTMLElement> {
@@ -21,17 +21,17 @@ export const Container: FC<ContainerProps> = memo(
     ({ children, size = 'medium', ...rest }) => {
         const isMobile: boolean = useViewport(viewportSelectors.isMobile);
 
-        const paddingMultiplier: number = isMobile ? MOBILE_SCALE : 0;
+        const paddingMultiplier: number = isMobile ? MOBILE_SCALE : 1;
 
         return (
             <MaxWidth
                 centered
                 width="1080px"
                 css={{
-                    paddingLeft: spacing(
+                    paddingLeft: toPixels(
                         ContainerSizes[size] * paddingMultiplier
                     ),
-                    paddingRight: spacing(
+                    paddingRight: toPixels(
                         ContainerSizes[size] * paddingMultiplier
                     ),
                 }}

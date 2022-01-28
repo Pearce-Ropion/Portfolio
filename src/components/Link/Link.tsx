@@ -1,13 +1,14 @@
 import {
     AnchorHTMLAttributes,
     FC,
+    forwardRef,
     HTMLAttributes,
     MouseEventHandler,
     useEffect,
     useRef,
 } from 'react';
 import { cx } from '@emotion/css';
-import styled, { StyledComponent } from '@emotion/styled';
+import eStyled from '@emotion/styled';
 import { SegmentEvent } from '@segment/analytics-next';
 import { GatsbyLinkProps, Link as GatsbyLink } from 'gatsby';
 
@@ -21,49 +22,89 @@ import {
     StyledLink,
 } from 'components/Link';
 
+import { themeSelectors, useTheme } from 'state/theme';
+
+import { withStyles } from 'utils/with-styles';
+
 export interface StyledSpanProps
     extends LinkStylingProps,
         HTMLAttributes<HTMLSpanElement> {}
+
+export const StyledSpan = forwardRef<HTMLSpanElement, StyledSpanProps>(
+    ({ styled, inverted, ...props }, ref) => {
+        const themeIsInverted = useTheme(themeSelectors.inverted);
+
+        return withStyles<StyledSpanProps, HTMLSpanElement>(
+            eStyled.span(
+                baseLinkStyles,
+                dynamicLinkStyles({
+                    styled,
+                    inverted: inverted || themeIsInverted,
+                })
+            ),
+            props,
+            ref
+        );
+    }
+);
 
 export interface StyledGatsbyLinkProps
     extends LinkStylingProps,
         GatsbyLinkProps<unknown> {}
 
-export const StyledSpan: StyledComponent<StyledSpanProps> = styled.span(
-    baseLinkStyles,
-    dynamicLinkStyles
-);
+export const StyledGatsbyLink: FC<StyledGatsbyLinkProps> = ({
+    styled,
+    inverted,
+    ...props
+}) => {
+    const themeIsInverted = useTheme(themeSelectors.inverted);
 
-export const StyledGatsbyLink: StyledComponent<StyledGatsbyLinkProps> = styled(
-    GatsbyLink
-)(baseLinkStyles, dynamicLinkStyles);
+    return withStyles<StyledGatsbyLinkProps>(
+        eStyled(GatsbyLink)(
+            baseLinkStyles,
+            dynamicLinkStyles({
+                styled,
+                inverted: inverted || themeIsInverted,
+            })
+        ),
+        props
+    );
+};
 
-export interface LinkProps extends LinkStylingProps, GatsbyLinkProps<unknown> {
-    to: string;
+export interface LinkProps
+    extends LinkStylingProps,
+        Partial<GatsbyLinkProps<unknown>> {
+    to?: string;
     autoFocus?: boolean;
     segmentEvent?: SegmentEvent;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
+    onClick?: MouseEventHandler<HTMLAnchorElement | HTMLSpanElement>;
 }
 
 export const Link: FC<LinkProps> = ({
     children,
+    styled = true,
     to,
     autoFocus,
     segmentEvent,
     onClick,
-    ...rest
+    ...props
 }) => {
+    const spanRef = useRef<HTMLSpanElement>(null);
     const linkRef = useRef<HTMLAnchorElement>(null);
 
     const analytics: Analytics = useAnalytics();
 
     useEffect(() => {
         if (autoFocus) {
-            linkRef.current?.focus();
+            if (!to) {
+                spanRef.current?.focus();
+            } else {
+                linkRef.current?.focus();
+            }
         }
-    }, [autoFocus]);
+    }, [to, autoFocus]);
 
-    const handleClick: MouseEventHandler<HTMLAnchorElement> = async event => {
+    const handleClick: Required<LinkProps>['onClick'] = async event => {
         if (onClick) {
             onClick(event);
         }
@@ -80,7 +121,12 @@ export const Link: FC<LinkProps> = ({
 
     if (!to) {
         return (
-            <StyledSpan ref={linkRef} onClick={handleClick} {...rest}>
+            <StyledSpan
+                styled={styled}
+                onClick={handleClick}
+                {...props}
+                ref={spanRef}
+            >
                 {children}
             </StyledSpan>
         );
@@ -111,21 +157,35 @@ export const Link: FC<LinkProps> = ({
         }
 
         return (
-            <StyledLink ref={linkRef} href={link} {...linkProps} {...rest}>
+            <StyledLink
+                styled={styled}
+                href={link}
+                {...linkProps}
+                {...props}
+                ref={linkRef}
+            >
                 {children}
             </StyledLink>
         );
     } else if (isAnchorLink) {
         return (
-            <AnchorLink href={link} {...linkProps} {...rest}>
+            <AnchorLink href={link} styled={styled} {...linkProps} {...props}>
                 {children}
             </AnchorLink>
         );
     }
 
     return (
-        <StyledGatsbyLink innerRef={linkRef} to={link} {...linkProps} {...rest}>
+        <StyledGatsbyLink
+            innerRef={linkRef}
+            to={link}
+            styled={styled}
+            {...linkProps}
+            {...props}
+        >
             {children}
         </StyledGatsbyLink>
     );
+
+    // return null;
 };

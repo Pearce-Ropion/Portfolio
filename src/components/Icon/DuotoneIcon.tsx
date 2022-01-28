@@ -1,9 +1,12 @@
-import { FC } from 'react';
+import { VFC } from 'react';
 import { cx } from '@emotion/css';
 import { CSSObject } from '@emotion/react';
+import styled from '@emotion/styled';
 import * as CSS from 'csstype';
 
 import { StandardIcon, StandardIconProps } from 'components/Icon';
+
+import { withStyles } from 'utils/with-styles';
 
 export interface DuotoneIconProps extends StandardIconProps {
     swapOpacity?: boolean;
@@ -13,15 +16,16 @@ export interface DuotoneIconProps extends StandardIconProps {
     secondaryColorOpacity?: CSS.Property.Opacity;
 }
 
-export const DuotoneIcon: FC<DuotoneIconProps> = ({
+export const DuotoneIcon: VFC<DuotoneIconProps> = ({
+    className,
     swapOpacity,
     primaryColor,
     primaryColorOpacity,
     secondaryColor,
     secondaryColorOpacity,
-    ...rest
+    ...props
 }) => {
-    const classes = cx({
+    const classes = cx(className, {
         'fa-swap-opacity': swapOpacity,
     });
 
@@ -43,5 +47,8 @@ export const DuotoneIcon: FC<DuotoneIconProps> = ({
         cssVariables['--fa-secondary-opacity'] = secondaryColorOpacity;
     }
 
-    return <StandardIcon className={classes} css={cssVariables} {...rest} />;
+    return withStyles(styled(StandardIcon)(cssVariables), {
+        className: classes,
+        ...props,
+    });
 };

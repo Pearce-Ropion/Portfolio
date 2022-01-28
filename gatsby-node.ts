@@ -20,6 +20,9 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] =
 
                 fallback: {
                     path: require.resolve('path-browserify'),
+                    fs: false,
+                    os: false,
+                    module: false,
                 },
             },
         });

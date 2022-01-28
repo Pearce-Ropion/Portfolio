@@ -1,35 +1,33 @@
 import { FC, HTMLAttributes, memo } from 'react';
 import { CSSObject } from '@emotion/react';
 import styled from '@emotion/styled';
-import * as CSS from 'csstype';
 
 import { useViewport, viewportSelectors } from 'state/viewport';
 
+import { toPixels } from 'utils/styles';
 import { withStyles } from 'utils/with-styles';
 
-import { spacing } from 'styles/tokens/layout';
-
-const SectionSizes: Record<string, Record<string, CSS.Property.Padding>> = {
-    mini: {
-        desktop: spacing(3),
-        mobile: spacing(2),
+const SectionSizes: Record<string, Record<string, number>> = {
+    'small-x': {
+        desktop: 24,
+        mobile: 16,
     },
     small: {
-        desktop: spacing(6),
-        mobile: spacing(3),
+        desktop: 48,
+        mobile: 24,
     },
     medium: {
-        desktop: spacing(9),
-        mobile: spacing(4.5),
+        desktop: 72,
+        mobile: 36,
     },
     large: {
-        desktop: spacing(12),
-        mobile: spacing(6),
+        desktop: 108,
+        mobile: 54,
     },
 };
 
 export interface SectionProps extends HTMLAttributes<HTMLElement> {
-    size?: 'mini' | 'small' | 'medium' | 'large';
+    size?: 'small-x' | 'small' | 'medium' | 'large';
 }
 
 export const StyledSection: FC<SectionProps> = memo(props => {
@@ -42,14 +40,14 @@ export const StyledSection: FC<SectionProps> = memo(props => {
     };
 
     if (size) {
-        let padding: CSS.Property.Padding = SectionSizes[size].desktop;
+        let paddingValue: number = SectionSizes[size].desktop;
 
         if (isMobile) {
-            padding = SectionSizes[size].mobile;
+            paddingValue = SectionSizes[size].mobile;
         }
 
-        styles.paddingTop = padding;
-        styles.paddingBottom = padding;
+        styles.paddingTop = toPixels(paddingValue);
+        styles.paddingBottom = toPixels(paddingValue);
     }
 
     return withStyles<SectionProps>(styled.section(styles), props);

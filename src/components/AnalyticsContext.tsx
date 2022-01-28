@@ -29,7 +29,7 @@ export const AnalyticsProvider: FC = ({ children }) => {
 
                 setAnalytics(response);
             } catch (err) {
-                console.log(
+                console.error(
                     "An unexpected error occurred while loading the window's analytics",
                     err
                 );

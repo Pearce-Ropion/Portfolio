@@ -5,34 +5,39 @@ import { capitalize } from 'lodash-es';
 
 import { useViewport, viewportSelectors } from 'state/viewport';
 
+import { toPixels } from 'utils/styles';
 import { withStyles } from 'utils/with-styles';
-
-import { spacing, SpacingMultiplier } from 'styles/tokens/layout';
 
 const MOBILE_SCALE = 0.75;
 
-const MarginSizes: Record<string, SpacingMultiplier> = {
+export const MarginSizes: Record<string, number> = {
     zero: 0,
-    tiny: 0.5,
-    mini: 1,
-    small: 1.5,
-    medium: 2,
-    large: 3,
-    huge: 4,
-    massive: 6,
+    'small-2x': 4,
+    'small-x': 8,
+    small: 12,
+    medium: 16,
+    large: 24,
+    'large-x': 32,
+    'large-2x': 40,
+    'large-3x': 48,
+    'large-4x': 64,
 };
 
 export type MarginSizing =
     | 'zero'
-    | 'tiny'
-    | 'mini'
+    | 'small-2x'
+    | 'small-x'
     | 'small'
     | 'medium'
     | 'large'
-    | 'huge'
-    | 'massive'
+    | 'large-x'
+    | 'large-2x'
+    | 'large-3x'
+    | 'large-4x'
     | string
     | number;
+
+export const MARGIN_SIZES: MarginSizing[] = Object.keys(MarginSizes);
 
 export interface MarginDirection {
     top?: MarginSizing;
@@ -56,7 +61,7 @@ export const StyledMargin: FC<MarginProps> = ({
 }) => {
     const isMobile: boolean = useViewport(viewportSelectors.isMobile);
 
-    const marginMultiplier: number = isMobile ? MOBILE_SCALE : 0;
+    const marginMultiplier: number = isMobile ? MOBILE_SCALE : 1;
 
     const styles: CSSObject = Object.entries({
         top,
@@ -68,9 +73,9 @@ export const StyledMargin: FC<MarginProps> = ({
 
         if (value || value === 0) {
             if (typeof value === 'number') {
-                acc[property] = `${value}px`;
-            } else if (Object.keys(MarginSizes).includes(value)) {
-                acc[property] = spacing(MarginSizes[value] * marginMultiplier);
+                acc[property] = toPixels(value);
+            } else if (MARGIN_SIZES.includes(value)) {
+                acc[property] = toPixels(MarginSizes[value] * marginMultiplier);
             } else {
                 acc[property] = value;
             }

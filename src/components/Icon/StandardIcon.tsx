@@ -1,4 +1,6 @@
-import { FC } from 'react';
+import { VFC } from 'react';
+import { CSSObject } from '@emotion/react';
+import styled, { StyledComponent } from '@emotion/styled';
 import { startCase } from 'lodash-es';
 import {
     findIconDefinition,
@@ -9,16 +11,36 @@ import {
     FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
 
-import { spacing } from 'styles/tokens/layout';
+import { toEm } from 'utils/styles';
 
-export interface StandardIconProps extends FontAwesomeIconProps {
-    icon: IconProp;
+export interface StyledStandardIconProps extends FontAwesomeIconProps {
     marginLeft?: boolean;
     marginRight?: boolean;
 }
 
-export const StandardIcon: FC<StandardIconProps> = props => {
-    const { icon, marginLeft, marginRight, title, ...rest } = props;
+export const StyledStandardIcon: StyledComponent<StyledStandardIconProps> =
+    styled(FontAwesomeIcon)(
+        ({ marginLeft, marginRight }: StyledStandardIconProps): CSSObject => {
+            const styles: CSSObject = {};
+
+            if (marginLeft) {
+                styles.marginLeft = toEm(0.25);
+            }
+
+            if (marginRight) {
+                styles.marginRight = toEm(0.5);
+            }
+
+            return styles;
+        }
+    );
+
+export interface StandardIconProps extends StyledStandardIconProps {
+    icon: IconProp;
+}
+
+export const StandardIcon: VFC<StandardIconProps> = props => {
+    const { icon, title, ...rest } = props;
 
     let iconName: string | undefined;
     if (typeof icon === 'string') {
@@ -32,16 +54,11 @@ export const StandardIcon: FC<StandardIconProps> = props => {
             iconName: icon[1],
         }).iconName;
     } else {
-        iconName = findIconDefinition(icon).iconName;
+        iconName = icon.iconName;
     }
 
     return (
-        <FontAwesomeIcon
-            css={{
-                marginLeft: marginLeft ? spacing(0.5, { em: true }) : 0,
-                marginRight: marginRight ? spacing(1, { em: true }) : 0,
-            }}
-            role="presentation"
+        <StyledStandardIcon
             icon={icon}
             title={title || `${startCase(iconName)} Icon`}
             {...rest}

@@ -1,15 +1,9 @@
 import { AnchorHTMLAttributes, FC, MouseEventHandler, useRef } from 'react';
-import styled, { StyledComponent } from '@emotion/styled';
 import { constant } from 'lodash-es';
 import { SegmentEvent } from '@segment/analytics-next';
 
 import { Analytics, useAnalytics } from 'components/AnalyticsContext';
-import {
-    baseLinkStyles,
-    dynamicLinkStyles,
-    LinkStylingProps,
-    StyledLink,
-} from 'components/Link';
+import { LinkStylingProps, StyledLink } from 'components/Link';
 
 type OffsetFn = () => number;
 export interface AnchorLinkProps
@@ -61,7 +55,7 @@ export const AnchorLink: FC<AnchorLinkProps> = ({
                 await analytics?.track('click-anchor', segmentEvent);
             } catch (err) {
                 console.error(
-                    '[Analytics] Unable to track `click-anchor` event',
+                    '[Analytics]<AnchorLink> Unable to track `click-anchor` event',
                     err
                 );
             }

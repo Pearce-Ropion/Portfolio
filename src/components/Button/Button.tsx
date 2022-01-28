@@ -1,41 +1,48 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
+import { ButtonHTMLAttributes, FC, MouseEventHandler, ReactNode } from 'react';
 import { CSSObject } from '@emotion/react';
 import styled, { StyledComponent } from '@emotion/styled';
+import { SegmentEvent } from '@segment/analytics-next';
 import * as CSS from 'csstype';
 
+import { Analytics, useAnalytics } from 'components/AnalyticsContext';
 import { iconFactory, IconFactoryIconProp } from 'components/Icon';
 import { Link } from 'components/Link';
 
+import { Shorthand, toPixels } from 'utils/styles';
+
 import { Shadows, Transitions } from 'styles/tokens/animation';
 import { Colors } from 'styles/tokens/colors';
-import { FontFamily, FontSize, Weights } from 'styles/tokens/font';
-import { BorderRadius, spacing } from 'styles/tokens/layout';
+import { FontFamily, Weights } from 'styles/tokens/font';
+import { BorderRadius } from 'styles/tokens/layout';
+
+export const ButtonVariants = ['primary', 'secondary', 'link'] as const;
+export const IconPositions = ['left', 'right'] as const;
 
 const buttonPadding = (
-    borderWidth: CSS.Property.BorderWidth,
-    verticalPadding: CSS.Property.Padding = '13px',
-    horizontalPadding: CSS.Property.Padding = '50px'
+    borderWidth: number,
+    verticalPadding = 13,
+    horizontalPadding = 50
 ): CSS.Property.Padding => {
-    return `calc(${verticalPadding} - ${borderWidth}) calc(${horizontalPadding} - ${borderWidth})`;
+    return Shorthand.paddingToPx(
+        verticalPadding - borderWidth,
+        horizontalPadding - borderWidth
+    );
 };
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant: 'primary' | 'secondary' | 'link';
-    to?: string;
+
+export interface StyledButtonProps
+    extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant: typeof ButtonVariants[number];
     disabled?: boolean;
     inverted?: boolean;
-    outlined?: boolean;
-    icon?: IconFactoryIconProp;
-    iconPosition?: 'left' | 'right';
     marginLeft?: boolean;
     marginRight?: boolean;
-    onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }
 
-const StyledButton: StyledComponent<ButtonProps> = styled.button(
+export const StyledButton: StyledComponent<StyledButtonProps> = styled.button(
     {
         display: 'flex',
         fontFamily: FontFamily.sansSerif,
-        fontSize: FontSize.sm,
+        fontSize: toPixels(16),
         fontWeight: Weights.bold,
         lineHeight: 1,
         textAlign: 'center',
@@ -46,6 +53,8 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
         verticalAlign: 'middle',
         userSelect: 'none',
         padding: buttonPadding(0),
+        border: 'none',
+        outline: 'none',
     },
     ({
         variant,
@@ -62,7 +71,7 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
         } else {
             const styled: CSSObject = {
                 boxShadow: Shadows.small,
-                transform: 'translateY(-1)',
+                transform: `translateY(${toPixels(-1)})`,
                 filter: 'brightness(1.1)',
             };
 
@@ -71,11 +80,11 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
         }
 
         if (marginLeft) {
-            styles.marginLeft = spacing(0.75);
+            styles.marginLeft = toPixels(6);
         }
 
         if (marginRight) {
-            styles.marginRight = spacing(0.75);
+            styles.marginRight = toPixels(6);
         }
 
         if (variant === 'primary') {
@@ -88,11 +97,15 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
         }
 
         if (variant === 'secondary') {
-            const borderWidth: CSS.Property.BorderWidth = '3px';
+            const borderWidth = 3;
 
             styles.color = Colors.navy900;
             styles.background = 'transparent';
-            styles.border = `${borderWidth} solid ${Colors.navy900}`;
+            styles.border = Shorthand.border(
+                borderWidth,
+                'solid',
+                Colors.navy900
+            );
 
             styles.padding = buttonPadding(borderWidth);
 
@@ -106,12 +119,29 @@ const StyledButton: StyledComponent<ButtonProps> = styled.button(
     }
 );
 
-export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
-    const { to, disabled, icon, iconPosition, onClick } = props;
+export interface ButtonProps extends StyledButtonProps {
+    to?: string;
+    icon?: IconFactoryIconProp;
+    iconPosition?: typeof IconPositions[number];
+    segmentEvent?: SegmentEvent;
+    onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+}
 
-    const handleClick: MouseEventHandler<
-        HTMLButtonElement | HTMLAnchorElement
-    > = event => {
+export const Button: FC<ButtonProps> = ({
+    children,
+    variant = 'primary',
+    to,
+    icon,
+    iconPosition = 'left',
+    segmentEvent,
+    onClick,
+    ...props
+}) => {
+    const { disabled } = props;
+
+    const analytics: Analytics = useAnalytics();
+
+    const handleClick: ButtonProps['onClick'] = async event => {
         if (disabled) {
             event.preventDefault();
             event.stopPropagation();
@@ -119,10 +149,19 @@ export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
             if (onClick) {
                 onClick(event);
             }
+
+            try {
+                await analytics?.track('click-button', segmentEvent);
+            } catch (err) {
+                console.error(
+                    '[Analytics]<Button> Unable to track `click-anchor` event',
+                    err
+                );
+            }
         }
     };
 
-    const inner = (
+    const inner: ReactNode = (
         <>
             {icon &&
                 iconPosition === 'left' &&
@@ -138,7 +177,7 @@ export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
         </>
     );
 
-    if (to) {
+    if (to || variant === 'link') {
         return (
             <Link to={to} onClick={handleClick}>
                 {inner}
@@ -146,8 +185,10 @@ export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
         );
     }
 
+    console.log(props.css);
+
     return (
-        <StyledButton {...props} disabled={disabled} onClick={handleClick}>
+        <StyledButton variant={variant} onClick={handleClick} {...props}>
             {children}
         </StyledButton>
     );

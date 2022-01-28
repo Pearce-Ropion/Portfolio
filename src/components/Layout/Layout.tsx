@@ -3,18 +3,18 @@ import { Global } from '@emotion/react';
 import styled, { StyledComponent } from '@emotion/styled';
 import { WindowLocation } from '@reach/router';
 
-import { useViewportModel } from 'state/viewport';
+import { useViewportHandler } from 'state/viewport';
 
 import { GlobalStyles } from 'styles/global';
 
 export interface LayoutProps extends HTMLAttributes<HTMLElement> {
-    location: WindowLocation;
+    location?: WindowLocation;
 }
 
 export const StyledLayout: StyledComponent<LayoutProps> = styled.div();
 
 export const Layout: FC<LayoutProps> = ({ children, ...rest }) => {
-    useViewportModel();
+    useViewportHandler();
 
     return (
         <>
