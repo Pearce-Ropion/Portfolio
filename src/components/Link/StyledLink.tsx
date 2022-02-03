@@ -1,23 +1,25 @@
-import { AnchorHTMLAttributes, forwardRef, Ref } from 'react';
 import { CSSObject } from '@emotion/react';
-import eStyled from '@emotion/styled';
+import { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
+import { Link as GatsbyLink } from 'gatsby';
 
-import { themeSelectors, useTheme } from 'state/theme';
+import { WithState, WithTheme } from 'components';
+import { ButtonVariants, styledButtonStyles } from 'components/Button';
+import {
+    LinkStateProps,
+    StyledGatsbyLinkProps,
+    StyledLinkProps,
+    StyledSpanLinkProps,
+} from 'components/Link';
+import styled from 'components/styled';
 
-import { toEm } from 'utils/styles';
-import { withStyles } from 'utils/with-styles';
+import { isThemeOverride, toEm } from 'utils/styles';
 
 import { Colors } from 'styles/tokens/colors';
 
 export const DEFAULT_LINK_COLOR = Colors.orange900;
 export const DEFAULT_LINK_COLOR_INVERTED = Colors.orange800;
 export const DEFAULT_LINK_BORDER = toEm(0.125);
-
-export interface LinkStylingProps {
-    styled?: boolean;
-    inverted?: boolean;
-}
 
 export const baseLinkStyles: CSSObject = {
     cursor: 'pointer',
@@ -48,40 +50,57 @@ export const styledLinkStyles = (
     height: CSS.Property.PaddingBottom = DEFAULT_LINK_BORDER
 ): CSSObject => ({
     ...styledLinkBaseStyles(color, height),
+
     '&:hover': {
         ...styledLinkHoverStyles,
     },
 });
 
-export const dynamicLinkStyles = ({
-    styled,
-    inverted,
-}: LinkStylingProps): CSSObject | undefined => {
-    if (styled) {
-        return styledLinkStyles(
-            inverted ? DEFAULT_LINK_COLOR_INVERTED : DEFAULT_LINK_COLOR
-        );
-    }
+export const styledLinkComponentStyles = <S extends LinkStateProps>({
+    theme,
+    componentState: { variant, ...componentState },
+}: WithState<S> & WithTheme): CSSObject => {
+    const inverted: boolean = isThemeOverride<Omit<S, 'variant'>>(
+        theme,
+        componentState,
+        'inverted'
+    );
+
+    const isButtonVariant: boolean = ButtonVariants.some(
+        (buttonVariant: typeof ButtonVariants[number]): boolean =>
+            buttonVariant === variant
+    );
+
+    return {
+        ...baseLinkStyles,
+
+        ...(variant === 'styled' &&
+            styledLinkStyles(
+                inverted ? DEFAULT_LINK_COLOR_INVERTED : DEFAULT_LINK_COLOR
+            )),
+
+        ...(isButtonVariant && {
+            width: 'fit-content',
+
+            ...styledButtonStyles({
+                theme,
+                componentState: {
+                    ...componentState,
+                    variant: variant as typeof ButtonVariants[number],
+                },
+            }),
+        }),
+    };
 };
 
-export interface StyledLinkProps
-    extends LinkStylingProps,
-        AnchorHTMLAttributes<HTMLAnchorElement> {}
-
-export const StyledLink = forwardRef<HTMLAnchorElement, StyledLinkProps>(
-    ({ styled, inverted, ...props }, ref) => {
-        const themeIsInverted = useTheme(themeSelectors.inverted);
-
-        return withStyles<StyledLinkProps, HTMLAnchorElement>(
-            eStyled.a(
-                baseLinkStyles,
-                dynamicLinkStyles({
-                    styled,
-                    inverted: inverted || themeIsInverted,
-                })
-            ),
-            props,
-            ref
-        );
-    }
+export const StyledSpanLink: StyledComponent<StyledSpanLinkProps> = styled.span(
+    styledLinkComponentStyles
 );
+
+export const StyledLink: StyledComponent<StyledLinkProps> = styled.a(
+    styledLinkComponentStyles
+);
+
+export const StyledGatsbyLink: StyledComponent<StyledGatsbyLinkProps> = styled(
+    GatsbyLink
+)(styledLinkComponentStyles);

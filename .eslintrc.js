@@ -53,6 +53,15 @@ module.exports = {
                 '@typescript-eslint/no-unsafe-assignment': 0,
                 '@typescript-eslint/no-unsafe-call': 0,
                 '@typescript-eslint/no-unsafe-argument': 0,
+
+                '@typescript-eslint/ban-ts-comment': [
+                    2,
+                    {
+                        'ts-ignore': 'allow-with-description',
+                        'ts-nocheck': 'allow-with-description',
+                        'ts-check': 'allow-with-description',
+                    },
+                ],
             },
         },
         {

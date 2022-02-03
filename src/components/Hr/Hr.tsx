@@ -20,7 +20,7 @@ export const StyledHr: StyledComponent<StyledHrProps> = styled.hr(
             height: 0,
             margin: Shorthand.margin(0, 'auto'),
             border: 'none',
-            borderTop: Shorthand.border(1, 'solid', Colors.neutral300),
+            borderTop: Shorthand.borderToPx(1, 'solid', Colors.neutral300),
         };
 
         if (fullBleed) {

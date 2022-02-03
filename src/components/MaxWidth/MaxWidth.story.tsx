@@ -10,7 +10,7 @@ import { Colors } from 'styles/tokens/colors';
 const Template: ComponentStory<typeof MaxWidth> = args => (
     <MaxWidth
         css={{
-            border: Shorthand.border(5, 'solid', Colors.green900),
+            border: Shorthand.borderToPx(5, 'solid', Colors.green900),
             padding: Shorthand.paddingToEm(1),
         }}
         {...args}

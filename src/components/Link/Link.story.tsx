@@ -13,7 +13,17 @@ export const Basic = Template.bind({});
 
 export const Unstyled = Template.bind({});
 Unstyled.args = {
-    styled: false,
+    variant: 'unstyled',
+};
+
+export const PrimaryButton = Template.bind({});
+PrimaryButton.args = {
+    variant: 'primary',
+};
+
+export const SecondaryButton = Template.bind({});
+SecondaryButton.args = {
+    variant: 'secondary',
 };
 
 export const Inverted = Template.bind({});

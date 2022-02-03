@@ -1,6 +1,11 @@
 import { UseBoundStore } from 'zustand';
 
-import { createSelectors, createStore, Selectors } from 'state/create-store';
+import {
+    createSelectors,
+    createStore,
+    Selectors,
+    StoreState,
+} from 'state/create-store';
 
 import { Breakpoints } from 'styles/tokens/breakpoints';
 
@@ -20,8 +25,7 @@ export const getViewport = (): Viewport => ({
     ),
 });
 
-export interface ViewportState {
-    [slice: string]: unknown;
+export interface BaseViewportState {
     viewportWidth: number;
     viewportHeight: number;
     isMobileSmall: boolean;
@@ -37,6 +41,8 @@ export interface ViewportState {
     isDesktopWide: boolean;
     calculateVariables: () => void;
 }
+
+export interface ViewportState extends StoreState, BaseViewportState {}
 
 export const viewportStore: UseBoundStore<ViewportState> =
     createStore<ViewportState>('ViewportStore', setState => ({

@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 import { CSSObject } from '@emotion/react';
-import styled, { StyledComponent } from '@emotion/styled';
+import styled from '@emotion/styled';
 import { startCase } from 'lodash-es';
 import {
     findIconDefinition,
@@ -12,28 +12,30 @@ import {
 } from '@fortawesome/react-fontawesome';
 
 import { toEm } from 'utils/styles';
+import { withStyles } from 'utils/with-styles';
 
 export interface StyledStandardIconProps extends FontAwesomeIconProps {
     marginLeft?: boolean;
     marginRight?: boolean;
 }
 
-export const StyledStandardIcon: StyledComponent<StyledStandardIconProps> =
-    styled(FontAwesomeIcon)(
-        ({ marginLeft, marginRight }: StyledStandardIconProps): CSSObject => {
-            const styles: CSSObject = {};
+export const StyledStandardIcon: VFC<StyledStandardIconProps> = ({
+    marginLeft,
+    marginRight,
+    ...props
+}) => {
+    const styles: CSSObject = {};
 
-            if (marginLeft) {
-                styles.marginLeft = toEm(0.25);
-            }
+    if (marginLeft) {
+        styles.marginLeft = toEm(0.25);
+    }
 
-            if (marginRight) {
-                styles.marginRight = toEm(0.5);
-            }
+    if (marginRight) {
+        styles.marginRight = toEm(0.5);
+    }
 
-            return styles;
-        }
-    );
+    return withStyles(styled(FontAwesomeIcon)(styles), props);
+};
 
 export interface StandardIconProps extends StyledStandardIconProps {
     icon: IconProp;

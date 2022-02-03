@@ -9,7 +9,11 @@ import create, {
 } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-export const createStore = <S extends State>(
+export interface StoreState extends State {
+    [slice: string]: unknown;
+}
+
+export const createStore = <S extends StoreState>(
     name: string,
     storeFn: StateCreator<S>
 ): UseBoundStore<S> => {
@@ -18,11 +22,11 @@ export const createStore = <S extends State>(
     );
 };
 
-export type Selectors<S extends State> = {
+export type Selectors<S extends StoreState> = {
     [key in keyof S]: (state: S) => S[key];
 };
 
-export const createSelectors = <S extends State>(
+export const createSelectors = <S extends StoreState>(
     store: UseBoundStore<S>
 ): Selectors<S> => {
     const keys = Object.keys(store.getState()) as Array<keyof S>;

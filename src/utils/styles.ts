@@ -1,5 +1,8 @@
-import { cx } from '@emotion/css';
+import { CSSInterpolation, cx } from '@emotion/css';
+import { CSSObject, Theme } from '@emotion/react';
 import * as CSS from 'csstype';
+
+import { BaseThemeState } from 'state/theme';
 
 import { hexToRgb, RGB } from 'utils/color';
 
@@ -37,6 +40,21 @@ export const toRem = (value: PixelValue): string => {
 
 export const toPercent = (value: PixelValue): string => {
     return toUnit(value, '%');
+};
+
+export const isThemeOverride = <S extends Partial<Theme>>(
+    theme: Theme,
+    componentState: S,
+    sliceKey: keyof Theme
+): boolean => {
+    return Boolean(theme[sliceKey] || componentState[sliceKey]);
+};
+
+export const isInverted = <S extends Partial<Theme>>(
+    theme: Theme,
+    componentState: S
+): boolean => {
+    return isThemeOverride(theme, componentState, 'inverted');
 };
 
 const spacingShorthand = (
@@ -91,31 +109,102 @@ const spacingShorthandToEm = (
 };
 
 const borderShorthand = (
+    width: string,
+    style: CSS.Property.BorderStyle,
+    color: CSS.Property.BorderColor
+): string => {
+    return cx(width, style, color);
+};
+
+const borderShorthandToPx = (
     width: PixelValue,
     style: CSS.Property.BorderStyle,
     color: CSS.Property.BorderColor
 ): string => {
-    return cx(toPixels(width), style, color);
+    return borderShorthand(toPixels(width), style, color);
 };
 
-const rgbShorthand = (rgb: RGB, opacity?: CSS.Property.Opacity): string => {
+const borderShorthandToEm = (
+    width: PixelValue,
+    style: CSS.Property.BorderStyle,
+    color: CSS.Property.BorderColor
+): string => {
+    return borderShorthand(toEm(width), style, color);
+};
+
+const rgbShorthand = (
+    r: RGB['r'],
+    g: RGB['g'],
+    b: RGB['b'],
+    opacity?: CSS.Property.Opacity
+) => {
     if (opacity) {
-        return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
+        return `rgba(${r}, ${g}, ${b}, ${opacity})`;
     }
 
-    return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+    return `rgb(${r}, ${g}, ${b})`;
+};
+
+const rgbObjectShorthand = (
+    rgb: RGB,
+    opacity?: CSS.Property.Opacity
+): string => {
+    return rgbShorthand(rgb.r, rgb.g, rgb.b, opacity);
 };
 
 const hexToRgbShorthand = (
     hex: string,
     opacity?: CSS.Property.Opacity
-): string | undefined => {
+): string => {
     const rgb: RGB | undefined = hexToRgb(hex);
 
     if (rgb) {
-        return rgbShorthand(rgb, opacity);
+        return rgbObjectShorthand(rgb, opacity);
     }
+
+    return rgbShorthand(0, 0, 0);
 };
+
+interface TranslateShorthandOptions {
+    x?: boolean;
+    y?: boolean;
+}
+
+const translateShorthand =
+    ({ x, y }: TranslateShorthandOptions = {}) =>
+    (translateValueXOrY: string, translateValueY?: string): string => {
+        if (x && !y) {
+            return `translateX(${translateValueXOrY})`;
+        } else if (y && !x) {
+            return `translateY(${translateValueXOrY})`;
+        }
+
+        if (translateValueY) {
+            return `translate(${translateValueXOrY}, ${translateValueY})`;
+        }
+
+        return `translate(${translateValueXOrY})`;
+    };
+
+const translateShorthandToPx =
+    (XYOptions?: TranslateShorthandOptions) =>
+    (translateValueXOrY: PixelValue, translateValueY?: PixelValue): string => {
+        return translateShorthand(XYOptions)(
+            toPixels(translateValueXOrY),
+            translateValueY ? toPixels(translateValueY) : undefined
+        );
+    };
+
+const translateShorthandToEm =
+    (XYOptions?: TranslateShorthandOptions) =>
+    (translateValueXOrY: PixelValue, translateValueY?: PixelValue): string => {
+        return translateShorthand(XYOptions)(
+            toEm(translateValueXOrY),
+            translateValueY ? toEm(translateValueY) : undefined
+        );
+    };
+
+const scaleShorthand = (scaleValue: PixelValue) => `scale(${scaleValue})`;
 
 export const Shorthand = {
     margin: spacingShorthand,
@@ -127,7 +216,23 @@ export const Shorthand = {
     paddingToEm: spacingShorthandToEm,
 
     border: borderShorthand,
+    borderToPx: borderShorthandToPx,
+    borderToEm: borderShorthandToEm,
 
-    rgb: rgbShorthand,
+    rgbObject: rgbObjectShorthand,
     hexToRgb: hexToRgbShorthand,
+
+    translate: translateShorthand(),
+    translateToPx: translateShorthandToPx(),
+    translateToEm: translateShorthandToEm(),
+
+    translateX: translateShorthand({ x: true }),
+    translateXToPx: translateShorthandToPx({ x: true }),
+    translateXToEm: translateShorthandToEm({ x: true }),
+
+    translateY: translateShorthand({ y: true }),
+    translateYToPx: translateShorthandToPx({ y: true }),
+    translateYToEm: translateShorthandToEm({ y: true }),
+
+    scale: scaleShorthand,
 };
