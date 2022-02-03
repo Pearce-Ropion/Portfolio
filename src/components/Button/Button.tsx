@@ -1,14 +1,8 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 
 import { Analytics, useAnalytics } from 'components/AnalyticsContext';
-import {
-    ButtonProps,
-    ButtonStateProps,
-    StyledButton,
-    StyledButtonLink,
-} from 'components/Button';
+import { ButtonProps, ButtonStateProps, StyledButton } from 'components/Button';
 import { iconFactory } from 'components/Icon';
-import { Link, LinkStateProps } from 'components/Link';
 
 export const buttonTrackEventName = 'click-button';
 
@@ -17,7 +11,6 @@ export const Button: FC<ButtonProps> = ({
     variant = 'primary',
     disabled,
     inverted,
-    to,
     icon,
     iconPosition = 'left',
     segmentEvent,
@@ -47,40 +40,6 @@ export const Button: FC<ButtonProps> = ({
         }
     };
 
-    const inner: ReactNode = (
-        <>
-            {icon &&
-                iconPosition === 'left' &&
-                iconFactory(icon, {
-                    marginRight: true,
-                })}
-            {children}
-            {icon &&
-                iconPosition === 'right' &&
-                iconFactory(icon, {
-                    marginLeft: true,
-                })}
-        </>
-    );
-
-    if (to) {
-        const linkState: LinkStateProps = {
-            ...componentState,
-            inverted,
-        };
-
-        return (
-            <StyledButtonLink
-                to={to}
-                styled={false}
-                componentState={linkState}
-                onClick={handleClick}
-            >
-                {inner}
-            </StyledButtonLink>
-        );
-    }
-
     const buttonState: ButtonStateProps = {
         ...componentState,
         variant,
@@ -94,7 +53,17 @@ export const Button: FC<ButtonProps> = ({
             onClick={handleClick}
             {...props}
         >
+            {icon &&
+                iconPosition === 'left' &&
+                iconFactory(icon, {
+                    marginRight: true,
+                })}
             {children}
+            {icon &&
+                iconPosition === 'right' &&
+                iconFactory(icon, {
+                    marginLeft: true,
+                })}
         </StyledButton>
     );
 };

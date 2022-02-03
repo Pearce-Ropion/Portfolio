@@ -30,10 +30,12 @@ export interface ButtonProps
     extends WithOverrideState<ButtonStateProps>,
         ButtonHandlerProps,
         Omit<
-            ButtonHTMLAttributes<HTMLButtonElement>,
+            DetailedHTMLProps<
+                ButtonHTMLAttributes<HTMLButtonElement>,
+                HTMLButtonElement
+            >,
             keyof ButtonHandlerProps
         > {
-    to?: string;
     styledLink?: boolean;
     icon?: IconFactoryIconProp;
     iconPosition?: typeof IconPositions[number];

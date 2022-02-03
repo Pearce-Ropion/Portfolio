@@ -1,5 +1,4 @@
-import { CSSObject, Theme } from '@emotion/react';
-import { FunctionInterpolation } from '@emotion/serialize';
+import { CSSObject } from '@emotion/react';
 import * as CSS from 'csstype';
 
 import { WithTheme } from 'components';
