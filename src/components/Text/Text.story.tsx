@@ -1,32 +1,22 @@
 import { ReactNode } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Text, TextVariants, TextWeights } from 'components/Text';
+import { Text, TextWeights } from 'components/Text';
 
 import { Colors } from 'styles/tokens/colors';
 
 const Template: ComponentStory<typeof Text> = args => (
     <div>
-        {TextVariants.map(
-            (variant: typeof TextVariants[number]): ReactNode => (
-                <div key={variant}>
+        {TextWeights.map(
+            (weight: typeof TextWeights[number]): ReactNode => (
+                <div key={weight}>
                     <Text color={Colors.orange900} weight="bold">
-                        Variant {variant}
+                        Variant {weight}
                     </Text>
 
-                    {TextWeights.map(
-                        (weight: typeof TextWeights[number]): ReactNode => (
-                            <Text
-                                key={weight}
-                                variant={variant}
-                                weight={weight}
-                                {...args}
-                            >
-                                They looked up at the sky and saw a million
-                                stars
-                            </Text>
-                        )
-                    )}
+                    <Text weight={weight} {...args}>
+                        They looked up at the sky and saw a million stars
+                    </Text>
                 </div>
             )
         )}

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { NamedExoticComponent, ReactNode } from 'react';
 import { action } from '@storybook/addon-actions';
 import { DecoratorFn } from '@storybook/react';
 
@@ -9,6 +9,7 @@ import { StorybookContext } from 'components/StorybookContext';
 
 import { Backgrounds } from 'utils/backgrounds';
 import {
+    StoryContext,
     StoryParameters,
     useDisablePagePadding,
     useInvertPage,
@@ -19,6 +20,8 @@ import { Viewports } from 'utils/viewports';
 window.___navigate = (pathname: string): void => {
     action('Navigate To: ')(pathname);
 };
+
+const IS_STORYBOOK_PREVIEW = true;
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -40,7 +43,7 @@ export const parameters = {
 };
 
 export const decorators: DecoratorFn[] = [
-    (Story, context) => {
+    (Story, context: StoryContext) => {
         // console.log(context);
         const { name, parameters, component } = context;
         const { description, notes, componentName } =
@@ -53,7 +56,9 @@ export const decorators: DecoratorFn[] = [
         let inner: ReactNode = <Story />;
 
         if (component) {
-            pageName = componentName || component.displayName;
+            pageName =
+                componentName ||
+                (component as NamedExoticComponent).displayName;
             inner = (
                 <Example title={name} description={notes} inverted={inverted}>
                     <Story />
@@ -62,7 +67,7 @@ export const decorators: DecoratorFn[] = [
         }
 
         return (
-            <StorybookContext.Provider value>
+            <StorybookContext.Provider value={IS_STORYBOOK_PREVIEW}>
                 <Layout>
                     <Page
                         title={pageName}

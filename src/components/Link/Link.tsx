@@ -13,6 +13,7 @@ import { Analytics, useAnalytics } from 'components/AnalyticsContext';
 import {
     analyzeLink,
     AnchorLink,
+    DEFAULT_LINK_VARIANT,
     LinkProps,
     LinkStateProps,
     StyledGatsbyLink,
@@ -23,13 +24,13 @@ import {
 export const Link: FC<LinkProps> = memo(
     ({
         children,
-        variant = 'styled',
+        variant = DEFAULT_LINK_VARIANT,
         inverted,
         disabled,
         to,
         autoFocus,
         segmentEvent,
-        componentState,
+        componentState = {},
         onClick,
         ...props
     }) => {
@@ -117,7 +118,7 @@ export const Link: FC<LinkProps> = memo(
             );
         } else if (isAnchorLink) {
             return (
-                <AnchorLink href={link} {...linkProps} {...props}>
+                <AnchorLink to={link} {...linkProps} {...props}>
                     {children}
                 </AnchorLink>
             );

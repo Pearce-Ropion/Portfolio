@@ -7,6 +7,10 @@ export interface LoremProps extends TextProps {
     options?: Parameters<typeof loremIpsum>[0];
 }
 
-export const Lorem: VFC<LoremProps> = ({ options, ...props }) => {
-    return <Text {...props}>{loremIpsum(options)}</Text>;
+export const Lorem: VFC<LoremProps> = ({ options, inverted, ...props }) => {
+    return (
+        <Text {...props} inverted={inverted}>
+            {loremIpsum(options)}
+        </Text>
+    );
 };

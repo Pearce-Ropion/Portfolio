@@ -15,8 +15,8 @@ export interface StyledOptions<P>
     shouldForwardProp?: ShouldForwardProps;
 }
 
-const baseShouldForwardProp: ShouldForwardProps = propName => {
-    return isPropValid(propName) && propName !== 'state';
+export const baseShouldForwardProp: ShouldForwardProps = propName => {
+    return propName !== 'componentState';
 };
 
 const baseStyled: BaseCreateStyled = <P>(
@@ -34,7 +34,11 @@ const styled = baseStyled.bind({});
 
 htmlTagNames.forEach((tagName: string): void => {
     // @ts-ignore: The exposed type is defined on the default export
-    styled[tagName] = styled(tagName);
+    styled[tagName] = styled(tagName, {
+        shouldForwardProp: (propName: PropertyKey) => {
+            return baseShouldForwardProp(propName) && isPropValid(propName);
+        },
+    });
 });
 
 export default styled as CreateStyled;

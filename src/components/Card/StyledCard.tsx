@@ -24,6 +24,7 @@ export const StyledCard: StyledComponent<StyledCardProps> = styled.div(
             border: Shorthand.borderToPx(1, 'solid', Colors.neutral500),
             borderRadius: BorderRadius.medium,
             transition: Transitions.standard,
+            padding: Shorthand.paddingToEm(1),
 
             ...(componentState.link && {
                 cursor: 'pointer',

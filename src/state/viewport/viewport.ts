@@ -26,8 +26,6 @@ export const getViewport = (): Viewport => ({
 });
 
 export interface BaseViewportState {
-    viewportWidth: number;
-    viewportHeight: number;
     isMobileSmall: boolean;
     isMobile: boolean;
     isOnlyMobile: boolean;
@@ -39,10 +37,13 @@ export interface BaseViewportState {
     isOnlyTabletLarge: boolean;
     isDesktop: boolean;
     isDesktopWide: boolean;
-    calculateVariables: () => void;
 }
 
-export interface ViewportState extends StoreState, BaseViewportState {}
+export interface ViewportState extends StoreState, BaseViewportState {
+    viewportWidth: number;
+    viewportHeight: number;
+    calculateVariables: () => void;
+}
 
 export const viewportStore: UseBoundStore<ViewportState> =
     createStore<ViewportState>('ViewportStore', setState => ({

@@ -2,9 +2,12 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Hr } from 'components/Hr';
 import { Lorem } from 'components/Lorem';
-import { Margin } from 'components/Margin';
 
-const Template: ComponentStory<typeof Hr> = args => <Hr {...args} />;
+import { Shorthand } from 'utils/styles';
+
+const Template: ComponentStory<typeof Hr> = args => (
+    <Hr css={{ margin: Shorthand.marginToEm(1, 0) }} {...args} />
+);
 
 export const Basic = Template.bind({});
 
@@ -33,9 +36,7 @@ export default {
             return (
                 <div>
                     <Lorem inverted={args.inverted} />
-                    <Margin top="small" bottom="small">
-                        <Story />
-                    </Margin>
+                    <Story />
                     <Lorem inverted={args.inverted} />
                 </div>
             );

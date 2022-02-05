@@ -16,8 +16,8 @@ export const SECONDARY_BUTTON_BORDER_WIDTH = 3;
 
 export const buttonPadding = (
     borderWidth: number,
-    verticalPadding = 13,
-    horizontalPadding = 50
+    verticalPadding = 12,
+    horizontalPadding = 24
 ): CSS.Property.Padding => {
     return Shorthand.paddingToPx(
         verticalPadding - borderWidth,
@@ -37,10 +37,10 @@ export const styledButtonStyles = ({
 
     return {
         display: 'flex',
-        fontFamily: FontFamily.sansSerif,
-        fontSize: toPixels(16),
-        fontWeight: Weights.bold,
-        lineHeight: 1,
+        fontFamily: FontFamily.roboto,
+        fontSize: toPixels(18),
+        lineHeight: toPixels(22),
+        fontWeight: Weights.normal,
         textAlign: 'center',
         whiteSpace: 'nowrap',
         borderRadius: BorderRadius.small,

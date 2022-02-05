@@ -8,7 +8,9 @@ import { MobileViewports } from 'utils/viewports';
 
 import { ColorsByValue } from 'styles/tokens/colors';
 
-type Context = Parameters<DecoratorFn>[1];
+export type StoryContext = Parameters<DecoratorFn>[1] & {
+    component?: NamedExoticComponent;
+};
 
 export interface StoryGlobals {
     backgrounds: typeof Backgrounds[number];
@@ -18,7 +20,6 @@ export interface StoryParameters {
     backgrounds: {
         default: string;
     };
-    component: NamedExoticComponent;
     componentName?: string;
     description?: string;
     notes?: string;
@@ -31,7 +32,7 @@ export interface StoryParameters {
     };
 }
 
-export const useInvertPage = (context: Context): boolean => {
+export const useInvertPage = (context: StoryContext): boolean => {
     const { parameters, globals } = context;
     const { backgrounds: globalBackground = {} } = globals as StoryGlobals;
     const { backgrounds, page = {} } = parameters as StoryParameters;
@@ -62,7 +63,7 @@ interface ViewportState {
     selected?: string;
 }
 
-export const useDisablePagePadding = (context: Context): boolean => {
+export const useDisablePagePadding = (context: StoryContext): boolean => {
     const viewportAddonId = 'storybook/viewport';
     const [viewportState] = useAddonState<ViewportState>(viewportAddonId, {});
 

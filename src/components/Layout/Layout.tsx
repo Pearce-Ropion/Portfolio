@@ -1,20 +1,14 @@
-import { FC, HTMLAttributes } from 'react';
+import { FC, memo } from 'react';
 import { Global, ThemeProvider } from '@emotion/react';
-import styled, { StyledComponent } from '@emotion/styled';
-import { WindowLocation } from '@reach/router';
+
+import { LayoutProps, StyledLayout } from 'components/Layout';
 
 import { useTheme } from 'state/theme';
 import { useViewportHandler } from 'state/viewport';
 
 import { GlobalStyles } from 'styles/global';
 
-export interface LayoutProps extends HTMLAttributes<HTMLElement> {
-    location?: WindowLocation;
-}
-
-export const StyledLayout: StyledComponent<LayoutProps> = styled.div();
-
-export const Layout: FC<LayoutProps> = ({ children, ...rest }) => {
+export const Layout: FC<LayoutProps> = memo(({ children, ...props }) => {
     useViewportHandler();
 
     const theme = useTheme();
@@ -22,7 +16,7 @@ export const Layout: FC<LayoutProps> = ({ children, ...rest }) => {
     return (
         <ThemeProvider theme={theme}>
             <Global styles={GlobalStyles} />
-            <StyledLayout {...rest}>{children}</StyledLayout>
+            <StyledLayout {...props}>{children}</StyledLayout>
         </ThemeProvider>
     );
-};
+});

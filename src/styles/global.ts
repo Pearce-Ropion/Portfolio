@@ -1,5 +1,7 @@
 import { CSSObject } from '@emotion/react';
 
+import 'styles/fonts';
+
 import { FontFamily } from 'styles/tokens/font';
 
 import 'normalize.css/normalize.css';
@@ -22,7 +24,7 @@ export const GlobalStyles: CSSObject = {
     },
 
     body: {
-        fontFamily: FontFamily.sansSerif,
+        fontFamily: FontFamily.roboto,
         margin: 0,
         textRendering: 'optimizeLegibility',
         WebkitFontSmoothing: 'antialiased',

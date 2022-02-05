@@ -2,13 +2,13 @@ import { ReactNode, VFC } from 'react';
 import { groupBy, map, padStart, sortBy } from 'lodash-es';
 
 import { Box } from 'components/Box';
-import { Margin } from 'components/Margin';
-import { Special, Text } from 'components/Text';
+import { Text } from 'components/Text';
 
 import { hexToRgb, RGB } from 'utils/color';
-import { toPixels } from 'utils/styles';
+import { Shorthand, toPixels } from 'utils/styles';
 
 import { Colors as colors } from 'styles/tokens/colors';
+import { FontFamily } from 'styles/tokens/font';
 
 interface ColorEntry {
     name: string;
@@ -28,13 +28,11 @@ const ColorBlock: VFC<ColorBlockProps> = ({ color, name }) => {
     const rgb: RGB | undefined = hexToRgb(color);
 
     return (
-        <Margin bottom="medium">
+        <div css={{ marginBottom: Shorthand.marginToEm(1) }}>
             <Box color={color} />
-            <Margin top="small-2x">
-                <Text variant="p2" weight="bold">
-                    {name}
-                </Text>
-                <Special variant="code2">
+            <div css={{ marginTop: Shorthand.marginToPx(4) }}>
+                <Text weight="bold">{name}</Text>
+                <Text css={{ fontFamily: FontFamily.monospace }}>
                     {color}
                     <br />
                     {rgb &&
@@ -50,9 +48,9 @@ const ColorBlock: VFC<ColorBlockProps> = ({ color, name }) => {
                                 </span>
                             )
                         )}
-                </Special>
-            </Margin>
-        </Margin>
+                </Text>
+            </div>
+        </div>
     );
 };
 
@@ -98,12 +96,16 @@ export const Colors: VFC = () => {
             {sortedColors.map(({ color: prefix, colors }) => (
                 <div key={prefix} css={{ display: 'flex' }}>
                     {colors.map(({ name, color }, idx) => (
-                        <Margin
+                        <div
                             key={name}
-                            right={idx === colors.length - 1 ? 'zero' : 'small'}
+                            css={{
+                                marginRight: Shorthand.marginToEm(
+                                    idx === colors.length - 1 ? 0 : 1
+                                ),
+                            }}
                         >
                             <ColorBlock color={color} name={name} />
-                        </Margin>
+                        </div>
                     ))}
                 </div>
             ))}

@@ -1,4 +1,5 @@
 export enum Weights {
+    thin = 100,
     light = 300,
     normal = 400,
     medium = 500,
@@ -8,7 +9,8 @@ export enum Weights {
 }
 
 export enum FontFamily {
-    sansSerif = '"Lato", sans-serif',
-    serif = '"Merriweather", Georgia, "Times New Roman", Times, serif',
+    roboto = '"Roboto", sans-serif',
+    raleway = '"Raleway", sans-serif',
+    serif = '"Merriweather", Helvetica, serif',
     monospace = '"Inconsolata", monospace',
 }

@@ -1,44 +1,28 @@
-import { FC, HTMLAttributes, memo } from 'react';
+import { FC, memo } from 'react';
 
-import { MaxWidth } from 'components/MaxWidth';
-
-import { useViewport, viewportSelectors } from 'state/viewport';
-
-import { toPixels } from 'utils/styles';
-
-const MOBILE_SCALE = 0.75;
-
-export const ContainerSizes: Record<string, number> = {
-    small: 24,
-    medium: 40,
-};
-
-export interface ContainerProps extends HTMLAttributes<HTMLElement> {
-    size?: 'small' | 'medium';
-}
+import {
+    ContainerProps,
+    ContainerStateProps,
+    DEFAULT_CONTAINER_SIZE,
+    StyledContainer,
+} from 'components/Container';
 
 export const Container: FC<ContainerProps> = memo(
-    ({ children, size = 'medium', ...rest }) => {
-        const isMobile: boolean = useViewport(viewportSelectors.isMobile);
-
-        const paddingMultiplier: number = isMobile ? MOBILE_SCALE : 1;
+    ({
+        children,
+        size = DEFAULT_CONTAINER_SIZE,
+        componentState = {},
+        ...props
+    }) => {
+        const containerState: ContainerStateProps = {
+            size,
+            ...componentState,
+        };
 
         return (
-            <MaxWidth
-                centered
-                width="1080px"
-                css={{
-                    paddingLeft: toPixels(
-                        ContainerSizes[size] * paddingMultiplier
-                    ),
-                    paddingRight: toPixels(
-                        ContainerSizes[size] * paddingMultiplier
-                    ),
-                }}
-                {...rest}
-            >
+            <StyledContainer componentState={containerState} {...props}>
                 {children}
-            </MaxWidth>
+            </StyledContainer>
         );
     }
 );

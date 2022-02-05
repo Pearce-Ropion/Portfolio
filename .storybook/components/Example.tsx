@@ -2,7 +2,7 @@ import { FC, HTMLAttributes } from 'react';
 import styled, { StyledComponent } from '@emotion/styled';
 
 import { MarkdownStyler } from 'components/Markdown';
-import { Title } from 'components/Text';
+import { Title } from 'components/Title';
 
 export type StyledExampleProps = HTMLAttributes<HTMLElement>;
 
@@ -23,7 +23,7 @@ export const Example: FC<ExampleProps> = ({
 }) => (
     <StyledExample {...props}>
         {title && (
-            <Title variant="h3" inverted={inverted}>
+            <Title variant="header" tag="h3" inverted={inverted}>
                 <MarkdownStyler inverted={inverted}>{title}</MarkdownStyler>
             </Title>
         )}

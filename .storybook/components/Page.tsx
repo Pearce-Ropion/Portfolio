@@ -3,11 +3,10 @@ import { CSSObject } from '@emotion/react';
 import styled, { StyledComponent } from '@emotion/styled';
 
 import { Hr } from 'components/Hr';
-import { Margin } from 'components/Margin';
 import { MarkdownStyler } from 'components/Markdown';
-import { Title } from 'components/Text';
+import { Title } from 'components/Title';
 
-import { toPixels } from 'utils/styles';
+import { Shorthand, toPixels } from 'utils/styles';
 
 export interface StyledPageProps extends HTMLAttributes<HTMLElement> {
     noHorizontalPadding?: boolean;
@@ -42,7 +41,7 @@ export const Page: FC<PageProps> = ({
     ...props
 }) => (
     <StyledPage {...props}>
-        <Title variant="h1" inverted={inverted}>
+        <Title variant="title" tag="h1" inverted={inverted}>
             {title}
         </Title>
 
@@ -50,9 +49,11 @@ export const Page: FC<PageProps> = ({
             <MarkdownStyler inverted={inverted}>{description}</MarkdownStyler>
         )}
 
-        <Margin top="large" bottom="large">
-            <Hr fullBleed inverted={inverted} />
-        </Margin>
+        <Hr
+            fullBleed
+            css={{ margin: Shorthand.marginToEm(1, 0) }}
+            inverted={inverted}
+        />
 
         {children}
     </StyledPage>
