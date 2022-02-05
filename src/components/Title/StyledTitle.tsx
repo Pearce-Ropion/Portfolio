@@ -1,27 +1,13 @@
 import { CSSObject } from '@emotion/react';
 
 import { WithTheme } from 'components';
-import {
-    StyledTitleProps,
-    TitleStateProps,
-    TitleWeights,
-} from 'components/Title';
+import { StyledTitleProps, TitleStateProps } from 'components/Title';
 
 import { isThemeOverride, Shorthand, toPercent, toPixels } from 'utils/styles';
 
 import { Colors } from 'styles/tokens/colors';
 import { FontFamily, Weights } from 'styles/tokens/font';
 import { MQ } from 'styles/tokens/media-query';
-
-export const TitleWeightMap: Record<typeof TitleWeights[number], number> = {
-    thin: Weights.thin,
-    light: Weights.light,
-    normal: Weights.normal,
-    medium: Weights.medium,
-    semibold: Weights.semibold,
-    bold: Weights.bold,
-    black: Weights.black,
-};
 
 export const styledTitleStyles = ({
     theme,
@@ -46,11 +32,12 @@ export const styledTitleStyles = ({
             margin: Shorthand.margin(0, 'auto'),
         }),
 
-        ...(componentState.alignCenterMobile &&
-            MQ.isMobile({
+        ...(componentState.alignCenterMobile && {
+            [MQ.isMobile]: {
                 textAlign: 'center',
                 margin: Shorthand.margin(0, 'auto'),
-            })),
+            },
+        }),
 
         ...(componentState.alignRight && {
             textAlign: 'right',
@@ -85,7 +72,7 @@ export const styledTitleStyles = ({
         }),
 
         ...(componentState.weight && {
-            fontWeight: TitleWeightMap[componentState.weight],
+            fontWeight: componentState.weight,
         }),
     };
 };

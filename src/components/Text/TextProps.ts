@@ -2,16 +2,9 @@ import { DetailedHTMLProps, ParamHTMLAttributes } from 'react';
 
 import { WithOverrideState, WithState } from 'components';
 
-export const TextWeights = [
-    'thin',
-    'light',
-    'normal',
-    'medium',
-    'semibold',
-    'bold',
-    'black',
-] as const;
-export const DEFAULT_TEXT_WEIGHT: typeof TextWeights[number] = 'normal';
+import { Weights } from 'styles/tokens/font';
+
+export const DEFAULT_TEXT_WEIGHT: Weights = Weights.normal;
 
 export interface TypographyProps {
     alignCenter?: boolean;
@@ -20,11 +13,10 @@ export interface TypographyProps {
     inverted?: boolean;
     color?: string;
     inline?: boolean;
+    weight?: Weights;
 }
 
-export interface TextStateProps extends TypographyProps {
-    weight?: typeof TextWeights[number];
-}
+export type TextStateProps = TypographyProps;
 
 export type TextElement = DetailedHTMLProps<
     ParamHTMLAttributes<HTMLParagraphElement>,

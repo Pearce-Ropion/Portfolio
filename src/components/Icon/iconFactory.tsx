@@ -18,5 +18,7 @@ export const iconFactory = (
         });
     }
 
-    return <Icon icon={icon} {...propDefaults} />;
+    return (
+        <Icon icon={icon} duotone={icon.prefix === 'fad'} {...propDefaults} />
+    );
 };

@@ -3,6 +3,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Icon } from 'components/Icon';
 
+import { disablePropControls } from 'utils/controls';
+
 import { Colors } from 'styles/tokens/colors';
 
 const Template: ComponentStory<typeof Icon> = args => <Icon {...args} />;
@@ -38,5 +40,13 @@ export default {
     args: {
         icon: solid('book'),
         size: '3x',
+    },
+    argTypes: {
+        ...disablePropControls([
+            'primaryColor',
+            'primaryColorOpacity',
+            'secondaryColor',
+            'secondaryColorOpacity',
+        ]),
     },
 } as ComponentMeta<typeof Icon>;

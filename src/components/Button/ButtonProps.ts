@@ -36,7 +36,6 @@ export interface ButtonProps
             >,
             keyof ButtonHandlerProps
         > {
-    styledLink?: boolean;
     icon?: IconFactoryIconProp;
     iconPosition?: typeof IconPositions[number];
     segmentEvent?: SegmentEvent;

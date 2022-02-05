@@ -41,12 +41,12 @@ export const StyledSection: StyledComponent<StyledSectionProps> =
                     SectionSizeMap[componentState.size].desktop
                 ),
 
-                ...MQ.isMobile({
+                [MQ.isMobile]: {
                     padding: Shorthand.paddingToPx(
                         0,
                         SectionSizeMap[componentState.size].mobile
                     ),
-                }),
+                },
             }),
         })
     );

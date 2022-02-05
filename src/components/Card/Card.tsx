@@ -19,6 +19,7 @@ export const Card: FC<CardProps> = memo(
         onClick,
         ...props
     }) => {
+        console.log(props);
         const analytics: Analytics = useAnalytics();
 
         const handleClick: CardProps['onClick'] = async event => {

@@ -5,14 +5,13 @@ import { StandardIcon, StyledDuotoneIconProps } from 'components/Icon';
 import styled from 'components/styled';
 
 export const StyledDuotoneIcon: StyledComponent<StyledDuotoneIconProps> =
-    styled(StandardIcon)(({ componentState, ...props }): CSSObject => {
-        console.log(props);
+    styled(StandardIcon)(({ componentState }): CSSObject => {
         return {
             ...(componentState.primaryColor && {
                 '--fa-primary-color': componentState.primaryColor,
             }),
 
-            ...(componentState.primaryColorOpacity && {
+            ...(componentState.primaryColorOpacity !== undefined && {
                 '--fa-primary-opacity': componentState.primaryColorOpacity,
             }),
 
@@ -20,7 +19,7 @@ export const StyledDuotoneIcon: StyledComponent<StyledDuotoneIconProps> =
                 '--fa-secondary-color': componentState.secondaryColor,
             }),
 
-            ...(componentState.secondaryColorOpacity && {
+            ...(componentState.secondaryColorOpacity !== undefined && {
                 '--fa-secondary-opacity': componentState.secondaryColorOpacity,
             }),
         };

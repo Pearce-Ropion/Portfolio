@@ -27,12 +27,12 @@ export const StyledContainer: StyledComponent<StyledContainerProps> =
                     ContainerSizeMap[componentState.size]
                 ),
 
-                ...MQ.isMobile({
+                [MQ.isMobile]: {
                     padding: Shorthand.paddingToPx(
                         0,
                         ContainerSizeMap[componentState.size] * MOBILE_SCALE
                     ),
-                }),
+                },
             }),
         })
     );

@@ -3,16 +3,9 @@ import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { WithOverrideState, WithState } from 'components';
 import { TypographyProps } from 'components/Text';
 
-export const TitleWeights = [
-    'thin',
-    'light',
-    'normal',
-    'medium',
-    'semibold',
-    'bold',
-    'black',
-] as const;
-export const DEFAULT_TITLE_WEIGHT: typeof TitleWeights[number] = 'medium';
+import { Weights } from 'styles/tokens/font';
+
+export const DEFAULT_TITLE_WEIGHT: Weights = Weights.medium;
 
 export const TitleVariants = ['title', 'section', 'header'] as const;
 export const DEFAULT_TITLE_VARIANT: typeof TitleVariants[number] = 'header';
@@ -23,7 +16,6 @@ export const DEFAULT_TITLE_TAG: typeof TitleTags[number] = 'h4';
 export interface TitleStateProps extends TypographyProps {
     tag?: typeof TitleTags[number];
     variant?: typeof TitleVariants[number];
-    weight?: typeof TitleWeights[number];
 }
 
 export type TitleElement = DetailedHTMLProps<

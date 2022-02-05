@@ -3,6 +3,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { DuotoneIcon } from 'components/Icon';
 
+import { colorControl, rangeControl } from 'utils/controls';
+
 import { Colors } from 'styles/tokens/colors';
 
 const Template: ComponentStory<typeof DuotoneIcon> = args => (
@@ -51,5 +53,11 @@ export default {
     args: {
         icon: duotone('book'),
         size: '3x',
+    },
+    argTypes: {
+        primaryColor: colorControl,
+        primaryColorOpacity: rangeControl({ min: 0, max: 1, step: 0.1 }),
+        secondaryColor: colorControl,
+        secondaryColorOpacity: rangeControl({ min: 0, max: 1, step: 0.1 }),
     },
 } as ComponentMeta<typeof DuotoneIcon>;

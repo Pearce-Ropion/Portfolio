@@ -5,13 +5,14 @@ import { Text } from 'components/Text';
 import { Title, TitleVariants } from 'components/Title';
 
 import { Colors } from 'styles/tokens/colors';
+import { Weights } from 'styles/tokens/font';
 
 const Template: ComponentStory<typeof Title> = args => (
     <div>
         {TitleVariants.map(
             (variant: typeof TitleVariants[number]): ReactNode => (
                 <div key={variant}>
-                    <Text color={Colors.orange900} weight="bold">
+                    <Text color={Colors.orange900} weight={Weights.bold}>
                         Variant {variant}
                     </Text>
 

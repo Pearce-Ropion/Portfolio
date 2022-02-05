@@ -1,6 +1,6 @@
-import { CSSObject } from '@emotion/react';
-
 import { BaseViewportState } from 'state/viewport';
+
+import { toPixels } from 'utils/styles';
 
 import { Breakpoints } from 'styles/tokens/breakpoints';
 
@@ -8,32 +8,29 @@ export type MediaQuery = {
     [key in keyof BaseViewportState]: string;
 };
 
-export type MediaQuerySelectors = {
-    [key in keyof BaseViewportState]: (styles: CSSObject) => CSSObject;
+export const lessThan = (width: number): string =>
+    `@media (max-width: ${toPixels(width)})`;
+
+export const greaterThan = (width: number): string =>
+    `@media (min-width: ${toPixels(width)})`;
+
+export const between = (minWidth: number, maxWidth: number): string => {
+    const minWidthPx: string = toPixels(minWidth);
+    const maxWidthPx: string = toPixels(maxWidth);
+
+    return `@media (min-width: ${minWidthPx}) and (max-width: ${maxWidthPx})`;
 };
 
-export const MediaQueries: MediaQuery = {
-    isMobileSmall: `@media (max-width: ${Breakpoints.mobileSmall})`,
-    isMobile: `@media (max-width: ${Breakpoints.mobile})`,
-    isOnlyMobile: `@media (min-width: ${Breakpoints.mobileSmall}) and (max-width: ${Breakpoints.mobile})`,
-    isTabletSmall: `@media (max-width: ${Breakpoints.tabletSmall})`,
-    isOnlyTabletSmall: `@media (min-width: ${Breakpoints.mobile}) and (max-width: ${Breakpoints.tabletSmall})`,
-    isTablet: `@media (max-width: ${Breakpoints.tablet})`,
-    isOnlyTablet: `@media (min-width: ${Breakpoints.tabletSmall}) and (max-width: ${Breakpoints.tablet})`,
-    isTabletLarge: `@media (max-width: ${Breakpoints.tabletLarge})`,
-    isOnlyTabletLarge: `@media (min-width: ${Breakpoints.tablet}) and (max-width: ${Breakpoints.tabletLarge})`,
-    isDesktop: `@media (min-width: ${Breakpoints.tabletLarge})`,
-    isDesktopWide: `@media (min-width: ${Breakpoints.desktopWide})`,
+export const MQ: MediaQuery = {
+    isMobileSmall: lessThan(Breakpoints.mobileSmall),
+    isMobile: lessThan(Breakpoints.mobile),
+    isOnlyMobile: between(Breakpoints.mobileSmall, Breakpoints.mobile),
+    isTabletSmall: lessThan(Breakpoints.tabletSmall),
+    isOnlyTabletSmall: between(Breakpoints.mobile, Breakpoints.tabletSmall),
+    isTablet: lessThan(Breakpoints.tablet),
+    isOnlyTablet: between(Breakpoints.tabletSmall, Breakpoints.tablet),
+    isTabletLarge: lessThan(Breakpoints.tabletLarge),
+    isOnlyTabletLarge: between(Breakpoints.tablet, Breakpoints.tabletLarge),
+    isDesktop: greaterThan(Breakpoints.tabletLarge),
+    isDesktopWide: greaterThan(Breakpoints.desktopWide),
 };
-
-export const MQ: MediaQuerySelectors = Object.entries(
-    MediaQueries
-).reduce<MediaQuerySelectors>((acc, [state, mq]) => {
-    acc[state as keyof BaseViewportState] = (styles: CSSObject): CSSObject => ({
-        [mq]: {
-            ...styles,
-        },
-    });
-
-    return acc;
-}, {} as MediaQuerySelectors);

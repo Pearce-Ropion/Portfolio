@@ -2,7 +2,7 @@ import { toPixels } from 'utils/styles';
 
 export enum Breakpoints {
     mobileSmall = 380,
-    mobile = 550,
+    mobile = 576,
     tabletSmall = 768,
     tablet = 860,
     tabletLarge = 960,
