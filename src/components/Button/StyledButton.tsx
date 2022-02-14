@@ -1,10 +1,10 @@
 import { CSSObject } from '@emotion/react';
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
 
 import { WithTheme } from 'components';
 import { ButtonStateProps, StyledButtonProps } from 'components/Button';
-import styled from 'components/styled';
+import { styledTagOptions } from 'components/styled';
 
 import { isThemeOverride, Shorthand, toPixels } from 'utils/styles';
 
@@ -92,5 +92,7 @@ export const styledButtonStyles = ({
     };
 };
 
-export const StyledButton: StyledComponent<StyledButtonProps> =
-    styled('button')(styledButtonStyles);
+export const StyledButton: StyledComponent<StyledButtonProps> = styled(
+    'button',
+    styledTagOptions
+)(styledButtonStyles);

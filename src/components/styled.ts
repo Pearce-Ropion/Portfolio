@@ -1,29 +1,14 @@
-import isPropValid from '@emotion/is-prop-valid';
-import emStyled, {
-    CreateStyled,
-    StyledOptions as EmStyledOptions,
-} from '@emotion/styled';
+import emStyled, { CreateStyled } from '@emotion/styled';
 import { CreateStyled as BaseCreateStyled } from '@emotion/styled/types/base';
 import { htmlTagNames } from 'html-tag-names';
 
 import { startCamelCase } from 'utils/string';
 
-export type ShouldForwardProps = (propName: PropertyKey) => boolean;
-export interface StyledOptions<P>
-    extends Omit<EmStyledOptions<P>, 'shouldForwardProp'> {
-    shouldForwardProp?: ShouldForwardProps;
-}
-
-export const baseShouldForwardProp: ShouldForwardProps = propName => {
-    return propName !== 'componentState';
-};
-
-export const shouldForwardComponentProp: ShouldForwardProps =
-    baseShouldForwardProp;
-
-export const shouldForwardTagProp: ShouldForwardProps = propName => {
-    return baseShouldForwardProp(propName) && isPropValid(propName);
-};
+import {
+    baseShouldForwardProp,
+    shouldForwardTagProp,
+    StyledOptions,
+} from 'styles/styled';
 
 const baseStyled: BaseCreateStyled = <P>(
     tagOrComponent: Parameters<BaseCreateStyled>[0],

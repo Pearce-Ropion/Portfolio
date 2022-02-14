@@ -1,18 +1,23 @@
 import { VFC } from 'react';
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 
-import styled from 'components/styled';
 import { Text, TextProps } from 'components/Text';
 
-import { Shorthand, toPixels } from 'utils/styles';
+import { Shorthand, toEm, toPixels } from 'utils/styles';
 
+import { styledComponentOptions } from 'styles/styled';
 import { Colors } from 'styles/tokens/colors';
 
-export const StyledRequired: StyledComponent<TextProps> = styled(Text)({
+export const StyledRequired: StyledComponent<TextProps> = styled(
+    Text,
+    styledComponentOptions
+)({
     fontSize: toPixels(24),
     paddingTop: Shorthand.paddingToEm(0.1),
-    marginLeft: Shorthand.marginToEm(0.5),
     color: Colors.navy900,
+    position: 'absolute',
+    right: 0,
+    top: toEm(0.1),
 });
 
 export const Required: VFC<TextProps> = props => (

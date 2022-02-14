@@ -1,11 +1,11 @@
 import { CSSObject } from '@emotion/react';
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 
 import { SectionSizes, StyledSectionProps } from 'components/Section';
-import styled from 'components/styled';
 
 import { Shorthand, toPercent } from 'utils/styles';
 
+import { styledTagOptions } from 'styles/styled';
 import { MQ } from 'styles/tokens/media-query';
 
 export const SectionSizeMap: Record<
@@ -30,23 +30,25 @@ export const SectionSizeMap: Record<
     },
 };
 
-export const StyledSection: StyledComponent<StyledSectionProps> =
-    styled.section(
-        ({ componentState }): CSSObject => ({
-            width: toPercent(100),
+export const StyledSection: StyledComponent<StyledSectionProps> = styled(
+    'section',
+    styledTagOptions
+)(
+    ({ componentState }): CSSObject => ({
+        width: toPercent(100),
 
-            ...(componentState.size && {
+        ...(componentState.size && {
+            padding: Shorthand.paddingToPx(
+                SectionSizeMap[componentState.size].desktop,
+                0
+            ),
+
+            [MQ.isMobile]: {
                 padding: Shorthand.paddingToPx(
-                    SectionSizeMap[componentState.size].desktop,
+                    SectionSizeMap[componentState.size].mobile,
                     0
                 ),
-
-                [MQ.isMobile]: {
-                    padding: Shorthand.paddingToPx(
-                        SectionSizeMap[componentState.size].mobile,
-                        0
-                    ),
-                },
-            }),
-        })
-    );
+            },
+        }),
+    })
+);

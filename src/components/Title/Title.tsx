@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 
-import styled from 'components/styled';
 import {
     DEFAULT_TITLE_TAG,
     DEFAULT_TITLE_VARIANT,
@@ -11,6 +10,8 @@ import {
     TitleProps,
     TitleStateProps,
 } from 'components/Title';
+
+import { styledTagOptions } from 'styles/styled';
 
 export const Title: FC<TitleProps> = memo(
     ({
@@ -40,8 +41,10 @@ export const Title: FC<TitleProps> = memo(
             ...componentState,
         };
 
-        const Component: StyledComponent<StyledTitleProps> =
-            styled(tag)(styledTitleStyles);
+        const Component: StyledComponent<StyledTitleProps> = styled(
+            tag,
+            styledTagOptions
+        )(styledTitleStyles);
 
         return (
             <Component componentState={titleState} {...props}>

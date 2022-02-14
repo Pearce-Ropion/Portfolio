@@ -1,6 +1,10 @@
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 
 import { StyledLayoutProps } from 'components/Layout';
-import styled from 'components/styled';
 
-export const StyledLayout: StyledComponent<StyledLayoutProps> = styled.main();
+import { styledTagOptions } from 'styles/styled';
+
+export const StyledLayout: StyledComponent<StyledLayoutProps> = styled(
+    'main',
+    styledTagOptions
+)();

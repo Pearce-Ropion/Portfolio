@@ -1,6 +1,6 @@
 import { cx } from '@emotion/css';
 import { css, CSSObject, SerializedStyles } from '@emotion/react';
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
 
 import { FormLabel } from 'components/form/Label';
@@ -9,10 +9,10 @@ import {
     StyledInputLabelProps,
     StyledInputProps,
 } from 'components/inputs/Input';
-import styled, { baseShouldForwardProp } from 'components/styled';
 
 import { Shorthand, toEm, toPercent, toPixels } from 'utils/styles';
 
+import { styledTagOptions } from 'styles/styled';
 import { Transitions } from 'styles/tokens/animation';
 import { Colors } from 'styles/tokens/colors';
 import { FontFamily, Weights } from 'styles/tokens/font';
@@ -99,9 +99,10 @@ export const inputIconStyles = (
     return css(styles);
 };
 
-export const StyledInput: StyledComponent<StyledInputProps> = styled('input', {
-    shouldForwardProp: baseShouldForwardProp,
-})(
+export const StyledInput: StyledComponent<StyledInputProps> = styled(
+    'input',
+    styledTagOptions
+)(
     ({ componentState }): CSSObject => ({
         display: 'block',
         width: toPercent(100),

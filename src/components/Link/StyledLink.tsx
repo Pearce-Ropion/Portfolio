@@ -1,5 +1,5 @@
 import { CSSObject } from '@emotion/react';
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
 import { Link as GatsbyLink } from 'gatsby';
 
@@ -11,10 +11,10 @@ import {
     StyledLinkProps,
     StyledSpanLinkProps,
 } from 'components/Link';
-import styled from 'components/styled';
 
 import { isThemeOverride, toEm } from 'utils/styles';
 
+import { styledComponentOptions, styledTagOptions } from 'styles/styled';
 import { Colors } from 'styles/tokens/colors';
 
 export const DEFAULT_LINK_COLOR = Colors.orange900;
@@ -93,14 +93,17 @@ export const styledLinkComponentStyles = <S extends LinkStateProps>({
     };
 };
 
-export const StyledSpanLink: StyledComponent<StyledSpanLinkProps> = styled.span(
-    styledLinkComponentStyles
-);
+export const StyledSpanLink: StyledComponent<StyledSpanLinkProps> = styled(
+    'span',
+    styledTagOptions
+)(styledLinkComponentStyles);
 
-export const StyledLink: StyledComponent<StyledLinkProps> = styled.a(
-    styledLinkComponentStyles
-);
+export const StyledLink: StyledComponent<StyledLinkProps> = styled(
+    'a',
+    styledTagOptions
+)(styledLinkComponentStyles);
 
 export const StyledGatsbyLink: StyledComponent<StyledGatsbyLinkProps> = styled(
-    GatsbyLink
+    GatsbyLink,
+    styledComponentOptions
 )(styledLinkComponentStyles);

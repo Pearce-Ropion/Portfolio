@@ -1,28 +1,31 @@
 import { CSSObject } from '@emotion/react';
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 
 import { StyledFormFieldProps } from 'components/form/Field';
-import styled from 'components/styled';
 
-import { Shorthand, toPercent } from 'utils/styles';
+import { Shorthand, toEm, toPercent } from 'utils/styles';
 
+import { styledTagOptions } from 'styles/styled';
 import { MQ } from 'styles/tokens/media-query';
 
-export const StyledFormField: StyledComponent<StyledFormFieldProps> =
-    styled.div(
-        ({ componentState }): CSSObject => ({
-            width: toPercent(100),
+export const StyledFormField: StyledComponent<StyledFormFieldProps> = styled(
+    'div',
+    styledTagOptions
+)(
+    ({ componentState }): CSSObject => ({
+        width: toPercent(100),
 
-            [MQ.isMobile]: {
-                marginBottom: Shorthand.marginToEm(1.125),
+        [MQ.isMobile]: {
+            marginBottom: Shorthand.marginToEm(1.125),
 
-                '&:last-of-type': {
-                    marginBottom: 0,
-                },
+            '&:last-of-type': {
+                marginBottom: 0,
             },
+        },
 
-            ...(componentState.required && {
-                display: 'flex',
-            }),
-        })
-    );
+        ...(componentState.required && {
+            position: 'relative',
+            paddingRight: Shorthand.paddingToEm(1),
+        }),
+    })
+);

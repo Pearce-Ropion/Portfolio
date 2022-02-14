@@ -1,6 +1,6 @@
 import { cx } from '@emotion/css';
 import { CSSObject } from '@emotion/react';
-import { StyledComponent } from '@emotion/styled';
+import styled, { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
 
 import { FormLabel } from 'components/form/Label';
@@ -8,10 +8,10 @@ import {
     StyledTextAreaLabelProps,
     StyledTextAreaProps,
 } from 'components/inputs/TextArea';
-import styled from 'components/styled';
 
 import { Shorthand, toPercent, toPixels } from 'utils/styles';
 
+import { styledComponentOptions } from 'styles/styled';
 import { Transitions } from 'styles/tokens/animation';
 import { Colors } from 'styles/tokens/colors';
 import { FontFamily, Weights } from 'styles/tokens/font';
@@ -31,7 +31,10 @@ const paddingWithFloatingBorder: CSS.Property.Padding = Shorthand.paddingToEm(
 );
 
 export const StyledTextAreaLabel: StyledComponent<StyledTextAreaLabelProps> =
-    styled(FormLabel)(
+    styled(
+        FormLabel,
+        styledComponentOptions
+    )(
         ({ componentState }): CSSObject => ({
             ...(componentState.floating && {
                 position: 'absolute',

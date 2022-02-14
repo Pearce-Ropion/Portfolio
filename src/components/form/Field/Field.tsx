@@ -6,11 +6,6 @@ import {
     Required,
     StyledFormField,
 } from 'components/form/Field';
-import { Text } from 'components/Text';
-
-import { Shorthand, toPixels } from 'utils/styles';
-
-import { Colors } from 'styles/tokens/colors';
 
 export const FormField: FC<FormFieldProps> = ({
     children,
