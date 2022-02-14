@@ -3,7 +3,7 @@ import { CSSObject } from '@emotion/react';
 import { WithTheme } from 'components';
 import { StyledTitleProps, TitleStateProps } from 'components/Title';
 
-import { isThemeOverride, Shorthand, toPercent, toPixels } from 'utils/styles';
+import { isThemeOverride, Shorthand, toEm, toPixels } from 'utils/styles';
 
 import { Colors } from 'styles/tokens/colors';
 import { FontFamily, Weights } from 'styles/tokens/font';
@@ -55,13 +55,20 @@ export const styledTitleStyles = ({
             color: componentState.color,
         }),
 
-        ...((componentState.variant === 'title' ||
-            componentState.variant === 'section') && {
+        ...(componentState.variant === 'title' && {
+            fontFamily: FontFamily.raleway,
+            fontWeight: Weights.bold,
+            fontSize: toPixels(40),
+            lineHeight: toPixels(47),
+            letterSpacing: toEm(0.1),
+        }),
+
+        ...(componentState.variant === 'section' && {
             fontFamily: FontFamily.raleway,
             fontWeight: Weights.bold,
             fontSize: toPixels(32),
             lineHeight: toPixels(39),
-            letterSpacing: toPercent(10),
+            letterSpacing: toEm(0.1),
         }),
 
         ...(componentState.variant === 'header' && {

@@ -52,7 +52,8 @@ export const Input: VFC<InputProps> = memo(
             if (disabled && focused) {
                 setFocused(false);
 
-                if (onBlur) {
+                if (inputRef.current && onBlur) {
+                    // @ts-ignore: Can't have an onBlur focus event here
                     onBlur();
                 }
             }

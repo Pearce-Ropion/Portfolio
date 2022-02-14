@@ -16,6 +16,7 @@ export const CardSkills: FC<CardSkillsProps> = ({
     icon,
     skills,
     inverted,
+    ...props
 }) => {
     const iconComponent: ReactNode = iconFactory(icon, {
         primaryColor: inverted ? Colors.yellow900 : Colors.navy900,
@@ -29,10 +30,11 @@ export const CardSkills: FC<CardSkillsProps> = ({
 
     return (
         <Card
+            {...props}
             inverted={inverted}
             css={{
                 padding: Shorthand.paddingToPx(40),
-                maxWidth: toPixels(260),
+                minWidth: toPixels(260),
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',

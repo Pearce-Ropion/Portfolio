@@ -18,20 +18,23 @@ export const CardProject: FC<CardProjectProps> = ({
     tags,
     actions,
     inverted,
+    ...props
 }) => {
     return (
         <Card
+            {...props}
             shadow
+            inverted={inverted}
             css={{
                 padding: Shorthand.paddingToPx(40, 40, 24),
                 display: 'flex',
                 flexDirection: 'column',
+                backgroundColor: Colors.neutral0,
 
                 [MQ.isMobile]: {
                     padding: Shorthand.paddingToPx(24),
                 },
             }}
-            inverted={inverted}
         >
             <Title
                 inverted={inverted}

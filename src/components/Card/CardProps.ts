@@ -15,17 +15,19 @@ export interface CardHandlerProps {
     onClick?: (event: MouseEvent<HTMLDivElement | HTMLAnchorElement>) => void;
 }
 
+export type CardElement = DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+>;
+
 export interface StyledCardProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    extends CardElement,
         WithState<CardStateProps> {}
 
 export interface CardProps
-    extends WithOverrideState<CardStateProps, Omit<CardStateProps, 'link'>>,
+    extends Omit<CardElement, keyof CardHandlerProps>,
         CardHandlerProps,
-        Omit<
-            DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-            keyof CardHandlerProps
-        > {
+        WithOverrideState<CardStateProps, Omit<CardStateProps, 'link'>> {
     to?: string;
     segmentEvent?: SegmentEvent;
 }

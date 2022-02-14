@@ -3,13 +3,13 @@ import { css, CSSObject, SerializedStyles } from '@emotion/react';
 import { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
 
-import { FieldLabel } from 'components/Field/FieldLabel';
+import { FormLabel } from 'components/form/Label';
 import {
     InputStateProps,
     StyledInputLabelProps,
     StyledInputProps,
 } from 'components/inputs/Input';
-import styled from 'components/styled';
+import styled, { baseShouldForwardProp } from 'components/styled';
 
 import { Shorthand, toEm, toPercent, toPixels } from 'utils/styles';
 
@@ -34,7 +34,7 @@ const paddingWithFloatingBorder: CSS.Property.Padding = Shorthand.paddingToEm(
 );
 
 export const StyledInputLabel: StyledComponent<StyledInputLabelProps> = styled(
-    FieldLabel
+    FormLabel
 )(
     ({ componentState }): CSSObject => ({
         ...(componentState.floating && {
@@ -99,7 +99,9 @@ export const inputIconStyles = (
     return css(styles);
 };
 
-export const StyledInput: StyledComponent<StyledInputProps> = styled.input(
+export const StyledInput: StyledComponent<StyledInputProps> = styled('input', {
+    shouldForwardProp: baseShouldForwardProp,
+})(
     ({ componentState }): CSSObject => ({
         display: 'block',
         width: toPercent(100),
@@ -112,7 +114,7 @@ export const StyledInput: StyledComponent<StyledInputProps> = styled.input(
         borderRadius: BorderRadius.small,
         outline: 'none',
 
-        fontFamily: FontFamily.sansSerif,
+        fontFamily: FontFamily.roboto,
         fontSize: toPixels(16),
         lineHeight: 1.5,
 

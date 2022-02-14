@@ -2,9 +2,9 @@ import { CSSObject } from '@emotion/react';
 import { StyledComponent } from '@emotion/styled';
 
 import {
-    FieldLabelStateProps,
-    StyledFieldLabelProps,
-} from 'components/Field/FieldLabel/FieldLableProps';
+    FormLabelStateProps,
+    StyledFormLabelProps,
+} from 'components/form/Label';
 import styled from 'components/styled';
 
 import { isThemeOverride, Shorthand, toEm } from 'utils/styles';
@@ -12,9 +12,9 @@ import { isThemeOverride, Shorthand, toEm } from 'utils/styles';
 import { Colors } from 'styles/tokens/colors';
 import { Weights } from 'styles/tokens/font';
 
-export const StyledFieldLabel: StyledComponent<StyledFieldLabelProps> =
+export const StyledFormLabel: StyledComponent<StyledFormLabelProps> =
     styled.label(({ theme, componentState }): CSSObject => {
-        const inverted: boolean = isThemeOverride<FieldLabelStateProps>(
+        const inverted: boolean = isThemeOverride<FormLabelStateProps>(
             theme,
             componentState,
             'inverted'

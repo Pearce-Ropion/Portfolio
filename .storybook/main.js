@@ -18,6 +18,7 @@ module.exports = {
     features: {
         emotionAlias: false,
     },
+    staticDirs: ['../static'],
     webpackFinal: config => {
         config.resolve.modules.push(
             path.resolve(__dirname),
@@ -33,9 +34,14 @@ module.exports = {
             require.resolve('@emotion/babel-plugin'),
             {
                 sourceMap: process.env.NODE_ENV !== 'production',
-                autoLabel: `dev-only`,
-                labelFormat: `[local]`,
-                cssPropOptimization: true,
+                importMap: {
+                    'components/styled': {
+                        default: {
+                            canonicalImport: ['@emotion/styled', 'default'],
+                            styledBaseImport: ['components/styled', 'default'],
+                        },
+                    },
+                },
             },
         ]);
 

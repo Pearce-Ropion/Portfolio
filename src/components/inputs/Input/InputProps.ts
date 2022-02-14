@@ -1,14 +1,12 @@
 import {
     ChangeEvent,
     DetailedHTMLProps,
-    FocusEvent,
     InputHTMLAttributes,
-    LabelHTMLAttributes,
-    MouseEvent,
     ReactNode,
 } from 'react';
 
 import { WithOverrideState, WithState } from 'components';
+import { FormLabelElement } from 'components/form/Label';
 import { IconFactoryIconProp } from 'components/Icon';
 
 export interface InputStateProps {
@@ -20,42 +18,30 @@ export interface InputStateProps {
     inverted?: boolean;
 }
 
+export type InputElement = DetailedHTMLProps<
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+>;
+
 export interface InputHandlerProps {
-    onChange?: (
-        event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>,
-        value: string
-    ) => void;
-    onFocus?: (event?: FocusEvent<HTMLInputElement>) => void;
-    onBlur?: (event?: FocusEvent<HTMLInputElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
 }
 
 export interface StyledInputProps
-    extends DetailedHTMLProps<
-            InputHTMLAttributes<HTMLInputElement>,
-            HTMLInputElement
-        >,
+    extends InputElement,
         WithState<InputStateProps> {}
 
 export interface InputProps
-    extends WithOverrideState<
+    extends Omit<InputElement, keyof InputHandlerProps>,
+        InputHandlerProps,
+        WithOverrideState<
             InputStateProps,
             Omit<InputStateProps, 'icon' | 'filled'>
-        >,
-        InputHandlerProps,
-        Omit<
-            DetailedHTMLProps<
-                InputHTMLAttributes<HTMLInputElement>,
-                HTMLInputElement
-            >,
-            keyof InputHandlerProps
         > {
     label?: ReactNode;
     icon?: IconFactoryIconProp;
 }
 
 export interface StyledInputLabelProps
-    extends DetailedHTMLProps<
-            LabelHTMLAttributes<HTMLLabelElement>,
-            HTMLLabelElement
-        >,
+    extends FormLabelElement,
         WithState<InputStateProps> {}

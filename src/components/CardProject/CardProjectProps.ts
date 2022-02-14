@@ -1,3 +1,4 @@
+import { CardProps } from 'components/Card';
 import { LinkProps } from 'components/Link';
 
 export interface CardProjectAction extends LinkProps {
@@ -5,7 +6,7 @@ export interface CardProjectAction extends LinkProps {
     secondary?: boolean;
 }
 
-export interface CardProjectProps {
+export interface CardProjectProps extends CardProps {
     header: string;
     description: string;
     tags?: string[];

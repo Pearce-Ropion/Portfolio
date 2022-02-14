@@ -37,14 +37,14 @@ export const StyledSection: StyledComponent<StyledSectionProps> =
 
             ...(componentState.size && {
                 padding: Shorthand.paddingToPx(
-                    0,
-                    SectionSizeMap[componentState.size].desktop
+                    SectionSizeMap[componentState.size].desktop,
+                    0
                 ),
 
                 [MQ.isMobile]: {
                     padding: Shorthand.paddingToPx(
-                        0,
-                        SectionSizeMap[componentState.size].mobile
+                        SectionSizeMap[componentState.size].mobile,
+                        0
                     ),
                 },
             }),

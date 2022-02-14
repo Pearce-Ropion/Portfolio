@@ -19,41 +19,41 @@ export const HomePageData = {
             {
                 skill: 'Javascript',
                 subSkill: 'ES2020',
-                value: 100,
+                size: 'large-x',
             },
             {
                 skill: 'Typescript',
                 subSkill: 'ES2020',
-                value: 80,
+                size: 'large-x',
             },
             {
                 skill: 'React',
-                value: 100,
+                size: 'large-x',
             },
             {
                 skill: 'NodeJS',
-                value: 80,
+                size: 'large',
             },
             {
                 skill: 'Python',
                 subSkill: '3.6',
-                value: 60,
+                size: 'medium',
             },
             {
                 skill: 'Ruby',
-                value: 40,
+                size: 'small',
             },
             {
                 skill: 'Angular',
-                value: 40,
+                size: 'small',
             },
             {
                 skill: 'Vue',
-                value: 40,
+                size: 'small-x',
             },
             {
                 skill: 'SQL',
-                value: 30,
+                size: 'small-x',
             },
         ],
         cards: [

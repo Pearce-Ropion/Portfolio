@@ -1,9 +1,10 @@
 import { CSSObject } from '@emotion/react';
+import { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
 
 import { WithTheme } from 'components';
 import { ButtonStateProps, StyledButtonProps } from 'components/Button';
-import styled, { StyledComponent } from 'components/styled';
+import styled from 'components/styled';
 
 import { isThemeOverride, Shorthand, toPixels } from 'utils/styles';
 

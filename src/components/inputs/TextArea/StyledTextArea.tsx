@@ -3,7 +3,7 @@ import { CSSObject } from '@emotion/react';
 import { StyledComponent } from '@emotion/styled';
 import * as CSS from 'csstype';
 
-import { FieldLabel } from 'components/Field/FieldLabel';
+import { FormLabel } from 'components/form/Label';
 import {
     StyledTextAreaLabelProps,
     StyledTextAreaProps,
@@ -31,7 +31,7 @@ const paddingWithFloatingBorder: CSS.Property.Padding = Shorthand.paddingToEm(
 );
 
 export const StyledTextAreaLabel: StyledComponent<StyledTextAreaLabelProps> =
-    styled(FieldLabel)(
+    styled(FormLabel)(
         ({ componentState }): CSSObject => ({
             ...(componentState.floating && {
                 position: 'absolute',
@@ -84,7 +84,7 @@ export const StyledTextArea: StyledComponent<StyledTextAreaProps> =
             borderRadius: BorderRadius.small,
             outline: 'none',
 
-            fontFamily: FontFamily.sansSerif,
+            fontFamily: FontFamily.roboto,
             fontSize: toPixels(16),
             lineHeight: 1.5,
 

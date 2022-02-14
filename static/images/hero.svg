@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1780 600">
+  <defs>
+    <clipPath id="hero">
+      <path d="M 0 0 H 1780 V 600 C 1243 604 598.3 527.873 401.5 475.206 C 204.7 422.54 51.8333 136.458 0 0 Z" />
+    </clipPath>
+  </defs>
+
+  <rect x="0" y="0" width="1780" height="600" stroke="#FFFFFF" stroke-width="5" fill-opacity="0" />
+  <rect transform="scale(1, 1)" x="0" y="0" width="1780" height="600" fill="#223249" clip-path="url(#hero)" />
+</svg>

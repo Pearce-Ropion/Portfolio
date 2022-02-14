@@ -1,6 +1,7 @@
+import { CardProps } from 'components/Card';
 import { IconFactoryIconProp } from 'components/Icon';
 
-export interface CardSkillsProps {
+export interface CardSkillsProps extends CardProps {
     header: string;
     icon: IconFactoryIconProp;
     skills: string[];

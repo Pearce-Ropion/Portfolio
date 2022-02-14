@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { debounce, DebouncedFunc } from 'lodash-es';
+import { debounce } from 'lodash-es';
 
 import { ViewportState, viewportStore } from 'state/viewport';
 
@@ -12,8 +12,7 @@ export const useViewportHandler = () => {
     useEffect(() => {
         const { calculateVariables }: ViewportState = viewportStore.getState();
 
-        const handleResize: DebouncedFunc<ViewportState['calculateVariables']> =
-            debounce(calculateVariables, 200);
+        const handleResize = debounce(calculateVariables, 200);
 
         window.addEventListener('resize', handleResize);
 
