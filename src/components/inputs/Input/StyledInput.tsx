@@ -12,7 +12,7 @@ import {
 
 import { Shorthand, toEm, toPercent, toPixels } from 'utils/styles';
 
-import { styledTagOptions } from 'styles/styled';
+import { styledComponentOptions, styledTagOptions } from 'styles/styled';
 import { Transitions } from 'styles/tokens/animation';
 import { Colors } from 'styles/tokens/colors';
 import { FontFamily, Weights } from 'styles/tokens/font';
@@ -34,7 +34,8 @@ const paddingWithFloatingBorder: CSS.Property.Padding = Shorthand.paddingToEm(
 );
 
 export const StyledInputLabel: StyledComponent<StyledInputLabelProps> = styled(
-    FormLabel
+    FormLabel,
+    styledComponentOptions
 )(
     ({ componentState }): CSSObject => ({
         ...(componentState.floating && {

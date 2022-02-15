@@ -4,10 +4,10 @@ import * as CSS from 'csstype';
 
 import { WithTheme } from 'components';
 import { ButtonStateProps, StyledButtonProps } from 'components/Button';
-import { styledTagOptions } from 'components/styled';
 
 import { isThemeOverride, Shorthand, toPixels } from 'utils/styles';
 
+import { styledTagOptions } from 'styles/styled';
 import { Shadows, Transitions } from 'styles/tokens/animation';
 import { Colors } from 'styles/tokens/colors';
 import { FontFamily, Weights } from 'styles/tokens/font';

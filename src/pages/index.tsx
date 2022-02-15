@@ -1,19 +1,14 @@
 import { VFC } from 'react';
 import { HomePageData } from 'content/home';
 import { PageProps } from 'gatsby';
-import { useForm } from 'react-hook-form';
 
 import { CardProject } from 'components/CardProject';
 import { CardSkills } from 'components/CardSkills';
+import { ContactForm } from 'components/ContactForm';
 import { Container } from 'components/Container';
-import { Input } from 'components/inputs/Input';
 import { Layout } from 'components/Layout';
 import { Section } from 'components/Section';
-import {
-    SkillBubble,
-    SkillBubbleProps,
-    SkillBubbleSizes,
-} from 'components/SkillBubble';
+import { SkillBubble, SkillBubbleSizes } from 'components/SkillBubble';
 import { Text } from 'components/Text';
 import { Title } from 'components/Title';
 
@@ -24,13 +19,6 @@ import { Weights } from 'styles/tokens/font';
 import { ZIndex } from 'styles/tokens/layout';
 
 const HomePage: VFC<PageProps> = () => {
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm();
-
     return (
         <Layout>
             <div
@@ -250,10 +238,14 @@ const HomePage: VFC<PageProps> = () => {
                 </div>
             </Section>
             <Section size="large">
-                <Container>
-                    <form>
-                        <Input {...register('name')} />
-                    </form>
+                <Container
+                    css={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                >
+                    <ContactForm />
                 </Container>
             </Section>
         </Layout>

@@ -12,9 +12,8 @@ export const StyledStandardIcon: StyledComponent<StyledStandardIconProps> =
     styled(
         FontAwesomeIcon,
         styledComponentOptions
-    )(({ componentState, ...props }): CSSObject => {
-        console.log(props);
-        return {
+    )(
+        ({ componentState }): CSSObject => ({
             ...(componentState.marginLeft && {
                 marginLeft: Shorthand.marginToEm(0.25),
             }),
@@ -22,5 +21,5 @@ export const StyledStandardIcon: StyledComponent<StyledStandardIconProps> =
             ...(componentState.marginRight && {
                 marginRight: Shorthand.marginToEm(0.25),
             }),
-        };
-    });
+        })
+    );

@@ -3,6 +3,7 @@ import {
     DetailedHTMLProps,
     InputHTMLAttributes,
     ReactNode,
+    RefObject,
 } from 'react';
 
 import { WithOverrideState, WithState } from 'components';
@@ -24,7 +25,7 @@ export type InputElement = DetailedHTMLProps<
 >;
 
 export interface InputHandlerProps {
-    onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, value?: string) => void;
 }
 
 export interface StyledInputProps
@@ -39,7 +40,9 @@ export interface InputProps
             Omit<InputStateProps, 'icon' | 'filled'>
         > {
     label?: ReactNode;
+    labelClassName?: string;
     icon?: IconFactoryIconProp;
+    inputRef?: RefObject<HTMLInputElement>;
 }
 
 export interface StyledInputLabelProps

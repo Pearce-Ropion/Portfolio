@@ -27,6 +27,7 @@ export const Input: VFC<InputProps> = memo(
     ({
         type = 'text',
         label,
+        labelClassName,
         tabIndex,
         icon,
         floating,
@@ -34,6 +35,7 @@ export const Input: VFC<InputProps> = memo(
         inverted,
         disabled,
         componentState = {},
+        inputRef: controlledRef,
         onChange,
         onBlur,
         onFocus,
@@ -41,7 +43,9 @@ export const Input: VFC<InputProps> = memo(
     }) => {
         const { name, autoFocus, readOnly, value } = props;
 
-        const inputRef = useRef<HTMLInputElement>(null);
+        const inputRef = useRef<HTMLInputElement>(
+            controlledRef?.current || null
+        );
         const [focused, setFocused] = useState<boolean>(
             focusedProp || Boolean(autoFocus)
         );
@@ -136,7 +140,11 @@ export const Input: VFC<InputProps> = memo(
         return (
             <div css={{ position: 'relative' }}>
                 {label && (
-                    <StyledInputLabel htmlFor={id} componentState={state}>
+                    <StyledInputLabel
+                        htmlFor={id}
+                        className={labelClassName}
+                        componentState={state}
+                    >
                         {label}
                     </StyledInputLabel>
                 )}

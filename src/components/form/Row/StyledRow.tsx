@@ -13,9 +13,10 @@ export const StyledFormRow: StyledComponent<StyledFormRowProps> = styled(
     'div',
     styledTagOptions
 )({
+    width: toPercent(100),
     display: 'flex',
-    marginTop: Shorthand.marginToEm(1.125),
-    marginBottom: Shorthand.marginToEm(1.125),
+    marginTop: Shorthand.marginToEm(2.125),
+    marginBottom: Shorthand.marginToEm(2.125),
 
     '&:first-of-type': {
         marginTop: 0,

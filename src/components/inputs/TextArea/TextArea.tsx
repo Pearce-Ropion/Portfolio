@@ -21,12 +21,14 @@ import { useId } from 'utils/hooks/use-id';
 export const TextArea: VFC<TextAreaProps> = memo(
     ({
         label,
+        labelClassName,
         tabIndex,
         floating,
         focused: focusedProp,
         inverted,
         disabled,
         componentState = {},
+        textAreaRef: controlledRef,
         onChange,
         onBlur,
         onFocus,
@@ -34,7 +36,9 @@ export const TextArea: VFC<TextAreaProps> = memo(
     }) => {
         const { name, autoFocus, readOnly, value } = props;
 
-        const inputRef = useRef<HTMLTextAreaElement>(null);
+        const textAreaRef = useRef<HTMLTextAreaElement>(
+            controlledRef?.current || null
+        );
         const [focused, setFocused] = useState<boolean>(
             focusedProp || Boolean(autoFocus)
         );
@@ -45,7 +49,8 @@ export const TextArea: VFC<TextAreaProps> = memo(
             if (disabled && focused) {
                 setFocused(false);
 
-                if (onBlur) {
+                if (textAreaRef.current && onBlur) {
+                    // @ts-ignore: Can't have an onBlur focus event here
                     onBlur();
                 }
             }
@@ -56,8 +61,8 @@ export const TextArea: VFC<TextAreaProps> = memo(
                 if (disabled || readOnly) {
                     event.preventDefault();
                     event.stopPropagation();
-                } else if (inputRef.current) {
-                    inputRef.current.focus();
+                } else if (textAreaRef.current) {
+                    textAreaRef.current.focus();
                 }
             };
 
@@ -66,8 +71,8 @@ export const TextArea: VFC<TextAreaProps> = memo(
                 if (disabled) {
                     event.preventDefault();
                     event.stopPropagation();
-                } else if (inputRef.current) {
-                    const { value: currentValue } = inputRef.current;
+                } else if (textAreaRef.current) {
+                    const { value: currentValue } = textAreaRef.current;
 
                     if (onChange) {
                         onChange(event, currentValue);
@@ -84,7 +89,7 @@ export const TextArea: VFC<TextAreaProps> = memo(
                     setFocused(true);
 
                     defer(() => {
-                        inputRef.current?.focus();
+                        textAreaRef.current?.focus();
                     });
 
                     if (onFocus) {
@@ -109,7 +114,7 @@ export const TextArea: VFC<TextAreaProps> = memo(
 
         const state: TextAreaStateProps = {
             disabled,
-            filled: Boolean(value || inputRef.current?.value),
+            filled: Boolean(value || textAreaRef.current?.value),
             floating,
             focused,
             inverted,
@@ -119,7 +124,11 @@ export const TextArea: VFC<TextAreaProps> = memo(
         return (
             <div css={{ position: 'relative' }}>
                 {label && (
-                    <StyledTextAreaLabel htmlFor={id} componentState={state}>
+                    <StyledTextAreaLabel
+                        htmlFor={id}
+                        className={labelClassName}
+                        componentState={state}
+                    >
                         {label}
                     </StyledTextAreaLabel>
                 )}
@@ -130,7 +139,7 @@ export const TextArea: VFC<TextAreaProps> = memo(
                 >
                     <StyledTextArea
                         {...props}
-                        ref={inputRef}
+                        ref={textAreaRef}
                         componentState={state}
                         name={name}
                         id={id}

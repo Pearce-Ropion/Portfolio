@@ -1,10 +1,9 @@
 import {
     ChangeEvent,
     DetailedHTMLProps,
-    FocusEvent,
     LabelHTMLAttributes,
-    MouseEvent,
     ReactNode,
+    RefObject,
     TextareaHTMLAttributes as TextAreaHTMLAttributes,
 } from 'react';
 
@@ -18,36 +17,29 @@ export interface TextAreaStateProps {
     inverted?: boolean;
 }
 
+export type TextAreaElement = DetailedHTMLProps<
+    TextAreaHTMLAttributes<HTMLTextAreaElement>,
+    HTMLTextAreaElement
+>;
+
 export interface TextAreaHandlerProps {
-    onChange?: (
-        event: ChangeEvent<HTMLTextAreaElement> | MouseEvent<HTMLButtonElement>,
-        value: string
-    ) => void;
-    onFocus?: (event?: FocusEvent<HTMLTextAreaElement>) => void;
-    onBlur?: (event?: FocusEvent<HTMLTextAreaElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
 }
 
 export interface StyledTextAreaProps
-    extends DetailedHTMLProps<
-            TextAreaHTMLAttributes<HTMLTextAreaElement>,
-            HTMLTextAreaElement
-        >,
+    extends TextAreaElement,
         WithState<TextAreaStateProps> {}
 
 export interface TextAreaProps
-    extends WithOverrideState<
+    extends Omit<TextAreaElement, keyof TextAreaHandlerProps>,
+        TextAreaHandlerProps,
+        WithOverrideState<
             TextAreaStateProps,
             Omit<TextAreaStateProps, 'filled'>
-        >,
-        TextAreaHandlerProps,
-        Omit<
-            DetailedHTMLProps<
-                TextAreaHTMLAttributes<HTMLTextAreaElement>,
-                HTMLTextAreaElement
-            >,
-            keyof TextAreaHandlerProps
         > {
     label?: ReactNode;
+    labelClassName?: string;
+    textAreaRef?: RefObject<HTMLTextAreaElement>;
 }
 
 export interface StyledTextAreaLabelProps

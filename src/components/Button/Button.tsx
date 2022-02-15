@@ -1,7 +1,13 @@
 import { FC, memo } from 'react';
 
 import { Analytics, useAnalytics } from 'components/AnalyticsContext';
-import { ButtonProps, ButtonStateProps, StyledButton } from 'components/Button';
+import {
+    ButtonProps,
+    ButtonStateProps,
+    DEFAULT_BUTTON_VARIANT,
+    DEFAULT_ICON_POSITION,
+    StyledButton,
+} from 'components/Button';
 import { iconFactory } from 'components/Icon';
 
 export const buttonTrackEventName = 'click-button';
@@ -9,11 +15,11 @@ export const buttonTrackEventName = 'click-button';
 export const Button: FC<ButtonProps> = memo(
     ({
         children,
-        variant = 'primary',
+        variant = DEFAULT_BUTTON_VARIANT,
         disabled,
         inverted,
         icon,
-        iconPosition = 'left',
+        iconPosition = DEFAULT_ICON_POSITION,
         segmentEvent,
         onClick,
         componentState = {},
