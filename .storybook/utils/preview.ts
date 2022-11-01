@@ -6,84 +6,84 @@ import * as CSS from 'csstype';
 import { Backgrounds, InvertedBackgrounds } from 'utils/backgrounds';
 import { MobileViewports } from 'utils/viewports';
 
-import { ColorsByValue } from 'styles/tokens/colors';
+// import { ColorsByValue } from 'styles/tokens/colors';
 
 export type StoryContext = Parameters<DecoratorFn>[1] & {
-    component?: NamedExoticComponent;
+  component?: NamedExoticComponent;
 };
 
 export interface StoryGlobals {
-    backgrounds: typeof Backgrounds[number];
+  backgrounds: typeof Backgrounds[number];
 }
 
 export interface StoryParameters {
-    backgrounds: {
-        default: string;
-    };
-    componentName?: string;
-    description?: string;
-    notes?: string;
-    page: {
-        inverted?: boolean;
-        disablePadding?: boolean;
-    };
-    viewport: {
-        defaultViewport: string;
-    };
+  backgrounds: {
+    default: string;
+  };
+  componentName?: string;
+  description?: string;
+  notes?: string;
+  page: {
+    inverted?: boolean;
+    disablePadding?: boolean;
+  };
+  viewport: {
+    defaultViewport: string;
+  };
 }
 
-export const useInvertPage = (context: StoryContext): boolean => {
-    const { parameters, globals } = context;
-    const { backgrounds: globalBackground = {} } = globals as StoryGlobals;
-    const { backgrounds, page = {} } = parameters as StoryParameters;
+// export const useInvertPage = (context: StoryContext): boolean => {
+//     const { parameters, globals } = context;
+//     const { backgrounds: globalBackground = {} } = globals as StoryGlobals;
+//     const { backgrounds, page = {} } = parameters as StoryParameters;
 
-    const { inverted } = page;
-    if (inverted !== undefined) {
-        return inverted;
-    }
+//     const { inverted } = page;
+//     if (inverted !== undefined) {
+//         return inverted;
+//     }
 
-    const userSelectedBackgroundColor: CSS.Property.Color =
-        globalBackground.value;
+//     const userSelectedBackgroundColor: CSS.Property.Color =
+//         globalBackground.value;
 
-    const userSelectedBackground: string =
-        ColorsByValue[userSelectedBackgroundColor];
+//     const userSelectedBackground: string =
+//         ColorsByValue[userSelectedBackgroundColor];
 
-    if (userSelectedBackground) {
-        return InvertedBackgrounds.includes(userSelectedBackground);
-    }
+//     if (userSelectedBackground) {
+//         return InvertedBackgrounds.includes(userSelectedBackground);
+//     }
 
-    if (InvertedBackgrounds.includes(backgrounds.default)) {
-        return true;
-    }
+//     if (InvertedBackgrounds.includes(backgrounds.default)) {
+//         return true;
+//     }
 
-    return false;
-};
+//     return false;
+// };
 
 interface ViewportState {
-    selected?: string;
+  selected?: string;
 }
 
-export const useDisablePagePadding = (context: StoryContext): boolean => {
-    const viewportAddonId = 'storybook/viewport';
-    const [viewportState] = useAddonState<ViewportState>(viewportAddonId, {});
+// export const useDisablePagePadding = (context: StoryContext): boolean => {
+//     const viewportAddonId = 'storybook/viewport';
+//     const [viewportState] = useAddonState<ViewportState>(viewportAddonId, {});
 
-    const { parameters } = context;
-    const { viewport, page } = parameters as StoryParameters;
+//     const { parameters } = context;
+//     const { viewport, page } = parameters as StoryParameters;
 
-    const pageSettings = page || {};
-    if (pageSettings.disablePadding !== undefined) {
-        return pageSettings.disablePadding;
-    }
+//     const pageSettings = page || {};
+//     if (pageSettings.disablePadding !== undefined) {
+//         return pageSettings.disablePadding;
+//     }
 
-    const { selected: userSelectedViewport } = viewportState;
+//     const { selected: userSelectedViewport } = viewportState;
 
-    if (userSelectedViewport) {
-        return MobileViewports.includes(userSelectedViewport);
-    }
+//     if (userSelectedViewport) {
+//         return MobileViewports.includes(userSelectedViewport);
+//     }
 
-    if (MobileViewports.includes(viewport.defaultViewport)) {
-        return true;
-    }
+//     if (MobileViewports.includes(viewport.defaultViewport)) {
+//         return true;
+//     }
 
-    return false;
-};
+//     return false;
+// };
