@@ -1,8 +1,8 @@
 export enum FontFamily {
-  roboto = '"Roboto", sans-serif',
-  raleway = '"Raleway", sans-serif',
+  primary = '"Roboto", sans-serif',
+  header = '"Raleway", sans-serif',
   serif = '"Merriweather", Helvetica, serif',
-  monospace = '"Inconsolata", monospace',
+  code = '"Inconsolata", monospace',
 }
 
 export enum FontSize {
