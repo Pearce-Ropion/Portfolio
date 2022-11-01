@@ -4,7 +4,6 @@ export const siteMetadata = {
 };
 
 export const plugins = [
-    'gatsby-plugin-emotion',
     {
         resolve: 'gatsby-plugin-google-analytics',
         options: {

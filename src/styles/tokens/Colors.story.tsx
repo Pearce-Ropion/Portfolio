@@ -1,4 +1,4 @@
-import { ReactNode, VFC } from 'react';
+import { FC, ReactNode } from 'react';
 import { groupBy, map, padStart, sortBy } from 'lodash-es';
 
 import { Box } from 'components/Box';
@@ -24,7 +24,7 @@ interface ColorGroupEntry {
 
 type ColorBlockProps = ColorEntry;
 
-const ColorBlock: VFC<ColorBlockProps> = ({ color, name }) => {
+const ColorBlock: FC<ColorBlockProps> = ({ color, name }) => {
     const rgb: RGB | undefined = hexToRgb(color);
 
     return (

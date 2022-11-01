@@ -12,7 +12,6 @@
         "noEmitOnError": true,
 
         "jsx": "react-jsx",
-        "jsxImportSource": "@emotion/react",
 
         "strict": true,
         "strictBindCallApply": true,
@@ -33,9 +32,7 @@
         "forceConsistentCasingInFileNames": true,
 
         "types": ["node", "react"],
-        "typeRoots": [
-            "typing"
-        ]
+        "typeRoots": ["typing"]
     },
     "include": [
         "./**/*",
@@ -43,7 +40,5 @@
         "./.eslintrc.js",
         "./.babelrc.js"
     ],
-    "exclude": [
-        "node_modules"
-    ]
+    "exclude": ["node_modules"]
 }

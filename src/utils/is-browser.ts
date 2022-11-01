@@ -7,7 +7,7 @@ import { isObjectLike } from 'lodash-es';
  * document.nodeType: @see https://www.w3schools.com/jsref/prop_node_nodetype.asp
  */
 export const isBrowser: boolean =
-    typeof window !== 'undefined' &&
-    isObjectLike(window) &&
-    isObjectLike(document) &&
-    document.nodeType === 9;
+  typeof window !== 'undefined' &&
+  isObjectLike(window) &&
+  isObjectLike(document) &&
+  document.nodeType === 9;
