@@ -10,6 +10,7 @@ import {
 import { WithOverrideState, WithState } from 'components';
 
 export interface TextAreaStateProps {
+    bordered?: boolean;
     disabled?: boolean;
     filled?: boolean;
     floating?: boolean;

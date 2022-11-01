@@ -11,6 +11,7 @@ import { FormLabelElement } from 'components/form/Label';
 import { IconFactoryIconProp } from 'components/Icon';
 
 export interface InputStateProps {
+    bordered?: boolean;
     disabled?: boolean;
     filled?: boolean;
     floating?: boolean;

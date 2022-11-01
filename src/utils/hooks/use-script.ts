@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react';
 
-export enum UseScriptStatus {
-    IDLE = 'idle',
-    LOADING = 'loading',
-    READY = 'ready',
-    ERROR = 'error',
-}
+import { HookStatus } from 'utils/hooks/status';
 
 export interface UseScriptOptions {
     async?: boolean;
+    defer?: boolean;
     appendToHead?: boolean;
     onLoad?: (event: HTMLElementEventMap['load']) => void;
     onError?: (event: HTMLElementEventMap['error']) => void;
 }
 
-const useScript = (
+export const useScript = (
     src: string,
-    { async = true, appendToHead, onLoad, onError }: UseScriptOptions = {}
-): string => {
-    const [status, setStatus] = useState<string>(UseScriptStatus.IDLE);
+    {
+        async = true,
+        defer = false,
+        appendToHead,
+        onLoad,
+        onError,
+    }: UseScriptOptions = {}
+): HookStatus => {
+    const [status, setStatus] = useState<HookStatus>(HookStatus.IDLE);
 
     useEffect(() => {
         let script: HTMLScriptElement | null =
@@ -27,8 +29,15 @@ const useScript = (
         if (!script) {
             script = document.createElement('script');
             script.src = src;
-            script.async = async;
-            script.setAttribute('data-status', UseScriptStatus.LOADING);
+            script.setAttribute('data-status', HookStatus.LOADING);
+
+            if (async) {
+                script.async = true;
+            }
+
+            if (defer) {
+                script.defer = true;
+            }
 
             if (appendToHead) {
                 document.head.appendChild(script);
@@ -36,22 +45,20 @@ const useScript = (
                 document.body.appendChild(script);
             }
 
-            setStatus(UseScriptStatus.LOADING);
+            setStatus(HookStatus.LOADING);
         } else {
             const status: string | null = script.getAttribute('data-status');
 
             if (status) {
-                setStatus(status);
+                setStatus(status as HookStatus);
             }
         }
 
         const setStateFromEvent = (
             event: HTMLElementEventMap['load'] | HTMLElementEventMap['error']
         ): void => {
-            const status: string =
-                event.type === 'load'
-                    ? UseScriptStatus.READY
-                    : UseScriptStatus.ERROR;
+            const status: HookStatus =
+                event.type === 'load' ? HookStatus.READY : HookStatus.ERROR;
 
             if (script) {
                 script.setAttribute('data-status', status);
@@ -89,5 +96,3 @@ const useScript = (
 
     return status;
 };
-
-export default useScript;

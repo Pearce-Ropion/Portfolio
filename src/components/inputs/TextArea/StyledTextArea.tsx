@@ -11,7 +11,7 @@ import {
 
 import { Shorthand, toPercent, toPixels } from 'utils/styles';
 
-import { styledComponentOptions } from 'styles/styled';
+import { styledComponentOptions, styledTagOptions } from 'styles/styled';
 import { Transitions } from 'styles/tokens/animation';
 import { Colors } from 'styles/tokens/colors';
 import { FontFamily, Weights } from 'styles/tokens/font';
@@ -73,64 +73,72 @@ export const StyledTextAreaLabel: StyledComponent<StyledTextAreaLabelProps> =
         })
     );
 
-export const StyledTextArea: StyledComponent<StyledTextAreaProps> =
-    styled.textarea(
-        ({ componentState }): CSSObject => ({
-            display: 'block',
-            width: toPercent(100),
-            margin: 0,
-            padding: Shorthand.paddingToEm(paddingDefault),
+export const StyledTextArea: StyledComponent<StyledTextAreaProps> = styled(
+    'textarea',
+    styledTagOptions
+)(
+    ({ componentState }): CSSObject => ({
+        display: 'block',
+        width: toPercent(100),
+        margin: 0,
+        padding: Shorthand.paddingToEm(paddingDefault),
 
-            background: Colors.neutral200,
-            color: Colors.neutral800,
-            border: 'none',
-            borderRadius: BorderRadius.small,
-            outline: 'none',
+        background: Colors.neutral200,
+        color: Colors.neutral800,
+        border: 'none',
+        borderRadius: BorderRadius.small,
+        outline: 'none',
 
-            fontFamily: FontFamily.roboto,
-            fontSize: toPixels(16),
-            lineHeight: 1.5,
+        fontFamily: FontFamily.roboto,
+        fontSize: toPixels(16),
+        lineHeight: 1.5,
 
-            transition: Transitions.standard,
-            transitionProperty: 'background-color',
+        transition: Transitions.standard,
+        transitionProperty: 'background-color',
 
-            '&::placeholder': {
-                color: Colors.neutral500,
-            },
+        '&::placeholder': {
+            color: Colors.neutral500,
+        },
+
+        '&:hover': {
+            background: Colors.neutral300,
+        },
+
+        ...(componentState.disabled && {
+            opacity: 0.4,
 
             '&:hover': {
-                background: Colors.neutral300,
+                background: Colors.neutral200,
+            },
+        }),
+
+        ...((componentState.filled ||
+            componentState.focused ||
+            componentState.bordered) && {
+            appearance: 'none',
+            background: Colors.neutral0,
+            padding: paddingWithBorder,
+            border: Shorthand.borderToEm(
+                borderWidth,
+                'solid',
+                Colors.neutral800
+            ),
+
+            '&:hover': {
+                background: Colors.neutral0,
             },
 
-            ...(componentState.disabled && {
-                opacity: 0.4,
-
-                '&:hover': {
-                    background: Colors.neutral200,
-                },
-            }),
-
             ...((componentState.filled || componentState.focused) && {
-                appearance: 'none',
                 background: Colors.neutral0,
-                padding: paddingWithBorder,
-                border: Shorthand.borderToEm(
-                    borderWidth,
-                    'solid',
-                    Colors.neutral800
-                ),
-
-                '&:hover': {
-                    background: Colors.neutral0,
-                },
-
-                ...(componentState.focused && {
-                    borderColor: Colors.orange900,
-                }),
-
-                ...(componentState.floating && {
-                    padding: paddingWithFloatingBorder,
-                }),
             }),
-        })
-    );
+
+            ...(componentState.focused && {
+                borderColor: Colors.orange900,
+            }),
+
+            ...(componentState.floating && {
+                padding: paddingWithFloatingBorder,
+            }),
+        }),
+    })
+);

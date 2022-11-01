@@ -16,6 +16,7 @@ export const Basic = Template.bind({});
 export const WithSuccess = Template.bind({});
 WithSuccess.args = {
     success: true,
+    defaultValue: 'Foo',
 };
 
 export const WithError = Template.bind({});

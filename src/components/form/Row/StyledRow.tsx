@@ -1,10 +1,10 @@
 import { cx } from '@emotion/css';
 import styled, { StyledComponent } from '@emotion/styled';
 
-import { StyledFormField } from 'components/form/Field';
+import { StyledFormField, StyledRequired } from 'components/form/Field';
 import { StyledFormRowProps } from 'components/form/Row';
 
-import { Shorthand, toPercent, toPixels } from 'utils/styles';
+import { Shorthand, toEm, toPercent, toPixels } from 'utils/styles';
 
 import { styledTagOptions } from 'styles/styled';
 import { MQ } from 'styles/tokens/media-query';
@@ -44,11 +44,21 @@ export const StyledFormRow: StyledComponent<StyledFormRowProps> = styled(
 
         '&:last-of-type': {
             paddingRight: 0,
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            [StyledRequired as any]: {
+                right: toPixels(8),
+            },
         },
 
         [MQ.isMobile]: {
             paddingLeft: 0,
             paddingRight: 0,
+        },
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [StyledRequired as any]: {
+            right: 16,
         },
     },
 });

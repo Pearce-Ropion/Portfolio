@@ -30,10 +30,11 @@ export const Input: VFC<InputProps> = memo(
         labelClassName,
         tabIndex,
         icon,
-        floating,
+        floating: floatingProp,
         focused: focusedProp,
         inverted,
         disabled,
+        bordered,
         componentState = {},
         inputRef: controlledRef,
         onChange,
@@ -41,16 +42,23 @@ export const Input: VFC<InputProps> = memo(
         onFocus,
         ...props
     }) => {
-        const { name, autoFocus, readOnly, value } = props;
+        const { name, autoFocus, readOnly, value, defaultValue } = props;
 
         const inputRef = useRef<HTMLInputElement>(
             controlledRef?.current || null
         );
+
         const [focused, setFocused] = useState<boolean>(
-            focusedProp || Boolean(autoFocus)
+            Boolean(focusedProp || autoFocus)
         );
 
         const id: string = useId(name);
+
+        useEffect(() => {
+            if (defaultValue) {
+                setFocused(true);
+            }
+        }, [defaultValue]);
 
         useEffect(() => {
             if (disabled && focused) {
@@ -119,10 +127,11 @@ export const Input: VFC<InputProps> = memo(
                 }
             };
 
-        const state: InputStateProps = {
+        const inputState: InputStateProps = {
             disabled,
+            bordered,
             filled: Boolean(value || inputRef.current?.value),
-            floating,
+            floating: floatingProp,
             focused,
             icon: Boolean(icon),
             inverted,
@@ -133,7 +142,7 @@ export const Input: VFC<InputProps> = memo(
         if (icon) {
             iconComponent = iconFactory(icon, {
                 color: Colors.neutral700,
-                css: inputIconStyles(state),
+                css: inputIconStyles(inputState),
             });
         }
 
@@ -143,7 +152,7 @@ export const Input: VFC<InputProps> = memo(
                     <StyledInputLabel
                         htmlFor={id}
                         className={labelClassName}
-                        componentState={state}
+                        componentState={inputState}
                     >
                         {label}
                     </StyledInputLabel>
@@ -157,7 +166,7 @@ export const Input: VFC<InputProps> = memo(
                     <StyledInput
                         {...props}
                         ref={inputRef}
-                        componentState={state}
+                        componentState={inputState}
                         name={name}
                         id={id}
                         type={type}

@@ -6,9 +6,10 @@ import { CardProject } from 'components/CardProject';
 import { CardSkills } from 'components/CardSkills';
 import { ContactForm } from 'components/ContactForm';
 import { Container } from 'components/Container';
+import { Icon } from 'components/Icon';
 import { Layout } from 'components/Layout';
 import { Section } from 'components/Section';
-import { SkillBubble, SkillBubbleSizes } from 'components/SkillBubble';
+import { SkillBubble } from 'components/SkillBubble';
 import { Text } from 'components/Text';
 import { Title } from 'components/Title';
 
@@ -17,6 +18,7 @@ import { Shorthand, toEm, toPercent, toPixels } from 'utils/styles';
 import { Colors } from 'styles/tokens/colors';
 import { Weights } from 'styles/tokens/font';
 import { ZIndex } from 'styles/tokens/layout';
+import { MQ } from 'styles/tokens/media-query';
 
 const HomePage: VFC<PageProps> = () => {
     return (
@@ -155,9 +157,7 @@ const HomePage: VFC<PageProps> = () => {
                                     key={skill}
                                     skill={skill}
                                     subSkill={subSkill}
-                                    size={
-                                        size as typeof SkillBubbleSizes[number]
-                                    }
+                                    size={size}
                                     bordered={['large', 'large-x'].includes(
                                         size
                                     )}
@@ -241,11 +241,72 @@ const HomePage: VFC<PageProps> = () => {
                 <Container
                     css={{
                         display: 'flex',
+                        flexDirection: 'column',
                         alignItems: 'center',
-                        justifyContent: 'center',
                     }}
                 >
+                    <Title
+                        alignCenter
+                        variant="header"
+                        css={{ marginBottom: Shorthand.marginToPx(80) }}
+                    >
+                        {HomePageData.sectionContact.header}
+                    </Title>
                     <ContactForm />
+                </Container>
+            </Section>
+            <Section size="large">
+                <Container
+                    css={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <div
+                        css={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginBottom: toPixels(64),
+                        }}
+                    >
+                        {Object.values(HomePageData.social).map(
+                            ({ name, link, icon, iconProps, download }) => {
+                                return (
+                                    <div
+                                        key={name}
+                                        css={{
+                                            borderRadius: toPercent(100),
+                                            backgroundColor: Colors.orange900,
+                                            width: toPixels(56),
+                                            height: toPixels(56),
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            marginRight: toEm(2),
+
+                                            '&:last-of-type': {
+                                                marginRight: 0,
+                                            },
+
+                                            [MQ.isMobile]: {
+                                                marginRight: toEm(1),
+                                            },
+                                        }}
+                                    >
+                                        <Icon
+                                            icon={icon}
+                                            {...iconProps}
+                                            color={Colors.neutral0}
+                                            title={name}
+                                            size="2x"
+                                        />
+                                    </div>
+                                );
+                            }
+                        )}
+                    </div>
+                    <Text>© Pearce Ropion {new Date().getFullYear()}</Text>
                 </Container>
             </Section>
         </Layout>

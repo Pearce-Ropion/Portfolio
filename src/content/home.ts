@@ -1,15 +1,91 @@
-import { duotone } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+    brands,
+    duotone,
+    solid,
+} from '@fortawesome/fontawesome-svg-core/import.macro';
 
-export const HomePageData = {
+import { SkillBubbleSizes } from 'components/SkillBubble';
+
+interface Section {
+    section: boolean | true;
+    anchor: string;
+    header: string;
+}
+interface HomePage {
+    sectionHero: {
+        title: string;
+        description: string;
+    };
+    social: {
+        [key: string]: {
+            name: string;
+            link: string;
+            icon: IconDefinition;
+            iconProps?: {
+                circular?: boolean;
+            };
+            download?: boolean;
+        };
+    };
+    sectionSkills: Section & {
+        skills: {
+            skill: string;
+            subSkill?: string;
+            size: typeof SkillBubbleSizes[number];
+        }[];
+        cards: {
+            header: string;
+            icon: IconDefinition;
+            skills: string[];
+        }[];
+    };
+    sectionProjects: Section & {
+        projects: {
+            header: string;
+            description: string;
+            tags?: string[];
+            actions?: {
+                content: string;
+                to: string;
+                secondary?: boolean;
+            }[];
+        }[];
+    };
+    sectionContact: Section;
+}
+
+export const HomePageData: HomePage = {
     sectionHero: {
         title: "Hi, I'm Pearce Ropion",
         description:
             'A creative front-end developer with a mind for compelling designs to create web applications that are stunning, both visually and functionally.',
     },
     social: {
-        email: 'pearce.ropion@me.com',
-        linkedin: 'https://www.linkedin.com/in/pearce-ropion/',
-        github: 'https://github.com/Pearce-Ropion',
+        email: {
+            name: 'Email',
+            link: 'mailto:pearce.ropion@me.com',
+            icon: solid('envelope'),
+        },
+        linkedin: {
+            name: 'LinkedIn',
+            link: 'https://www.linkedin.com/in/pearce-ropion/',
+            icon: brands('linkedin-in'),
+        },
+        github: {
+            name: 'Github',
+            link: 'https://github.com/Pearce-Ropion',
+            icon: brands('github'),
+            iconProps: {
+                circular: true,
+            },
+        },
+        resume: {
+            name: 'Resume',
+            link: '',
+            icon: solid('memo'),
+            download: true,
+        },
     },
     sectionSkills: {
         section: true,
@@ -156,26 +232,6 @@ export const HomePageData = {
     sectionContact: {
         section: true,
         anchor: 'Contact Me',
-        header: 'Get in Touch!',
-        fields: [
-            {
-                label: 'Name',
-                field: 'input',
-            },
-            {
-                label: 'Email',
-                field: 'input',
-            },
-            {
-                label: 'Subject',
-                field: 'input',
-            },
-            {
-                label: 'Message',
-                field: 'textarea',
-            },
-        ],
-        submit: 'Send Message',
+        header: 'Get In Touch',
     },
-    sectionFooter: {},
 };

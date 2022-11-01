@@ -27,6 +27,7 @@ export const TextArea: VFC<TextAreaProps> = memo(
         focused: focusedProp,
         inverted,
         disabled,
+        bordered,
         componentState = {},
         textAreaRef: controlledRef,
         onChange,
@@ -113,6 +114,7 @@ export const TextArea: VFC<TextAreaProps> = memo(
             };
 
         const state: TextAreaStateProps = {
+            bordered,
             disabled,
             filled: Boolean(value || textAreaRef.current?.value),
             floating,

@@ -143,9 +143,10 @@ export const StyledInput: StyledComponent<StyledInputProps> = styled(
             paddingLeft: Shorthand.paddingToEm(iconPadding),
         }),
 
-        ...((componentState.filled || componentState.focused) && {
+        ...((componentState.filled ||
+            componentState.focused ||
+            componentState.bordered) && {
             appearance: 'none',
-            background: Colors.neutral0,
             padding: paddingWithBorder,
             border: Shorthand.borderToEm(
                 borderWidth,
@@ -156,6 +157,10 @@ export const StyledInput: StyledComponent<StyledInputProps> = styled(
             '&:hover': {
                 background: Colors.neutral0,
             },
+
+            ...((componentState.filled || componentState.focused) && {
+                background: Colors.neutral0,
+            }),
 
             ...(componentState.focused && {
                 borderColor: Colors.orange900,
