@@ -40,3 +40,8 @@ export const Large = Template.bind({});
 Large.args = {
   size: 'large',
 };
+
+export const Weight = Template.bind({});
+Weight.args = {
+  weight: 'semiBold',
+};

@@ -18,7 +18,7 @@ export const Header = styled(Typography, {
     subheader: {
       true: {
         fontFamily: '$primary',
-        fontWeight: '$semibold',
+        fontWeight: '$semiBold',
         letterSpacing: '$medium',
       },
     },

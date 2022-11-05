@@ -1381,25 +1381,25 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/inconsolata@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/inconsolata/-/inconsolata-4.5.1.tgz#b34944ef37c216d0964fe94c64be3bc3af6648cd"
-  integrity sha512-4IQqwlYgeeQ4YAh7nP8DWLkYMZyZBqYIX46+aezlItb0kmGQHFqJprqVXMSC6Eq595NMSzHLhN15/MoLKBomdg==
+"@fontsource/inconsolata@^4.5.9":
+  version "4.5.9"
+  resolved "https://registry.yarnpkg.com/@fontsource/inconsolata/-/inconsolata-4.5.9.tgz#d09fb02a1c6d293a42391de55cd895a896052635"
+  integrity sha512-hj+IIYvbmA0pxoIbjQVkPkEq28moTuD0d4c+s3HU58Gossh24NH6ExttgU/ImJGDngxxGKfmbuZeAJhxUQWdyw==
 
-"@fontsource/merriweather@^4.5.4":
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/@fontsource/merriweather/-/merriweather-4.5.4.tgz#d3768028349d040e1e31d29b245d9dbc211824b0"
-  integrity sha512-nHGjhafMqDS9cO7EdPU46+T7TcwuJeAYlTZYlmHP1oId+sKcoWF+5JQDer2xA2n1Z5LWRdqz5lAs1OAzDe2qxQ==
+"@fontsource/merriweather@^4.5.14":
+  version "4.5.14"
+  resolved "https://registry.yarnpkg.com/@fontsource/merriweather/-/merriweather-4.5.14.tgz#17b634fe3892e25f345954fe34df252730b96080"
+  integrity sha512-kDMIAokOvE9bYf+CDmEWzV3xtR8cRJlw/BipjhxqD9MIRZfU348cZ8xhHhmPXmxRiEjZLor4xxHXqps7eCvGQg==
 
-"@fontsource/raleway@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/raleway/-/raleway-4.5.1.tgz#905b751c6d0ae20abc604c13bf7c6b02a3e98784"
-  integrity sha512-/zzyvXSwpAr2PKdoXL+4CLL5x8YKDoeeaeXambhO52EssYPSFBtScLZzd8vW87Fw0RMMveYjRQM/4LhpC71vSA==
+"@fontsource/raleway@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/raleway/-/raleway-4.5.11.tgz#6da0bad1f44e0360fe465663ac0683601d29bda7"
+  integrity sha512-WrFuS5q3tPqNci4iDwIf7lnkHY5jrkWswy6B007W//cAB7Iiw2NuxBNxrCetYpe3efPbEoFPcoKeTPqDzoWQ3A==
 
-"@fontsource/roboto@^4.5.2":
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.2.tgz#98dd67e579984e255fac4315b496520d890ae989"
-  integrity sha512-KkMqloXIM64EvaVPOqC5Mkms0qdOWvx4nRvQBIMCoG0GGsDa8tFfNwhyowHeR9k09P0LuT5u09d29Y21JhaA6Q==
+"@fontsource/roboto@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.8.tgz#56347764786079838faf43f0eeda22dd7328437f"
+  integrity sha512-CnD7zLItIzt86q4Sj3kZUiLcBk1dSk81qcqgMGaZe7SQ1P8hFNxhMl5AZthK1zrDM5m74VVhaOpuMGIL4gagaA==
 
 "@formspree/core@^2.6.1":
   version "2.6.2"

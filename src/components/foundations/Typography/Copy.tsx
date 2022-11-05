@@ -28,6 +28,9 @@ export const Copy = styled(Typography, {
     },
 
     weight: {
+      thin: {
+        fontWeight: '$thin',
+      },
       light: {
         fontWeight: '$light',
       },
@@ -37,11 +40,11 @@ export const Copy = styled(Typography, {
       medium: {
         fontWeight: '$medium',
       },
-      semibold: {
-        fontWeight: '$semibold',
-      },
       bold: {
         fontWeight: '$bold',
+      },
+      black: {
+        fontWeight: '$black',
       },
     },
   },
