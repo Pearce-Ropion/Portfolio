@@ -14,6 +14,7 @@ import {
   //   useDisablePagePadding,
   //   useInvertPage,
 } from 'utils/preview';
+import { globalStyles } from 'styles/global';
 // import { Viewports } from 'utils/viewports';
 
 // This is to utilized to override the window.___navigate method Gatsby defines and uses to report what path a Link would be taking us to if it wasn't inside a storybook
@@ -30,12 +31,13 @@ export const parameters = {
     values: Backgrounds,
   },
   controls: {
-    expanded: true,
+    exclude: ['as', 'css', 'ref'],
     hideNoControlsWarning: true,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+    sort: 'alpha',
   },
   //   viewport: {
   //     viewports: Viewports,
@@ -43,7 +45,12 @@ export const parameters = {
   layout: 'centered',
 };
 
-// export const decorators: DecoratorFn[] = [
+export const decorators: DecoratorFn[] = [
+  Story => {
+    globalStyles();
+    return <Story />;
+  },
+];
 //     (Story, context: StoryContext) => {
 //         // console.log(context);
 //         const { name, parameters, component } = context;

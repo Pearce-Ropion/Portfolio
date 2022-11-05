@@ -6,12 +6,17 @@ export enum FontFamily {
 }
 
 export enum FontSize {
-  small = '12px',
-  medium = '14px',
-  large = '16px',
-  xLarge = '20px',
-  xxLarge = '32px',
-  xxxLarge = '40px',
+  small = '16px',
+  medium = '18px',
+  large = '24px',
+  xLarge = '32px',
+}
+
+export enum LineHeight {
+  small = '24px',
+  medium = '27px',
+  large = '36px',
+  xLarge = '48px',
 }
 
 export enum FontWeight {
@@ -24,18 +29,8 @@ export enum FontWeight {
   black = 900,
 }
 
-export enum LineHeight {
-  small = '16px',
-  medium = '20px',
-  large = '24px',
-  xLarge = '40px',
-  xxLarge = '48px',
-}
-
 export enum LetterSpacing {
-  shortest = '0.02em',
-  shorter = '0.03em',
-  short = '0.04em',
-  long = '0.05em',
-  longest = '0.06em',
+  short = '0.03em',
+  medium = '0.05em',
+  long = '0.1em',
 }

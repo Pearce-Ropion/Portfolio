@@ -2,6 +2,7 @@ import type { ComponentProps, VariantProps } from '@stitches/react';
 
 import { styled } from 'stitches.config';
 import { Div } from 'components/foundations/Html';
+import { getDefaultVariants } from 'utils/variants';
 
 export const Typography = styled(Div, {
   fontFamily: '$primary',
@@ -11,6 +12,7 @@ export const Typography = styled(Div, {
   display: 'block',
   margin: 0,
   padding: 0,
+  color: '$neutral900',
 
   variants: {
     inline: {
@@ -37,12 +39,6 @@ export const Typography = styled(Div, {
       },
     },
 
-    bold: {
-      true: {
-        fontWeight: '$semibold',
-      },
-    },
-
     italic: {
       true: {
         fontStyle: 'italic',
@@ -54,6 +50,8 @@ export const Typography = styled(Div, {
     align: 'left',
   },
 });
+
+Typography.defaultProps = getDefaultVariants<typeof Typography>(Typography);
 
 export type TypographyVariants_t = VariantProps<typeof Typography>;
 export type TypographyProps_t = ComponentProps<typeof Typography>;

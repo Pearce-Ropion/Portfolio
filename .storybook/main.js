@@ -3,6 +3,27 @@ const path = require('path');
 
 const webpack = require('webpack');
 
+const skipPropsWithName = ['css', 'as', 'ref'];
+const typescriptConfiguration = {
+  reactDocgenTypescriptOptions: {
+    propFilter: prop => {
+      if (skipPropsWithName.includes(prop.name)) {
+        return false;
+      }
+
+      // https://github.com/storybookjs/storybook/blob/master/lib/core-server/src/presets/common-preset.ts#L53
+      if (prop.parent) {
+        return !/node_modules/.test(prop.parent.fileName);
+      }
+
+      return true;
+    },
+    shouldRemoveUndefinedFromOptional: true,
+    shouldExtractLiteralValuesFromEnum: true,
+    shouldExtractValuesFromUnion: true,
+  },
+};
+
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
   addons: [
@@ -12,7 +33,11 @@ module.exports = {
   ],
   framework: '@storybook/react',
   core: {
-    builder: 'webpack5',
+    builder: '@storybook/builder-webpack5',
+  },
+  features: {
+    postcss: false,
+    emotionAlias: false,
   },
   staticDirs: ['../static'],
   webpackFinal: config => {
@@ -34,4 +59,5 @@ module.exports = {
 
     return config;
   },
+  typescript: typescriptConfiguration,
 };
