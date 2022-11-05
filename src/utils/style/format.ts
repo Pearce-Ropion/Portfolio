@@ -1,5 +1,4 @@
-import { TransitionEasing } from '@sigmacomputing/tokens';
-
+import { TransitionEasing } from 'styles/tokens/animation';
 import type { PropertyValue_t } from 'types/stitches';
 import { toPx, toMs } from 'utils/style/units';
 

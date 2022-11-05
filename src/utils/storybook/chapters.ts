@@ -9,4 +9,5 @@ export enum Chapter {
 export enum Token {
   TYPOGRAPHY = 'Typography',
   INPUTS = 'Inputs',
+  LAYOUT = 'Layout',
 }
