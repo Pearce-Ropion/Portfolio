@@ -6,7 +6,7 @@ import {
   FlexProps_t,
   FlexVariants_t,
 } from 'components/foundations/Flex/Flex';
-import { Chapter, Token } from 'utils/storybook/chapters';
+import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 import { border } from 'utils/style/format';
 import { styled } from 'stitches.config';
@@ -17,7 +17,7 @@ const InnerBox = styled(Box, {
 });
 
 export default {
-  title: mkStoryTitle(Chapter.TOKENS, Token.LAYOUT, 'Flex'),
+  title: mkStoryTitle(Chapter.TOKEN, Foundation.LAYOUT, 'Flex'),
   component: mkStoryComponent<FlexVariants_t, FlexProps_t>(Flex),
   args: {
     ...Flex.defaultProps,

@@ -1,13 +1,17 @@
 export enum Chapter {
   GET_STARTED = 'Get Started',
-  FOUNDATIONS = 'Foundations',
-  PATTERNS = 'Patterns',
-  COMPOSITES = 'Composites',
-  TOKENS = 'Tokens',
+  FOUNDATION = 'Foundations',
+  PATTERN = 'Patterns',
+  COMPOSITE = 'Composites',
+  TOKEN = 'Tokens',
 }
 
 export enum Token {
   TYPOGRAPHY = 'Typography',
-  INPUTS = 'Inputs',
   LAYOUT = 'Layout',
+}
+
+export enum Foundation {
+  LAYOUT = 'Layout',
+  INPUT = 'Inputs',
 }

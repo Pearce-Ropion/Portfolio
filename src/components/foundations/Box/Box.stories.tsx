@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Box, BoxProps_t, BoxVariants_t } from 'components/foundations/Box/Box';
-import { Chapter, Token } from 'utils/storybook/chapters';
+import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 import { border } from 'utils/style/format';
 import { styled } from 'stitches.config';
@@ -12,7 +12,7 @@ const InnerBox = styled(Box, {
 });
 
 export default {
-  title: mkStoryTitle(Chapter.TOKENS, Token.LAYOUT, 'Box'),
+  title: mkStoryTitle(Chapter.FOUNDATION, Foundation.LAYOUT, 'Box'),
   component: mkStoryComponent<BoxVariants_t, BoxProps_t>(Box),
   args: {
     ...Box.defaultProps,

@@ -9,7 +9,7 @@ import { Chapter, Token } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 
 export default {
-  title: mkStoryTitle(Chapter.TOKENS, Token.TYPOGRAPHY, 'Typography'),
+  title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Typography'),
   component: mkStoryComponent<TypographyVariants_t, TypographyProps_t>(
     Typography,
   ),

@@ -10,7 +10,7 @@ import { Chapter, Token } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 
 export default {
-  title: mkStoryTitle(Chapter.TOKENS, Token.TYPOGRAPHY, 'Copy'),
+  title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Copy'),
   component: mkStoryComponent<CopyVariants_t, CopyProps_t>(Copy),
   subcomponents: {
     Typography,

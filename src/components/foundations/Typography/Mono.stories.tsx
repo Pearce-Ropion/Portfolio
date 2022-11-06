@@ -10,7 +10,7 @@ import { Chapter, Token } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 
 export default {
-  title: mkStoryTitle(Chapter.TOKENS, Token.TYPOGRAPHY, 'Mono'),
+  title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Mono'),
   component: mkStoryComponent<MonoVariants_t, MonoProps_t>(Mono),
   subcomponents: {
     Typography,

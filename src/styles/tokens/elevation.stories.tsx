@@ -6,7 +6,7 @@ import { Chapter } from 'utils/storybook/chapters';
 import { toPx } from 'utils/style/units';
 
 export default {
-  title: mkStoryTitle(Chapter.TOKENS, 'Elevation'),
+  title: mkStoryTitle(Chapter.TOKEN, 'Elevation'),
 };
 
 export const Levels: FC = () => (

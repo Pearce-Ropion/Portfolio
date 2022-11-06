@@ -10,7 +10,7 @@ import { Chapter, Token } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 
 export default {
-  title: mkStoryTitle(Chapter.TOKENS, Token.TYPOGRAPHY, 'Header'),
+  title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Header'),
   component: mkStoryComponent<HeaderVariants_t, HeaderProps_t>(Header),
   subcomponents: {
     Typography,

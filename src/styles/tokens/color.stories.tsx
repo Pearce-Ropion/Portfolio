@@ -67,7 +67,7 @@ const ColorBlock: FC<ColorBlockProps_t> = ({ token, color }) => (
 );
 
 export default {
-  title: mkStoryTitle(Chapter.TOKENS, 'Color'),
+  title: mkStoryTitle(Chapter.TOKEN, 'Color'),
 };
 
 export const Colors: FC = () => {
