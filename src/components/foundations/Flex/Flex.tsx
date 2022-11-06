@@ -7,6 +7,12 @@ export const Flex = styled(Box, {
   display: 'flex',
 
   variants: {
+    center: {
+      true: {
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+    },
     direction: {
       row: {
         flexDirection: 'row',

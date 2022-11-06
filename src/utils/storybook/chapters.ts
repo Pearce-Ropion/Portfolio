@@ -14,4 +14,5 @@ export enum Token {
 export enum Foundation {
   LAYOUT = 'Layout',
   INPUT = 'Inputs',
+  NAVIGATION = 'Navigation',
 }

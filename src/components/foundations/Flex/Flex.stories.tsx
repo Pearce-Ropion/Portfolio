@@ -41,6 +41,11 @@ const Template: ComponentStory<typeof Flex> = args => (
 
 export const Default = Template.bind({});
 
+export const Center = Template.bind({});
+Center.args = {
+  center: true,
+};
+
 export const Direction = Template.bind({});
 Direction.args = {
   direction: 'row',

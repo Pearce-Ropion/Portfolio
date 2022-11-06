@@ -71,6 +71,7 @@ export const globalStyles = globalCss({
 
   body: {
     fontFamily: '$primary',
+    color: '$neutral900',
     margin: 0,
     textRendering: 'optimizeLegibility',
     WebkitFontSmoothing: 'antialiased',

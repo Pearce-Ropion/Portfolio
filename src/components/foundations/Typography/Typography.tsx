@@ -12,7 +12,6 @@ export const Typography = styled(Div, {
   display: 'block',
   margin: 0,
   padding: 0,
-  color: '$neutral900',
 
   variants: {
     inline: {
@@ -24,12 +23,17 @@ export const Typography = styled(Div, {
     align: {
       left: {
         textAlign: 'left',
+        marginLeft: 0,
+        marginRight: 'auto',
       },
       center: {
         textAlign: 'center',
+        marginX: 'auto',
       },
       right: {
         textAlign: 'right',
+        marginLeft: 'auto',
+        marginRight: 0,
       },
     },
 

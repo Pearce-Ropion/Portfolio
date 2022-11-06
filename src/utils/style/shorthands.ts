@@ -19,7 +19,19 @@ export const marginShorthands = {
     marginLeft: value,
     marginRight: value,
   }),
+  marginX: (
+    value: PropertyValue_t<'marginLeft'> | PropertyValue_t<'marginRight'>,
+  ) => ({
+    marginLeft: value,
+    marginRight: value,
+  }),
   my: (
+    value: PropertyValue_t<'marginTop'> | PropertyValue_t<'marginBottom'>,
+  ) => ({
+    marginTop: value,
+    marginBottom: value,
+  }),
+  marginY: (
     value: PropertyValue_t<'marginTop'> | PropertyValue_t<'marginBottom'>,
   ) => ({
     marginTop: value,
@@ -39,7 +51,19 @@ export const paddingShorthands = {
     paddingLeft: value,
     paddingRight: value,
   }),
+  paddingX: (
+    value: PropertyValue_t<'paddingLeft'> | PropertyValue_t<'paddingRight'>,
+  ) => ({
+    paddingLeft: value,
+    paddingRight: value,
+  }),
   py: (
+    value: PropertyValue_t<'paddingTop'> | PropertyValue_t<'paddingBottom'>,
+  ) => ({
+    paddingTop: value,
+    paddingBottom: value,
+  }),
+  paddingY: (
     value: PropertyValue_t<'paddingTop'> | PropertyValue_t<'paddingBottom'>,
   ) => ({
     paddingTop: value,
