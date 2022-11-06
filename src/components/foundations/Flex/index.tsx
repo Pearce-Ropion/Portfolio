@@ -1,1 +1,5 @@
-export { Box, BoxProps_t, BoxVariants_t } from 'components/foundations/Box/Box';
+export {
+  Flex,
+  FlexProps_t,
+  FlexVariants_t,
+} from 'components/foundations/Flex/Flex';
