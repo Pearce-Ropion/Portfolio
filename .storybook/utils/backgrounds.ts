@@ -1,8 +1,11 @@
-import { PropertyValue_t } from 'types/stitches';
-
 import { Palette } from 'styles/tokens/color';
 
-export const InvertedBackgrounds: string[] = [
+export interface Background_t {
+  name: string;
+  value: Palette;
+}
+
+export const invertedBackgrounds = [
   'neutral900',
   'neutral800',
   'neutral700',
@@ -15,7 +18,7 @@ export const InvertedBackgrounds: string[] = [
   'red800',
 ];
 
-export const Backgrounds: Record<string, PropertyValue_t<'color'>>[] = [
+export const backgrounds: Background_t[] = [
   { name: 'neutral0', value: Palette.neutral0 },
   { name: 'neutral100', value: Palette.neutral100 },
   { name: 'neutral200', value: Palette.neutral200 },
