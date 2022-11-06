@@ -4,7 +4,6 @@ import { Box } from 'components/foundations/Box';
 import { styled } from 'stitches.config';
 
 export const Flex = styled(Box, {
-  boxSizing: 'border-box',
   display: 'flex',
 
   variants: {
