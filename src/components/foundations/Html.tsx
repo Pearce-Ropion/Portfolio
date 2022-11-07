@@ -25,9 +25,6 @@ export type AudioProps_t = ComponentProps<typeof Audio>;
 export const B = styled('b', {});
 export type BProps_t = ComponentProps<typeof B>;
 
-export const Base = styled('base', {});
-export type BaseProps_t = ComponentProps<typeof Base>;
-
 export const Bdi = styled('bdi', {});
 export type BdiProps_t = ComponentProps<typeof Bdi>;
 
@@ -136,9 +133,6 @@ export type H5Props_t = ComponentProps<typeof H5>;
 export const H6 = styled('h6', {});
 export type H6Props_t = ComponentProps<typeof H6>;
 
-export const Head = styled('head', {});
-export type HeadProps_t = ComponentProps<typeof Head>;
-
 export const Header = styled('header', {});
 export type HeaderProps_t = ComponentProps<typeof Header>;
 
@@ -181,9 +175,6 @@ export type LegendProps_t = ComponentProps<typeof Legend>;
 export const Li = styled('li', {});
 export type LiProps_t = ComponentProps<typeof Li>;
 
-export const Link = styled('link', {});
-export type LinkProps_t = ComponentProps<typeof Link>;
-
 export const Main = styled('main', {});
 export type MainProps_t = ComponentProps<typeof Main>;
 
@@ -198,9 +189,6 @@ export type MenuProps_t = ComponentProps<typeof Menu>;
 
 export const Menuitem = styled('menuitem', {});
 export type MenuitemProps_t = ComponentProps<typeof Menuitem>;
-
-export const Meta = styled('meta', {});
-export type MetaProps_t = ComponentProps<typeof Meta>;
 
 export const Meter = styled('meter', {});
 export type MeterProps_t = ComponentProps<typeof Meter>;
@@ -262,9 +250,6 @@ export type SampProps_t = ComponentProps<typeof Samp>;
 export const Slot = styled('slot', {});
 export type SlotProps_t = ComponentProps<typeof Slot>;
 
-export const Script = styled('script', {});
-export type ScriptProps_t = ComponentProps<typeof Script>;
-
 export const Section = styled('section', {});
 export type SectionProps_t = ComponentProps<typeof Section>;
 
@@ -282,9 +267,6 @@ export type SpanProps_t = ComponentProps<typeof Span>;
 
 export const Strong = styled('strong', {});
 export type StrongProps_t = ComponentProps<typeof Strong>;
-
-export const Style = styled('style', {});
-export type StyleProps_t = ComponentProps<typeof Style>;
 
 export const Sub = styled('sub', {});
 export type SubProps_t = ComponentProps<typeof Sub>;
@@ -324,9 +306,6 @@ export type TheadProps_t = ComponentProps<typeof Thead>;
 
 export const Time = styled('time', {});
 export type TimeProps_t = ComponentProps<typeof Time>;
-
-export const Title = styled('title', {});
-export type TitleProps_t = ComponentProps<typeof Title>;
 
 export const Tr = styled('tr', {});
 export type TrProps_t = ComponentProps<typeof Tr>;

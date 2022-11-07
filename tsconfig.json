@@ -1,44 +1,45 @@
 {
-    "compilerOptions": {
-        "baseUrl": "./",
-        "paths": {
-            "*": ["src/*", ".storybook/*"]
-        },
-
-        "lib": ["ESNext", "DOM", "DOM.Iterable"],
-        "module": "commonjs",
-
-        "noEmit": true,
-        "noEmitOnError": true,
-
-        "jsx": "react-jsx",
-
-        "strict": true,
-        "strictBindCallApply": true,
-        "strictFunctionTypes": true,
-        "strictNullChecks": true,
-        "strictPropertyInitialization": true,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "downlevelIteration": true,
-
-        "allowJs": true,
-        "checkJs": true,
-        "resolveJsonModule": true,
-        "forceConsistentCasingInFileNames": true,
-
-        "types": ["node", "react"],
-        "typeRoots": ["typing"]
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "*": ["src/*", ".storybook/*"]
     },
-    "include": [
-        "./**/*",
-        "./.storybook/**/*",
-        "./.eslintrc.js",
-        "./.babelrc.js"
-    ],
-    "exclude": ["node_modules"]
+
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "ES2015",
+
+    "noEmit": true,
+    "noEmitOnError": true,
+
+    "jsx": "react-jsx",
+    "types": ["node", "react"],
+    "typeRoots": ["typing"],
+
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "downlevelIteration": true,
+
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "config",
+    "src",
+    "typing",
+    ".storybook/**/*",
+    "babel-plugin-macros.config.js",
+    "gatsby-*.{js,ts}",
+    "jest.config.ts",
+    "package.json",
+    ".eslintrc.js",
+    ".prettierrc.js"
+  ],
+  "exclude": ["node_modules"]
 }
