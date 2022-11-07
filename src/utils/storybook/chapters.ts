@@ -15,4 +15,5 @@ export enum Foundation {
   LAYOUT = 'Layout',
   INPUT = 'Inputs',
   NAVIGATION = 'Navigation',
+  ICON = 'Icons',
 }
