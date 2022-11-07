@@ -1,3 +1,4 @@
-!/.storybook
-!/.eslintrc.js
-!/.babelrc.js
+!.jest
+!.storybook
+!.prettierrc.js
+!.eslintrc.js

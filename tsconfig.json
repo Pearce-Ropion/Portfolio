@@ -33,11 +33,11 @@
     "config",
     "src",
     "typing",
+    ".jest/**/*",
     ".storybook/**/*",
     "babel-plugin-macros.config.js",
     "gatsby-*.{js,ts}",
     "jest.config.ts",
-    "package.json",
     ".eslintrc.js",
     ".prettierrc.js"
   ],
