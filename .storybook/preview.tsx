@@ -6,7 +6,6 @@ import { DecoratorFn } from '@storybook/react';
 // import { Layout } from 'components/Layout';
 import { Page } from 'components/Page';
 import { StorybookContext } from 'components/StorybookContext';
-
 import { backgrounds } from 'utils/backgrounds';
 import {
   StoryContext,
@@ -16,13 +15,12 @@ import {
 } from 'utils/preview';
 import { globalStyles } from 'styles/global';
 import { Viewports } from 'utils/viewports';
+import { AnalyticsProvider } from 'components/contexts';
 
 // This is to utilized to override the window.___navigate method Gatsby defines and uses to report what path a Link would be taking us to if it wasn't inside a storybook
 window.___navigate = (pathname: string): void => {
   action('Navigate To: ')(pathname);
 };
-
-const IS_STORYBOOK_PREVIEW = true;
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -48,7 +46,13 @@ export const parameters = {
 export const decorators: DecoratorFn[] = [
   Story => {
     globalStyles();
-    return <Story />;
+    return (
+      <StorybookContext.Provider value>
+        <AnalyticsProvider>
+          <Story />
+        </AnalyticsProvider>
+      </StorybookContext.Provider>
+    );
   },
 ];
 //     (Story, context: StoryContext) => {

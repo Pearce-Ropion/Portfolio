@@ -13,6 +13,8 @@ import { border } from 'utils/style/format';
 import { toPercent, toPx } from 'utils/style/units';
 import { getDefaultVariants } from 'utils/variants';
 import {
+  ButtonAffix,
+  ButtonAffixCopy,
   ButtonPrefix,
   ButtonSuffix,
 } from 'components/foundations/Button/ButtonAffix';
@@ -261,7 +263,15 @@ export interface ButtonProps_t extends StyledButtonProps_t {
 
 export type Button_t = MemoForwardRefComponent_t<
   ButtonElement_t,
-  ButtonProps_t
+  ButtonProps_t,
+  {
+    Copy: typeof ButtonCopy;
+    Inner: typeof ButtonInner;
+    AffixCopy: typeof ButtonAffixCopy;
+    Affix: typeof ButtonAffix;
+    Prefix: typeof ButtonPrefix;
+    Suffix: typeof ButtonSuffix;
+  }
 >;
 
 export const Button: Button_t = memo(
@@ -322,6 +332,13 @@ export const Button: Button_t = memo(
       );
     },
   ),
-);
+) as Button_t;
 
 Button.defaultProps = defaultVariants;
+
+Button.Copy = ButtonCopy;
+Button.Inner = ButtonInner;
+Button.AffixCopy = ButtonAffixCopy;
+Button.Affix = ButtonAffix;
+Button.Prefix = ButtonPrefix;
+Button.Suffix = ButtonSuffix;

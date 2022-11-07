@@ -13,6 +13,14 @@ import { Flex } from 'components/foundations/Flex';
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'Button'),
   component: mkStoryComponent<ButtonVariants_t, ButtonProps_t>(Button),
+  subcomponents: {
+    Copy: Button.Copy,
+    Inner: Button.Inner,
+    AffixCopy: Button.AffixCopy,
+    Affix: Button.Affix,
+    Prefix: Button.Prefix,
+    Suffix: Button.Suffix,
+  },
   args: {
     ...Button.defaultProps,
     children: 'Click Me',

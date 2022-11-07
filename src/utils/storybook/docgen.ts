@@ -18,6 +18,8 @@ type Component_t<P> = (P extends PropsWithChildren<P> ? FC<P> : VFC<P>) & {
   __docgenInfo?: ComponentDoc;
 };
 
+const INVALID_DOCGEN_TYPES = ['{', '}', 'HTML', 'Omit', 'Pick', '=>'] as const;
+
 function isDocgenModified<P>(component: Component_t<P>): boolean {
   return Boolean(component.__docgenInfo && component.__docgenInfo?.isModified);
 }
@@ -54,7 +56,9 @@ function modifyStoryComponentProps<P extends Record<string, unknown>>(
 
         propInfo.type.value = propValue.filter(enumValue => {
           // remove any enum options that consist of a stringified object
-          return !enumValue.value.startsWith('{');
+          return !INVALID_DOCGEN_TYPES.some(option => {
+            return enumValue.value.includes(option);
+          });
         });
 
         /**
@@ -82,7 +86,7 @@ function modifyStoryComponentProps<P extends Record<string, unknown>>(
  * @param {Component_t} component - the component the storybook is for
  * @returns {Component_t}
  */
-export function mkStoryComponent<V, P extends Record<string, unknown>>(
+export function mkStoryComponent<V = {}, P extends {} = {}>(
   component: Component_t<P>,
 ) {
   if (!isDocgenModified<P>(component)) {

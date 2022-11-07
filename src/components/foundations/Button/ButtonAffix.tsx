@@ -7,7 +7,7 @@ import { toEm, toPercent } from 'utils/style/units';
 import { Copy } from 'components/foundations/Typography';
 import { DEFAULT_BUTTON_VARIANT } from 'components/foundations/Button/util';
 
-const ButtonAffixCopy = styled(Copy, {
+export const ButtonAffixCopy = styled(Copy, {
   color: '$neutral500',
 
   variants: {
@@ -44,8 +44,8 @@ const ButtonAffixCopy = styled(Copy, {
   },
 });
 
-type ButtonAffixElement = HTMLDivElement;
-const ButtonAffix = styled(Flex, {
+export type ButtonAffixElement_t = HTMLDivElement;
+export const ButtonAffix = styled(Flex, {
   whiteSpace: 'nowrap',
   alignItems: 'center',
   justifyContent: 'center',
@@ -63,7 +63,7 @@ export interface ButtonPrefixProps_t
     VariantProps<typeof ButtonAffixCopy> {}
 
 export const ButtonPrefix = memo(
-  forwardRef<ButtonAffixElement, ButtonPrefixProps_t>(
+  forwardRef<ButtonAffixElement_t, ButtonPrefixProps_t>(
     (
       { children, variant = DEFAULT_BUTTON_VARIANT, inverted, ...rest },
       ref,
@@ -96,7 +96,7 @@ export interface ButtonSuffixProps_t
     VariantProps<typeof ButtonAffixCopy> {}
 
 export const ButtonSuffix = memo(
-  forwardRef<ButtonAffixElement, ButtonSuffixProps_t>(
+  forwardRef<ButtonAffixElement_t, ButtonSuffixProps_t>(
     (
       { children, variant = DEFAULT_BUTTON_VARIANT, inverted, ...rest },
       ref,
