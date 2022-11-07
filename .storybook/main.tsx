@@ -1,7 +1,7 @@
-// @ts-nocheck
 import path from 'path';
 import type { Configuration } from 'webpack';
 import { ProvidePlugin } from 'webpack';
+import type { PropItem } from 'react-docgen-typescript';
 
 export const stories = ['../src/**/*.stories.tsx'];
 export const staticDirs = ['../static'];
@@ -24,15 +24,24 @@ export const features = {
 };
 
 export const webpackFinal = (config: Configuration) => {
+  if (!config.resolve) config.resolve = {};
+  if (!config.resolve.modules) config.resolve.modules = [];
+  if (!config.resolve.fallback)
+    config.resolve.fallback = {} as Record<string, string | false | string[]>;
+  if (!config.plugins) config.plugins = [];
+
   config.resolve.modules.push(
     path.resolve(__dirname),
     path.resolve(__dirname, '../src'),
   );
 
-  config.resolve.fallback.path = require.resolve('path-browserify');
-  config.resolve.fallback.fs = false;
-  config.resolve.fallback.os = false;
-  config.resolve.fallback.module = false;
+  Object.assign(config.resolve.fallback, {
+    fs: false,
+    module: false,
+    os: false,
+    path: require.resolve('path-browserify'),
+    process: require.resolve('process/browser'),
+  });
 
   config.plugins.push(
     new ProvidePlugin({
@@ -43,10 +52,10 @@ export const webpackFinal = (config: Configuration) => {
   return config;
 };
 
-const skipPropsWithName = ['css', 'as', 'ref'];
+const skipPropsWithName = ['as', 'css', 'ref'];
 export const typescript = {
   reactDocgenTypescriptOptions: {
-    propFilter: prop => {
+    propFilter: (prop: PropItem) => {
       if (skipPropsWithName.includes(prop.name)) {
         return false;
       }

@@ -1,7 +1,7 @@
 import type { Scale_t } from 'styles/tokens/scale/types';
-import { getScaleValue, getScale, Spacing } from 'styles/tokens/scale/scale';
+import { getScaleValue, getScale, Scale } from 'styles/tokens/scale/scale';
 
-describe('getSpacing', () => {
+describe('getScaleValue', () => {
   it('gets the spacing value from a multiplier', () => {
     expect(getScaleValue(0)).toBe(0);
     expect(getScaleValue(1)).toBe(4);
@@ -23,7 +23,7 @@ describe('getSpacing', () => {
   });
 });
 
-describe('getSpacingScale', () => {
+describe('getScale', () => {
   it('generates spacing values up to a maxiumum value', () => {
     const maxSpacingValue = 128;
     const spacingScale: Scale_t = getScale(maxSpacingValue);
@@ -36,6 +36,6 @@ describe('getSpacingScale', () => {
   });
 
   it('generates the spacing scale', () => {
-    expect(Spacing).toMatchSnapshot();
+    expect(Scale).toMatchSnapshot();
   });
 });

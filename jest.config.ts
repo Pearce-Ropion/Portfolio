@@ -4,6 +4,7 @@ const config: Config = {
   modulePaths: ['<rootDir>/src'],
 
   preset: 'ts-jest',
+  rootDir: __dirname,
   setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
   testEnvironment: 'jsdom',
 

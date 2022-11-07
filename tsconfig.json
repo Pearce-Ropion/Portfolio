@@ -14,8 +14,8 @@
     "noEmitOnError": true,
 
     "jsx": "react-jsx",
-    "types": ["node", "react"],
-    "typeRoots": ["typing"],
+    "types": ["node", "react", "jest"],
+    "typeRoots": ["node_modules", "typing"],
 
     "strict": true,
     "noImplicitAny": true,
