@@ -9,7 +9,6 @@ import { styled } from 'stitches.config';
 import { Transition } from 'styles/tokens/animation';
 import { Elevation } from 'styles/tokens/elevation';
 import { MemoForwardRefComponent_t } from 'types/component';
-import { PropertyValue_t } from 'types/stitches';
 import { border } from 'utils/style/format';
 import { toPercent, toPx } from 'utils/style/units';
 import { getDefaultVariants } from 'utils/variants';
@@ -17,61 +16,116 @@ import {
   ButtonPrefix,
   ButtonSuffix,
 } from 'components/foundations/Button/ButtonAffix';
+import {
+  DEFAULT_BUTTON_VARIANT,
+  SECONDARY_BUTTON_BORDER_WIDTH,
+  BUTTON_HORIZONTAL_PADDING,
+  BUTTON_VERTICAL_PADDING,
+} from 'components/foundations/Button/util';
 import { Flex } from 'components/foundations/Flex';
 
-export const BUTTON_TRACK_EVENT_NAME = 'click-button';
-export const SECONDARY_BUTTON_BORDER_WIDTH = 3;
+export const ButtonCopy = styled(Copy, {
+  variants: {
+    inverted: { true: {} },
 
-const buttonPadding = (
-  borderWidth: number,
-  affix?: 'left' | 'right' | 'both',
-): PropertyValue_t<'padding'> => {
-  const verticalPadding = 12;
-  const horizontalPadding = 24;
+    variant: {
+      primary: {
+        color: '$neutral0',
+      },
+      secondary: {
+        color: '$navy900',
+      },
+    },
+  },
 
-  const vertical = toPx(verticalPadding - borderWidth);
-  const defaultHorizontalPadding = horizontalPadding - borderWidth;
+  compoundVariants: [
+    {
+      variant: 'secondary',
+      inverted: true,
+      css: {
+        color: '$yellow900',
+      },
+    },
+  ],
 
-  let left = defaultHorizontalPadding;
-  let right = defaultHorizontalPadding;
-  const affixPadding = defaultHorizontalPadding - 6;
+  defaultVariants: {
+    variant: DEFAULT_BUTTON_VARIANT,
+  },
+});
 
-  if (affix === 'left' || affix === 'both') {
-    left = affixPadding;
-  }
-
-  if (affix === 'right' || affix === 'both') {
-    right = affixPadding;
-  }
-
-  return `${vertical} ${toPx(right)} ${vertical} ${toPx(left)}`;
-};
-
-export const StyledButtonInner = styled(Flex, {
+export const ButtonInner = styled(Flex, {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
-  paddingY: 
 
   variants: {
+    variant: {
+      primary: {
+        paddingY: toPx(BUTTON_VERTICAL_PADDING),
+        paddingX: toPx(BUTTON_HORIZONTAL_PADDING),
+      },
+      secondary: {
+        paddingY: toPx(BUTTON_VERTICAL_PADDING - SECONDARY_BUTTON_BORDER_WIDTH),
+        paddingX: toPx(
+          BUTTON_HORIZONTAL_PADDING - SECONDARY_BUTTON_BORDER_WIDTH,
+        ),
+      },
+    },
+
     prefix: {
       true: {
-
-      }
+        paddingLeft: 0,
+      },
     },
 
     suffix: {
       true: {
+        paddingRight: 0,
+      },
+    },
+  },
 
-      }
-    }
-  }
-})
+  compoundVariants: [
+    {
+      variant: 'primary',
+      prefix: true,
+      css: {
+        paddingLeft: 0,
+      },
+    },
+    {
+      variant: 'primary',
+      suffix: true,
+      css: {
+        paddingRight: 0,
+      },
+    },
+    {
+      variant: 'secondary',
+      prefix: true,
+      css: {
+        paddingLeft: 0,
+      },
+    },
+    {
+      variant: 'secondary',
+      suffix: true,
+      css: {
+        paddingRight: 0,
+      },
+    },
+  ],
+
+  defaultVariants: {
+    variant: DEFAULT_BUTTON_VARIANT,
+  },
+});
 
 export const StyledButton = styled(ButtonBase, {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
+  justifyContent: 'center',
   borderRadius: '$large',
   cursor: 'pointer',
   userSelect: 'none',
@@ -80,6 +134,8 @@ export const StyledButton = styled(ButtonBase, {
   transition: Transition.standard,
   whiteSpace: 'nowrap',
   textAlign: 'center',
+  margin: 0,
+  padding: 0,
 
   '&:hover, &:focus': {
     boxShadow: Elevation.level2,
@@ -106,19 +162,27 @@ export const StyledButton = styled(ButtonBase, {
     },
 
     inverted: { true: {} },
-    prefix: { true: {} },
-    suffix: { true: {} },
+    prefix: {
+      true: {
+        paddingLeft: toPx(BUTTON_HORIZONTAL_PADDING),
+        justifyContent: 'space-between',
+      },
+    },
+    suffix: {
+      true: {
+        paddingRight: toPx(BUTTON_HORIZONTAL_PADDING),
+        justifyContent: 'space-between',
+      },
+    },
 
     variant: {
       primary: {
         color: '$neutral0',
         backgroundColor: '$navy900',
-        padding: buttonPadding(0),
       },
       secondary: {
         color: '$navy900',
         backgroundColor: 'transparent',
-        padding: buttonPadding(SECONDARY_BUTTON_BORDER_WIDTH),
         border: border(SECONDARY_BUTTON_BORDER_WIDTH, '$navy900'),
       },
     },
@@ -136,22 +200,14 @@ export const StyledButton = styled(ButtonBase, {
       variant: 'primary',
       prefix: true,
       css: {
-        padding: buttonPadding(0, 'left'),
+        paddingLeft: toPx(BUTTON_HORIZONTAL_PADDING),
       },
     },
     {
       variant: 'primary',
       suffix: true,
       css: {
-        padding: buttonPadding(0, 'right'),
-      },
-    },
-    {
-      variant: 'primary',
-      prefix: true,
-      suffix: true,
-      css: {
-        padding: buttonPadding(0, 'both'),
+        paddingRight: toPx(BUTTON_HORIZONTAL_PADDING),
       },
     },
     {
@@ -166,28 +222,24 @@ export const StyledButton = styled(ButtonBase, {
       variant: 'secondary',
       prefix: true,
       css: {
-        padding: buttonPadding(SECONDARY_BUTTON_BORDER_WIDTH, 'left'),
+        paddingLeft: toPx(
+          BUTTON_HORIZONTAL_PADDING - SECONDARY_BUTTON_BORDER_WIDTH,
+        ),
       },
     },
     {
       variant: 'secondary',
       suffix: true,
       css: {
-        padding: buttonPadding(SECONDARY_BUTTON_BORDER_WIDTH, 'right'),
-      },
-    },
-    {
-      variant: 'secondary',
-      prefix: true,
-      suffix: true,
-      css: {
-        padding: buttonPadding(SECONDARY_BUTTON_BORDER_WIDTH, 'both'),
+        paddingRight: toPx(
+          BUTTON_HORIZONTAL_PADDING - SECONDARY_BUTTON_BORDER_WIDTH,
+        ),
       },
     },
   ],
 
   defaultVariants: {
-    variant: 'primary',
+    variant: DEFAULT_BUTTON_VARIANT,
   },
 });
 
@@ -227,17 +279,29 @@ export const Button: Button_t = memo(
     ) => {
       let inner = children;
       if (typeof children === 'string') {
-        inner = <Copy align="center">{children}</Copy>;
+        inner = (
+          <ButtonCopy variant={variant} inverted={inverted}>
+            {children}
+          </ButtonCopy>
+        );
       }
 
       let prefixNode = prefix;
       if (typeof prefix === 'string') {
-        prefixNode = <ButtonPrefix>{prefix}</ButtonPrefix>;
+        prefixNode = (
+          <ButtonPrefix variant={variant} inverted={inverted}>
+            {prefix}
+          </ButtonPrefix>
+        );
       }
 
       let suffixNode = suffix;
       if (typeof suffix === 'string') {
-        suffixNode = <ButtonSuffix>{suffix}</ButtonSuffix>;
+        suffixNode = (
+          <ButtonSuffix variant={variant} inverted={inverted}>
+            {suffix}
+          </ButtonSuffix>
+        );
       }
 
       return (
@@ -250,7 +314,9 @@ export const Button: Button_t = memo(
           variant={variant}
         >
           {prefixNode}
-          {inner}
+          <ButtonInner variant={variant} prefix={!!prefix} suffix={!!suffix}>
+            {inner}
+          </ButtonInner>
           {suffixNode}
         </StyledButton>
       );

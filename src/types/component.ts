@@ -4,7 +4,12 @@ import type {
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
+  ReactNode,
 } from 'react';
+
+export interface ChildrenProps_t {
+  children?: ReactNode;
+}
 
 export type ForwardRefProps_t<E extends Element, P = {}> = PropsWithoutRef<P> &
   RefAttributes<E>;

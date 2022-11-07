@@ -18,6 +18,6 @@ export const useEventHandler = <H extends ReactEventHandler>(
       handlerProp?.(e);
       callback?.(e);
     },
-    [disabled, handlerProp, callback],
+    [callback, disabled, handlerProp],
   );
 };
