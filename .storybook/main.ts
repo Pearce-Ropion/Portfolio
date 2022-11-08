@@ -1,6 +1,7 @@
 import path from 'path';
 import { Configuration, DefinePlugin, ProvidePlugin } from 'webpack';
 import type { PropItem } from 'react-docgen-typescript';
+import { mapValues } from 'lodash';
 
 export const stories = ['../src/**/*.stories.tsx'];
 export const staticDirs = ['../static'];
@@ -24,9 +25,8 @@ export const features = {
 
 export const webpackFinal = (config: Configuration) => {
   if (!config.resolve) config.resolve = {};
+  if (!config.resolve.fallback) config.resolve.fallback = {};
   if (!config.resolve.modules) config.resolve.modules = [];
-  if (!config.resolve.fallback)
-    config.resolve.fallback = {} as Record<string, string | false | string[]>;
   if (!config.plugins) config.plugins = [];
 
   config.resolve.modules.push(
@@ -35,20 +35,21 @@ export const webpackFinal = (config: Configuration) => {
   );
 
   Object.assign(config.resolve.fallback, {
-    fs: false,
-    module: false,
-    os: false,
     path: require.resolve('path-browserify'),
     process: require.resolve('process/browser'),
   });
+
+  const rawEnv = {
+    NODE_ENV: process.env.NODE_ENV || 'development',
+    STORYBOOK_ENV: true,
+  };
 
   config.plugins.push(
     new ProvidePlugin({
       process: 'process/browser',
     }),
     new DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      'process.env.STORYBOOK_ENV': JSON.stringify(true),
+      'process.env': mapValues(rawEnv, value => JSON.stringify(value)),
     }),
   );
 
@@ -70,8 +71,8 @@ export const typescript = {
 
       return true;
     },
-    shouldRemoveUndefinedFromOptional: true,
     shouldExtractLiteralValuesFromEnum: true,
     shouldExtractValuesFromUnion: true,
+    shouldRemoveUndefinedFromOptional: true,
   },
 };

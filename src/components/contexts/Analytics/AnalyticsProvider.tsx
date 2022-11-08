@@ -1,11 +1,11 @@
 import { useRef, memo } from 'react';
 import { AnalyticsBrowser } from '@segment/analytics-next';
 
+import { SEGMENT_WRITE_KEY } from 'env';
 import {
   AnalyticsContext,
   Analytics_t,
 } from 'components/contexts/Analytics/AnalyticsContext';
-import { SEGMENT_WRITE_KEY } from 'env';
 import { ChildrenProps_t } from 'types/component';
 
 export interface AnalyticsProviderProps_t extends ChildrenProps_t {}
