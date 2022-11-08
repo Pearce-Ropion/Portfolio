@@ -5,11 +5,18 @@ import type {
   PropsWithoutRef,
   RefAttributes,
   ReactNode,
+  JSXElementConstructor,
+  ComponentProps,
 } from 'react';
 
 export interface ChildrenProps_t {
   children?: ReactNode;
 }
+
+export type StoryComponentProps_t<
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>,
+  P = {},
+> = (props: ComponentProps<T> & P) => JSX.Element;
 
 export type ForwardRefProps_t<E extends Element, P = {}> = PropsWithoutRef<P> &
   RefAttributes<E>;
