@@ -10,8 +10,18 @@ import {
 import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkEnumOptions, mkStoryTitle } from 'utils/storybook';
 import { StoryComponentProps_t } from 'types/component';
-import { border } from 'utils/style/format';
 import { Box } from 'components/foundations/Box';
+import { theme } from 'stitches.config';
+import {
+  booleanControl,
+  disableControl,
+  radioControl,
+  removeControl,
+  selectControl,
+  tabIndexControl,
+  textControl,
+  themedColorControl,
+} from 'utils/storybook/controls';
 
 type FontAwesomeIconStory_t = StoryComponentProps_t<
   typeof FontAwesomeIcon,
@@ -29,10 +39,48 @@ export default {
   args: {
     prefix: 'fad',
     icon: 'image',
+    size: '3x',
   },
   argTypes: {
     icon: mkEnumOptions(icons),
-    prefix: mkEnumOptions(prefixes),
+    prefix: selectControl({
+      options: prefixes,
+      labels: {
+        fas: 'Solid',
+        far: 'Regular',
+        fal: 'Light',
+        fat: 'Thin',
+        fad: 'Duotone',
+      },
+    }),
+    color: themedColorControl,
+    mask: disableControl,
+    spin: booleanControl,
+    spinPulse: booleanControl,
+    pulse: booleanControl,
+    beat: booleanControl,
+    fade: booleanControl,
+    beatFade: booleanControl,
+    bounce: booleanControl,
+    shake: booleanControl,
+    border: booleanControl,
+    fixedWidth: disableControl,
+    inverse: booleanControl,
+    listItem: disableControl,
+    flip: mkEnumOptions(['horizonal', 'vertical', 'both']),
+    size: mkEnumOptions(
+      ['1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x'],
+      false,
+    ),
+    pull: disableControl,
+    rotation: radioControl({ options: [90, 180, 270] }),
+    transform: disableControl,
+    symbol: removeControl,
+    style: removeControl,
+    tabIndex: tabIndexControl,
+    title: textControl,
+    titleId: removeControl,
+    swapOpacity: booleanControl,
   },
 } as ComponentMeta<FontAwesomeIconStory_t>;
 
@@ -42,14 +90,14 @@ const Template: ComponentStory<FontAwesomeIconStory_t> = ({
   ...rest
 }) => {
   const icon: IconProp = [prefix, iconName as IconName];
-  return <FontAwesomeIcon size="3x" {...rest} icon={icon} />;
+  return <FontAwesomeIcon {...rest} icon={icon} />;
 };
 
 export const Default = Template.bind({});
 
 export const Color = Template.bind({});
 Color.args = {
-  color: 'red',
+  color: theme.colors.orange900.value,
 };
 
 export const Spin = Template.bind({});
@@ -128,14 +176,15 @@ Rotate.args = {
 
 export const Transform = Template.bind({});
 Transform.args = {
+  border: true,
   transform: {
-    x: 30,
-    y: 30,
+    x: 25,
+    y: 23,
   },
 };
 Transform.decorators = [
   Story => (
-    <Box css={{ border: border(1, '$red800'), size: '100px' }}>
+    <Box css={{ size: '120px' }}>
       <Story />
     </Box>
   ),

@@ -1,4 +1,4 @@
-type ControlOptions_t<T extends string, P = {}> = P & {
+export type ControlOptions_t<T extends string, P = {}> = P & {
   type: T;
 };
 
@@ -6,29 +6,29 @@ export interface ColorPresetOption_t {
   title?: string;
   color: string;
 }
-interface ColorControlOptions_t {
+export interface ColorControlOptions_t {
   presetColors: Array<string | ColorPresetOption_t>;
 }
 
-interface FileControlOptions_t {
+export interface FileControlOptions_t {
   accept: string;
 }
 
-interface NumberControlOptions_t {
+export interface NumberControlOptions_t {
   min?: number;
   max?: number;
   step?: number;
 }
 
-type EnumOption_t = string | number;
-type EnumOptions_t = EnumOption_t[];
-interface EnumControlOptions_t {
+export type EnumOption_t = string | number;
+export type EnumOptions_t = EnumOption_t[];
+export interface EnumControlOptions_t {
   options?: EnumOptions_t;
-  labels?: Record<EnumOption_t, string>;
-  mapping?: Record<EnumOption_t, unknown>;
+  labels?: Record<string, string>;
+  mapping?: Record<string, unknown>;
 }
 
-type ControlParams_t =
+export type ControlParams_t =
   | ControlOptions_t<'boolean'>
   | ControlOptions_t<'check', EnumControlOptions_t>
   | ControlOptions_t<'color', ColorControlOptions_t>
@@ -46,7 +46,7 @@ type ControlParams_t =
 
 export type ControlType_t = ControlParams_t['type'];
 
-interface TableParams_t {
+export interface TableParams_t {
   defaultValue?: {
     summary?: string | number;
   };
@@ -56,7 +56,7 @@ interface TableParams_t {
   };
 }
 
-interface TypeParams_t {
+export interface TypeParams_t {
   required?: boolean;
 }
 
