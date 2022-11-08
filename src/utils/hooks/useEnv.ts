@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useLocation, WindowLocation } from '@reach/router';
 
-import { BASE_URL } from 'config';
+import { BASE_URL } from 'env';
 
 export enum Env {
   DEVELOPMENT = 'development',

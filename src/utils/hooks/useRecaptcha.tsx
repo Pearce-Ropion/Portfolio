@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { RECAPTCHA_V3_KEY } from 'config';
-
+import { RECAPTCHA_V3_KEY } from 'env';
 import { HookStatus } from 'utils/hooks/status';
 import { useScript } from 'utils/hooks/useScript';
 
@@ -92,8 +91,9 @@ export const useReCaptcha = ({
     if (widgetId !== null) {
       window.grecaptcha?.execute(widgetId);
     } else {
+      // eslint-disable-next-line no-console
       console.error(
-        `Error: "grecaptcha.execute" called before widget has been initialized. Make sure status is set to "ready" before calling execute`,
+        'Error: "grecaptcha.execute" called before widget has been initialized. Make sure status is set to "ready" before calling execute',
       );
     }
   }, [widgetId]);

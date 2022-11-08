@@ -1,6 +1,5 @@
 import path from 'path';
-import type { Configuration } from 'webpack';
-import { ProvidePlugin } from 'webpack';
+import { Configuration, DefinePlugin, ProvidePlugin } from 'webpack';
 import type { PropItem } from 'react-docgen-typescript';
 
 export const stories = ['../src/**/*.stories.tsx'];
@@ -46,6 +45,10 @@ export const webpackFinal = (config: Configuration) => {
   config.plugins.push(
     new ProvidePlugin({
       process: 'process/browser',
+    }),
+    new DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.STORYBOOK_ENV': JSON.stringify(true),
     }),
   );
 
