@@ -6,7 +6,9 @@ type Color_t = Colors_t[keyof Colors_t];
 
 const getThemeColor = (colors: string[]) => {
   return ({ token }: Color_t) => {
-    return colors.some(color => token.startsWith(color));
+    return colors.some(
+      color => token.startsWith(color) && token.endsWith('800'),
+    );
   };
 };
 
@@ -18,7 +20,14 @@ const mkThemedColorPreset = ({
   color: value,
 });
 
-const themedDefaultColors = ['neutral', 'navy', 'orange'];
+const themedDefaultColors = [
+  'neutral',
+  'navy',
+  'orange',
+  'yellow',
+  'green',
+  'red',
+];
 const themedFormColors = ['navy', 'green', 'yellow', 'red'];
 
 export const themedDefaultColorOptions = Object.values(theme.colors)
