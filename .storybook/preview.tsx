@@ -17,6 +17,8 @@ import { globalStyles } from 'styles/global';
 import { Viewports } from 'utils/viewports';
 import { AnalyticsProvider } from 'components/contexts';
 
+import 'utils/library';
+
 // This is to utilized to override the window.___navigate method Gatsby defines and uses to report what path a Link would be taking us to if it wasn't inside a storybook
 window.___navigate = (pathname: string): void => {
   action('Navigate To: ')(pathname);

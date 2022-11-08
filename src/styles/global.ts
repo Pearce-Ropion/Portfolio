@@ -52,6 +52,8 @@ import '@fontsource/inconsolata/700.css';
 import '@fontsource/inconsolata/800.css';
 import '@fontsource/inconsolata/900.css';
 
+import 'components/foundations/Icon/library';
+
 export const globalStyles = globalCss({
   html: {
     boxSizing: 'border-box',
