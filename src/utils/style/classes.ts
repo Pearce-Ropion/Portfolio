@@ -38,4 +38,4 @@ export const cx = (...classNames: ClassNameEntry[]): string => {
       return acc;
     }, [])
     .join(' ');
-}
+};

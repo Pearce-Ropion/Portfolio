@@ -1,16 +1,16 @@
 import { FC } from 'react';
+import { colord } from 'colord';
 
 import { Box, Flex, Copy, Mono } from 'components';
 import { Palette } from 'styles/tokens/color';
 import { mkStoryTitle } from 'utils/storybook';
 import { Chapter } from 'utils/storybook/chapters';
-import { Br } from 'components/foundations/Html';
+import { HTMLBr } from 'components/foundations/Html';
 import { toPx } from 'utils/style/units';
-import { hexToRgb } from 'utils/style/colors';
 
 interface ColorEntry_t {
   token: string;
-  color: Palette;
+  color: string;
 }
 
 interface ColorFamily_t {
@@ -59,8 +59,8 @@ const ColorBlock: FC<ColorBlockProps_t> = ({ token, color }) => (
       <Copy weight="bold">{token}</Copy>
       <Mono>
         {color}
-        <Br />
-        {hexToRgb(color)}
+        <HTMLBr />
+        {colord(color).toRgbString()}
       </Mono>
     </Box>
   </Box>

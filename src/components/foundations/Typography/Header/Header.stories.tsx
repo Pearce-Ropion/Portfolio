@@ -4,14 +4,13 @@ import { Typography } from 'components/foundations/Typography/Typography';
 import {
   Header,
   HeaderProps_t,
-  HeaderVariants_t,
 } from 'components/foundations/Typography/Header';
 import { Chapter, Token } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 
 export default {
   title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Header'),
-  component: mkStoryComponent<HeaderVariants_t, HeaderProps_t>(Header),
+  component: mkStoryComponent<HeaderProps_t>(Header),
   subcomponents: {
     Typography,
   },

@@ -1,17 +1,13 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Typography } from 'components/foundations/Typography/Typography';
-import {
-  Mono,
-  MonoProps_t,
-  MonoVariants_t,
-} from 'components/foundations/Typography/Mono';
+import { Mono, MonoProps_t } from 'components/foundations/Typography/Mono';
 import { Chapter, Token } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 
 export default {
   title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Mono'),
-  component: mkStoryComponent<MonoVariants_t, MonoProps_t>(Mono),
+  component: mkStoryComponent<MonoProps_t>(Mono),
   subcomponents: {
     Typography,
   },

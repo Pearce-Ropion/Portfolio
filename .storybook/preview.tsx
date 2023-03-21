@@ -5,7 +5,7 @@ import { DecoratorFn } from '@storybook/react';
 // import { Example } from 'components/Example';
 // import { Layout } from 'components/Layout';
 import { Page } from 'components/Page';
-import { StorybookContext } from 'components/StorybookContext';
+import { StorybookProvider } from 'components/StorybookContext';
 import { backgrounds } from 'utils/backgrounds';
 import {
   StoryContext,
@@ -49,11 +49,11 @@ export const decorators: DecoratorFn[] = [
   Story => {
     globalStyles();
     return (
-      <StorybookContext.Provider value>
+      <StorybookProvider isStorybook>
         <AnalyticsProvider>
           <Story />
         </AnalyticsProvider>
-      </StorybookContext.Provider>
+      </StorybookProvider>
     );
   },
 ];

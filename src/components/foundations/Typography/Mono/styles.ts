@@ -1,12 +1,7 @@
-import type { ComponentProps, VariantProps } from '@stitches/react';
-
 import { styled } from 'stitches.config';
-import {
-  Typography,
-  TypographyVariants_t,
-} from 'components/foundations/Typography/Typography';
+import { Typography } from 'components/foundations/Typography/Typography';
 
-export const Mono = styled(Typography, {
+export const StyledMono = styled(Typography, {
   fontFamily: '$code',
   fontSize: '$medium',
 
@@ -39,6 +34,3 @@ export const Mono = styled(Typography, {
     },
   },
 });
-
-export type MonoProps_t = ComponentProps<typeof Mono>;
-export type MonoVariants_t = VariantProps<typeof Mono> & TypographyVariants_t;

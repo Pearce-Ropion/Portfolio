@@ -1,61 +1,25 @@
-import type { ComponentProps, VariantProps } from '@stitches/react';
+import { ElementRef } from 'react';
 
-import { styled } from 'stitches.config';
-import { Div } from 'components/foundations/Html';
-import { getDefaultVariants } from 'utils/variants';
+import {
+  createComponentWithRef,
+  OmitComponentVariantProps_t,
+} from 'utils/component';
+import { StyledTypography } from 'components/foundations/Typography/styles';
 
-export const Typography = styled(Div, {
-  fontFamily: '$primary',
-  fontWeight: '$regular',
-  fontStyle: 'normal',
-  fontVariantNumeric: 'tabular-nums',
-  display: 'block',
-  margin: 0,
-  padding: 0,
+export type TypographyElement_t = ElementRef<typeof StyledTypography>;
+export interface TypographyProps_t
+  extends OmitComponentVariantProps_t<typeof StyledTypography> {
+  align?: 'left' | 'center' | 'right';
+  inline?: boolean;
+  inverted?: boolean;
+  italic?: boolean;
+  truncate?: boolean;
+  noWrap?: boolean;
+}
 
-  variants: {
-    inline: {
-      true: {
-        display: 'inline-block',
-      },
-    },
-
-    align: {
-      left: {
-        textAlign: 'left',
-        marginLeft: 0,
-        marginRight: 'auto',
-      },
-      center: {
-        textAlign: 'center',
-        marginX: 'auto',
-      },
-      right: {
-        textAlign: 'right',
-        marginLeft: 'auto',
-        marginRight: 0,
-      },
-    },
-
-    inverted: {
-      true: {
-        color: '$neutral0',
-      },
-    },
-
-    italic: {
-      true: {
-        fontStyle: 'italic',
-      },
-    },
-  },
-
-  defaultVariants: {
-    align: 'left',
-  },
+export const Typography = createComponentWithRef<
+  TypographyElement_t,
+  TypographyProps_t
+>((props, forwardedRef) => {
+  return <StyledTypography ref={forwardedRef} {...props} />;
 });
-
-Typography.defaultProps = getDefaultVariants<typeof Typography>(Typography);
-
-export type TypographyVariants_t = VariantProps<typeof Typography>;
-export type TypographyProps_t = ComponentProps<typeof Typography>;

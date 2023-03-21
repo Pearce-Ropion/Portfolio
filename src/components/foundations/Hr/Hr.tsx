@@ -1,40 +1,24 @@
-import { ComponentProps, VariantProps } from '@stitches/react';
-import { styled } from 'stitches.config';
-import { toPercent, toPx } from 'utils/style/units';
-import { Hr as Primitive } from 'components/foundations/Html';
-import { getDefaultVariants } from 'utils/variants';
+import { ElementRef } from 'react';
 
-export const Hr = styled(Primitive, {
-  backgroundColor: '$neutral300',
-  border: 'none',
+import {
+  createComponentWithRef,
+  OmitComponentVariantProps_t,
+} from 'utils/component';
+import { StyledHr } from 'components/foundations/Hr/styles';
 
-  variants: {
-    inverted: {
-      true: {
-        backgroundColor: '$neutral700',
-      },
-    },
+export type HrElement_t = ElementRef<typeof StyledHr>;
+export interface HrProps_t
+  extends OmitComponentVariantProps_t<typeof StyledHr> {
+  inverted?: boolean;
+  direction?: 'horizontal' | 'vertical';
+}
 
-    direction: {
-      horizontal: {
-        width: toPercent(100),
-        height: toPx(1),
-        margin: '0 auto',
-      },
-      vertical: {
-        width: toPx(1),
-        height: toPercent(100),
-        margin: 'auto 0',
-      },
-    },
+export const Hr = createComponentWithRef<HrElement_t, HrProps_t>(
+  ({ direction = 'horizontal', ...rest }, forwardedRef) => {
+    return <StyledHr ref={forwardedRef} {...rest} direction={direction} />;
   },
+);
 
-  defaultVariants: {
-    direction: 'horizontal',
-  },
-});
-
-Hr.defaultProps = getDefaultVariants<typeof Hr>(Hr);
-
-export type HrProps_t = ComponentProps<typeof Hr>;
-export type HrVariants_t = VariantProps<typeof Hr>;
+Hr.defaultProps = {
+  direction: 'horizontal',
+};

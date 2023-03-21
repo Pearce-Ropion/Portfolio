@@ -1,9 +1,10 @@
-import { createContext } from 'react';
 import { AnalyticsBrowser } from '@segment/analytics-next';
 
-export type Analytics_t = AnalyticsBrowser;
-export const AnalyticsContext = createContext<Analytics_t | undefined>(
-  undefined,
-);
+import { createContext } from 'utils/context';
 
-AnalyticsContext.displayName = 'AnalyticsContext';
+export interface AnalyticsContext_t {
+  analytics?: AnalyticsBrowser;
+}
+
+export const [AnalyticsProvider, useAnalytics] =
+  createContext<AnalyticsContext_t>('Analytics');

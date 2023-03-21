@@ -1,11 +1,17 @@
-import type { ComponentProps, VariantProps } from '@stitches/react';
+import { ElementRef } from 'react';
 
-import { Div } from 'components/foundations/Html';
-import { styled } from 'stitches.config';
+import {
+  createComponentWithRef,
+  OmitComponentVariantProps_t,
+} from 'utils/component';
+import { StyledBox } from 'components/foundations/Box/styles';
 
-export const Box = styled(Div, {
-  boxSizing: 'border-box',
-});
+export type BoxElement_t = ElementRef<typeof StyledBox>;
+export interface BoxProps_t
+  extends OmitComponentVariantProps_t<typeof StyledBox> {}
 
-export type BoxProps_t = ComponentProps<typeof Box>;
-export type BoxVariants_t = VariantProps<typeof Box>;
+export const Box = createComponentWithRef<BoxElement_t, BoxProps_t>(
+  (props, forwardedRef) => {
+    return <StyledBox ref={forwardedRef} {...props} />;
+  },
+);

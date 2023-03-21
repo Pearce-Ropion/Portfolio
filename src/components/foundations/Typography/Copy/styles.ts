@@ -1,13 +1,7 @@
-import type { ComponentProps, VariantProps } from '@stitches/react';
-
 import { styled } from 'stitches.config';
-import {
-  Typography,
-  TypographyVariants_t,
-} from 'components/foundations/Typography/Typography';
-import { getDefaultVariants } from 'utils/variants';
+import { Typography } from 'components/foundations/Typography/Typography';
 
-export const Copy = styled(Typography, {
+export const StyledCopy = styled(Typography, {
   fontFamily: '$primary',
   fontWeight: '$normal',
 
@@ -54,8 +48,3 @@ export const Copy = styled(Typography, {
     weight: 'normal',
   },
 });
-
-Copy.defaultProps = getDefaultVariants<typeof Copy>(Copy);
-
-export type CopyProps_t = ComponentProps<typeof Copy>;
-export type CopyVariants_t = VariantProps<typeof Copy> & TypographyVariants_t;

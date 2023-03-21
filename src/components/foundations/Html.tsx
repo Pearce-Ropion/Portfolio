@@ -1,329 +1,503 @@
 import type { ComponentProps } from '@stitches/react';
-import { styled } from '@stitches/react';
 
-export const A = styled('a', {});
-export type AProps_t = ComponentProps<typeof A>;
+import { styled } from 'stitches.config';
+import { CSS_t } from 'types';
 
-export const Abbr = styled('abbr', {});
-export type AbbrProps_t = ComponentProps<typeof Abbr>;
-
-export const Address = styled('address', {});
-export type AddressProps_t = ComponentProps<typeof Address>;
-
-export const Area = styled('area', {});
-export type AreaProps_t = ComponentProps<typeof Area>;
-
-export const Article = styled('article', {});
-export type ArticleProps_t = ComponentProps<typeof Article>;
-
-export const Aside = styled('aside', {});
-export type AsideProps_t = ComponentProps<typeof Aside>;
-
-export const Audio = styled('audio', {});
-export type AudioProps_t = ComponentProps<typeof Audio>;
-
-export const B = styled('b', {});
-export type BProps_t = ComponentProps<typeof B>;
-
-export const Bdi = styled('bdi', {});
-export type BdiProps_t = ComponentProps<typeof Bdi>;
-
-export const Bdo = styled('bdo', {});
-export type BdoProps_t = ComponentProps<typeof Bdo>;
-
-export const Big = styled('big', {});
-export type BigProps_t = ComponentProps<typeof Big>;
-
-export const Blockquote = styled('blockquote', {});
-export type BlockquoteProps_t = ComponentProps<typeof Blockquote>;
-
-export const Body = styled('body', {});
-export type BodyProps_t = ComponentProps<typeof Body>;
-
-export const Br = styled('br', {});
-export type BrProps_t = ComponentProps<typeof Br>;
-
-export const Button = styled('button', {});
-export type ButtonProps_t = ComponentProps<typeof Button>;
-
-export const Canvas = styled('canvas', {});
-export type CanvasProps_t = ComponentProps<typeof Canvas>;
-
-export const Caption = styled('caption', {});
-export type CaptionProps_t = ComponentProps<typeof Caption>;
-
-export const Cite = styled('cite', {});
-export type CiteProps_t = ComponentProps<typeof Cite>;
-
-export const Code = styled('code', {});
-export type CodeProps_t = ComponentProps<typeof Code>;
-
-export const Col = styled('col', {});
-export type ColProps_t = ComponentProps<typeof Col>;
-
-export const Colgroup = styled('colgroup', {});
-export type ColgroupProps_t = ComponentProps<typeof Colgroup>;
-
-export const Data = styled('data', {});
-export type DataProps_t = ComponentProps<typeof Data>;
-
-export const Datalist = styled('datalist', {});
-export type DatalistProps_t = ComponentProps<typeof Datalist>;
-
-export const Dd = styled('dd', {});
-export type DdProps_t = ComponentProps<typeof Dd>;
-
-export const Del = styled('del', {});
-export type DelProps_t = ComponentProps<typeof Del>;
-
-export const Details = styled('details', {});
-export type DetailsProps_t = ComponentProps<typeof Details>;
-
-export const Dfn = styled('dfn', {});
-export type DfnProps_t = ComponentProps<typeof Dfn>;
-
-export const Dialog = styled('dialog', {});
-export type DialogProps_t = ComponentProps<typeof Dialog>;
-
-export const Div = styled('div', {});
-export type DivProps_t = ComponentProps<typeof Div>;
-
-export const Dl = styled('dl', {});
-export type DlProps_t = ComponentProps<typeof Dl>;
-
-export const Dt = styled('dt', {});
-export type DtProps_t = ComponentProps<typeof Dt>;
-
-export const Em = styled('em', {});
-export type EmProps_t = ComponentProps<typeof Em>;
-
-export const Embed = styled('embed', {});
-export type EmbedProps_t = ComponentProps<typeof Embed>;
-
-export const Fieldset = styled('fieldset', {});
-export type FieldsetProps_t = ComponentProps<typeof Fieldset>;
-
-export const Figcaption = styled('figcaption', {});
-export type FigcaptionProps_t = ComponentProps<typeof Figcaption>;
-
-export const Figure = styled('figure', {});
-export type FigureProps_t = ComponentProps<typeof Figure>;
-
-export const Footer = styled('footer', {});
-export type FooterProps_t = ComponentProps<typeof Footer>;
-
-export const Form = styled('form', {});
-export type FormProps_t = ComponentProps<typeof Form>;
-
-export const H1 = styled('h1', {});
-export type H1Props_t = ComponentProps<typeof H1>;
-
-export const H2 = styled('h2', {});
-export type H2Props_t = ComponentProps<typeof H2>;
-
-export const H3 = styled('h3', {});
-export type H3Props_t = ComponentProps<typeof H3>;
-
-export const H4 = styled('h4', {});
-export type H4Props_t = ComponentProps<typeof H4>;
-
-export const H5 = styled('h5', {});
-export type H5Props_t = ComponentProps<typeof H5>;
-
-export const H6 = styled('h6', {});
-export type H6Props_t = ComponentProps<typeof H6>;
-
-export const Header = styled('header', {});
-export type HeaderProps_t = ComponentProps<typeof Header>;
-
-export const Hgroup = styled('hgroup', {});
-export type HgroupProps_t = ComponentProps<typeof Hgroup>;
-
-export const Hr = styled('hr', {});
-export type HrProps_t = ComponentProps<typeof Hr>;
-
-export const Html = styled('html', {});
-export type HtmlProps_t = ComponentProps<typeof Html>;
-
-export const I = styled('i', {});
-export type IProps_t = ComponentProps<typeof I>;
-
-export const Iframe = styled('iframe', {});
-export type IframeProps_t = ComponentProps<typeof Iframe>;
-
-export const Img = styled('img', {});
-export type ImgProps_t = ComponentProps<typeof Img>;
-
-export const Input = styled('input', {});
-export type InputProps_t = ComponentProps<typeof Input>;
-
-export const Ins = styled('ins', {});
-export type InsProps_t = ComponentProps<typeof Ins>;
-
-export const Kbd = styled('kbd', {});
-export type KbdProps_t = ComponentProps<typeof Kbd>;
-
-export const Keygen = styled('keygen', {});
-export type KeygenProps_t = ComponentProps<typeof Keygen>;
-
-export const Label = styled('label', {});
-export type LabelProps_t = ComponentProps<typeof Label>;
-
-export const Legend = styled('legend', {});
-export type LegendProps_t = ComponentProps<typeof Legend>;
-
-export const Li = styled('li', {});
-export type LiProps_t = ComponentProps<typeof Li>;
-
-export const Main = styled('main', {});
-export type MainProps_t = ComponentProps<typeof Main>;
-
-export const Map = styled('map', {});
-export type MapProps_t = ComponentProps<typeof Map>;
-
-export const Mark = styled('mark', {});
-export type MarkProps_t = ComponentProps<typeof Mark>;
-
-export const Menu = styled('menu', {});
-export type MenuProps_t = ComponentProps<typeof Menu>;
-
-export const Menuitem = styled('menuitem', {});
-export type MenuitemProps_t = ComponentProps<typeof Menuitem>;
-
-export const Meter = styled('meter', {});
-export type MeterProps_t = ComponentProps<typeof Meter>;
-
-export const Nav = styled('nav', {});
-export type NavProps_t = ComponentProps<typeof Nav>;
-
-export const Noindex = styled('noindex', {});
-export type NoindexProps_t = ComponentProps<typeof Noindex>;
-
-export const Noscript = styled('noscript', {});
-export type NoscriptProps_t = ComponentProps<typeof Noscript>;
-
-export const Ol = styled('ol', {});
-export type OlProps_t = ComponentProps<typeof Ol>;
-
-export const Optgroup = styled('optgroup', {});
-export type OptgroupProps_t = ComponentProps<typeof Optgroup>;
-
-export const Option = styled('option', {});
-export type OptionProps_t = ComponentProps<typeof Option>;
-
-export const Output = styled('output', {});
-export type OutputProps_t = ComponentProps<typeof Output>;
-
-export const P = styled('p', {});
-export type PProps_t = ComponentProps<typeof P>;
-
-export const Param = styled('param', {});
-export type ParamProps_t = ComponentProps<typeof Param>;
-
-export const Picture = styled('picture', {});
-export type PictureProps_t = ComponentProps<typeof Picture>;
-
-export const Pre = styled('pre', {});
-export type PreProps_t = ComponentProps<typeof Pre>;
-
-export const Progress = styled('progress', {});
-export type ProgressProps_t = ComponentProps<typeof Progress>;
-
-export const Q = styled('q', {});
-export type QProps_t = ComponentProps<typeof Q>;
-
-export const Rp = styled('rp', {});
-export type RpProps_t = ComponentProps<typeof Rp>;
-
-export const Rt = styled('rt', {});
-export type RtProps_t = ComponentProps<typeof Rt>;
-
-export const Ruby = styled('ruby', {});
-export type RubyProps_t = ComponentProps<typeof Ruby>;
-
-export const S = styled('s', {});
-export type SProps_t = ComponentProps<typeof S>;
-
-export const Samp = styled('samp', {});
-export type SampProps_t = ComponentProps<typeof Samp>;
-
-export const Slot = styled('slot', {});
-export type SlotProps_t = ComponentProps<typeof Slot>;
-
-export const Section = styled('section', {});
-export type SectionProps_t = ComponentProps<typeof Section>;
-
-export const Select = styled('select', {});
-export type SelectProps_t = ComponentProps<typeof Select>;
-
-export const Small = styled('small', {});
-export type SmallProps_t = ComponentProps<typeof Small>;
-
-export const Source = styled('source', {});
-export type SourceProps_t = ComponentProps<typeof Source>;
-
-export const Span = styled('span', {});
-export type SpanProps_t = ComponentProps<typeof Span>;
-
-export const Strong = styled('strong', {});
-export type StrongProps_t = ComponentProps<typeof Strong>;
-
-export const Sub = styled('sub', {});
-export type SubProps_t = ComponentProps<typeof Sub>;
-
-export const Summary = styled('summary', {});
-export type SummaryProps_t = ComponentProps<typeof Summary>;
-
-export const Sup = styled('sup', {});
-export type SupProps_t = ComponentProps<typeof Sup>;
-
-export const Svg = styled('svg', {});
-export type SvgProps_t = ComponentProps<typeof Svg>;
-
-export const Table = styled('table', {});
-export type TableProps_t = ComponentProps<typeof Table>;
-
-export const Template = styled('template', {});
-export type TemplateProps_t = ComponentProps<typeof Template>;
-
-export const Tbody = styled('tbody', {});
-export type TbodyProps_t = ComponentProps<typeof Tbody>;
-
-export const Td = styled('td', {});
-export type TdProps_t = ComponentProps<typeof Td>;
-
-export const Textarea = styled('textarea', {});
-export type TextareaProps_t = ComponentProps<typeof Textarea>;
-
-export const Tfoot = styled('tfoot', {});
-export type TfootProps_t = ComponentProps<typeof Tfoot>;
-
-export const Th = styled('th', {});
-export type ThProps_t = ComponentProps<typeof Th>;
-
-export const Thead = styled('thead', {});
-export type TheadProps_t = ComponentProps<typeof Thead>;
-
-export const Time = styled('time', {});
-export type TimeProps_t = ComponentProps<typeof Time>;
-
-export const Tr = styled('tr', {});
-export type TrProps_t = ComponentProps<typeof Tr>;
-
-export const Track = styled('track', {});
-export type TrackProps_t = ComponentProps<typeof Track>;
-
-export const U = styled('u', {});
-export type UProps_t = ComponentProps<typeof U>;
-
-export const Ul = styled('ul', {});
-export type UlProps_t = ComponentProps<typeof Ul>;
-
-export const Video = styled('video', {});
-export type VideoProps_t = ComponentProps<typeof Video>;
-
-export const Wbr = styled('wbr', {});
-export type WbrProps_t = ComponentProps<typeof Wbr>;
-
-export const Webview = styled('webview', {});
-export type WebviewProps_t = ComponentProps<typeof Webview>;
+export const HTMLAnchor = styled('a');
+export type HTMLAnchorProps_t = ComponentProps<typeof HTMLAnchor>;
+export interface HTMLAnchorElement_t extends HTMLAnchorElement {}
+
+export const HTMLAbbr = styled('abbr');
+export type HTMLAbbrProps_t = ComponentProps<typeof HTMLAbbr>;
+export interface HTMLAbbrElement_t extends HTMLElement {}
+
+export const HTMLAddress = styled('address');
+export type HTMLAddressProps_t = ComponentProps<typeof HTMLAddress>;
+export interface HTMLAddressElement_t extends HTMLElement {}
+
+export const HTMLArea = styled('area');
+export type HTMLAreaProps_t = ComponentProps<typeof HTMLArea>;
+export interface HTMLAreaElement_t extends HTMLAreaElement {}
+
+export const HTMLArticle = styled('article');
+export type HTMLArticleProps_t = ComponentProps<typeof HTMLArticle>;
+export interface HTMLArticleElement_t extends HTMLElement {}
+
+export const HTMLAside = styled('aside');
+export type HTMLAsideProps_t = ComponentProps<typeof HTMLAside>;
+export interface HTMLAsideElement_t extends HTMLElement {}
+
+export const HTMLAudio = styled('audio');
+export type HTMLAudioProps_t = ComponentProps<typeof HTMLAudio>;
+export interface HTMLAudioElement_t extends HTMLAudioElement {}
+
+export const HTMLBold = styled('b');
+export type HTMLBoldProps_t = ComponentProps<typeof HTMLBold>;
+export interface HTMLBoldElement_t extends HTMLElement {}
+
+export const HTMLBase = styled('base');
+export type HTMLBaseProps_t = ComponentProps<typeof HTMLBase>;
+export interface HTMLBaseElement_t extends HTMLBaseElement {}
+
+export const HTMLBdi = styled('bdi');
+export type HTMLBdiProps_t = ComponentProps<typeof HTMLBdi>;
+export interface HTMLBdiElement_t extends HTMLElement {}
+
+export const HTMLBdo = styled('bdo');
+export type HTMLBdoProps_t = ComponentProps<typeof HTMLBdo>;
+export interface HTMLBdoElement_t extends HTMLElement {}
+
+/** @deprecated */
+export const HTMLBig = styled('big');
+/** @deprecated */
+export type HTMLBigProps_t = ComponentProps<typeof HTMLBig>;
+/** @deprecated */
+export interface HTMLBigElement_t extends HTMLElement {}
+
+export const HTMLBlockQuote = styled('blockquote');
+export type HTMLBlockQuoteProps_t = ComponentProps<typeof HTMLBlockQuote>;
+export interface HTMLBlockQuoteElement_t extends HTMLQuoteElement {}
+
+export const HTMLBody = styled('body');
+export type HTMLBodyProps_t = ComponentProps<typeof HTMLBody>;
+export interface HTMLBodyElement_t extends HTMLBodyElement {}
+
+export const HTMLBr = styled('br');
+export type HTMLBrProps_t = ComponentProps<typeof HTMLBr>;
+export interface HTMLBrElement_t extends HTMLBRElement {}
+
+export const HTMLButton = styled('button');
+export type HTMLButtonProps_t = ComponentProps<typeof HTMLButton>;
+export interface HTMLButtonElement_t extends HTMLButtonElement {}
+
+export const HTMLCanvas = styled('canvas');
+export type HTMLCanvasProps_t = ComponentProps<typeof HTMLCanvas>;
+export interface HTMLCanvasElement_t extends HTMLCanvasElement {}
+
+export const HTMLCaption = styled('caption');
+export type HTMLCaptionProps_t = ComponentProps<typeof HTMLCaption>;
+export interface HTMLCaptionElement_t extends HTMLElement {}
+
+export const HTMLCite = styled('cite');
+export type HTMLCiteProps_t = ComponentProps<typeof HTMLCite>;
+export interface HTMLCiteElement_t extends HTMLElement {}
+
+export const HTMLCode = styled('code');
+export type HTMLCodeProps_t = ComponentProps<typeof HTMLCode>;
+export interface HTMLCodeElement_t extends HTMLElement {}
+
+export const HTMLCol = styled('col');
+export type HTMLColProps_t = ComponentProps<typeof HTMLCol>;
+export interface HTMLColElement_t extends HTMLElement {}
+
+export const HTMLColGroup = styled('colgroup');
+export type HTMLColGroupProps_t = ComponentProps<typeof HTMLColGroup>;
+export interface HTMLColGroupElement_t extends HTMLElement {}
+
+export const HTMLData = styled('data');
+export type HTMLDataProps_t = ComponentProps<typeof HTMLData>;
+export interface HTMLDataElement_t extends HTMLDataElement {}
+
+export const HTMLDataList = styled('datalist');
+export type HTMLDataListProps_t = ComponentProps<typeof HTMLDataList>;
+export interface HTMLDataListElement_t extends HTMLDataListElement {}
+
+export const HTMLDescriptionDetails = styled('dd');
+export type HTMLDescriptionDetailsProps_t = ComponentProps<
+  typeof HTMLDescriptionDetails
+>;
+export interface HTMLDescriptionDetailsElement_t extends HTMLElement {}
+
+export const HTMLDelete = styled('del');
+export type HTMLDeleteProps_t = ComponentProps<typeof HTMLDelete>;
+export interface HTMLDeleteElement_t extends HTMLElement {}
+
+export const HTMLDetails = styled('details');
+export type HTMLDetailsProps_t = ComponentProps<typeof HTMLDetails>;
+export interface HTMLDetailsElement_t extends HTMLDetailsElement {}
+
+export const HTMLDefinition = styled('dfn');
+export type HTMLDefinitionProps_t = ComponentProps<typeof HTMLDefinition>;
+export interface HTMLDefinitionElement_t extends HTMLElement {}
+
+export const HTMLDialog = styled('dialog');
+export type HTMLDialogProps_t = ComponentProps<typeof HTMLDialog>;
+export interface HTMLDialogElement_t extends HTMLDialogElement {}
+
+export const HTMLDiv = styled('div');
+export type HTMLDivProps_t = ComponentProps<typeof HTMLDiv>;
+export interface HTMLDivElement_t extends HTMLDivElement {}
+
+export const HTMLDescriptionList = styled('dl');
+export type HTMLDescriptionListProps_t = ComponentProps<
+  typeof HTMLDescriptionList
+>;
+export interface HTMLDescriptionListElement_t extends HTMLDListElement {}
+
+export const HTMLDescriptionTerm = styled('dt');
+export type HTMLDescriptionTermProps_t = ComponentProps<
+  typeof HTMLDescriptionTerm
+>;
+export interface HTMLDescriptionTermElement_t extends HTMLElement {}
+
+export const HTMLEmphasis = styled('em');
+export type HTMLEmphasisProps_t = ComponentProps<typeof HTMLEmphasis>;
+export interface HTMLEmphasisElement_t extends HTMLElement {}
+
+export const HTMLEmbed = styled('embed');
+export type HTMLEmbedProps_t = ComponentProps<typeof HTMLEmbed>;
+export interface HTMLEmbedElement_t extends HTMLEmbedElement {}
+
+export const HTMLFieldSet = styled('fieldset');
+export type HTMLFieldSetProps_t = ComponentProps<typeof HTMLFieldSet>;
+export interface HTMLFieldSetElement_t extends HTMLFieldSetElement {}
+
+export const HTMLFigCaption = styled('figcaption');
+export type HTMLFigCaptionProps_t = ComponentProps<typeof HTMLFigCaption>;
+export interface HTMLFigCaptionElement_t extends HTMLElement {}
+
+export const HTMLFigure = styled('figure');
+export type HTMLFigureProps_t = ComponentProps<typeof HTMLFigure>;
+export interface HTMLFigureElement_t extends HTMLElement {}
+
+export const HTMLFooter = styled('footer');
+export type HTMLFooterProps_t = ComponentProps<typeof HTMLFooter>;
+export interface HTMLFooterElement_t extends HTMLElement {}
+
+export const HTMLForm = styled('form');
+export type HTMLFormProps_t = ComponentProps<typeof HTMLForm>;
+export interface HTMLFormElement_t extends HTMLFormElement {}
+
+export const HTMLHeading1 = styled('h1');
+export type HTMLHeading1Props_t = ComponentProps<typeof HTMLHeading1>;
+export interface HTMLHeading1Element_t extends HTMLHeadingElement {}
+
+export const HTMLHeading2 = styled('h2');
+export type HTMLHeading2Props_t = ComponentProps<typeof HTMLHeading2>;
+export interface HTMLHeading2Element_t extends HTMLHeadingElement {}
+
+export const HTMLHeading3 = styled('h3');
+export type HTMLHeading3Props_t = ComponentProps<typeof HTMLHeading3>;
+export interface HTMLHeading3Element_t extends HTMLHeadingElement {}
+
+export const HTMLHeading4 = styled('h4');
+export type HTMLHeading4Props_t = ComponentProps<typeof HTMLHeading4>;
+export interface HTMLHeading4Element_t extends HTMLHeadingElement {}
+
+export const HTMLHeading5 = styled('h5');
+export type HTMLHeading5Props_t = ComponentProps<typeof HTMLHeading5>;
+export interface HTMLHeading5Element_t extends HTMLHeadingElement {}
+
+export const HTMLHeading6 = styled('h6');
+export type HTMLHeading6Props_t = ComponentProps<typeof HTMLHeading6>;
+export interface HTMLHeading6Element_t extends HTMLHeadingElement {}
+
+export const HTMLHead = styled('head');
+export type HTMLHeadProps_t = ComponentProps<typeof HTMLHead>;
+export interface HTMLHeadElement_t extends HTMLHeadElement {}
+
+export const HTMLHeader = styled('header');
+export type HTMLHeaderProps_t = ComponentProps<typeof HTMLHeader>;
+export interface HTMLHeaderElement_t extends HTMLElement {}
+
+export const HTMLHeadingGroup = styled('hgroup');
+export type HTMLHeadingGroupProps_t = ComponentProps<typeof HTMLHeadingGroup>;
+export interface HTMLHeadingGroupElement_t extends HTMLElement {}
+
+export const HTMLHorizontalRule = styled('hr');
+export type HTMLHorizontalRuleProps_t = ComponentProps<
+  typeof HTMLHorizontalRule
+>;
+export interface HTMLHorizontalRuleElement_t extends HTMLHRElement {}
+
+export const HTMLHtml = styled('html');
+export type HTMLHtmlProps_t = ComponentProps<typeof HTMLHtml>;
+export interface HTMLHtmlElement_t extends HTMLHtmlElement {}
+
+export const HTMLIcon = styled('i');
+export type HTMLIconProps_t = ComponentProps<typeof HTMLIcon>;
+export interface HTMLIconElement_t extends HTMLElement {}
+
+export const HTMLIframe = styled('iframe');
+export type HTMLIframeProps_t = ComponentProps<typeof HTMLIframe>;
+export interface HTMLIframeElement_t extends HTMLIFrameElement {}
+
+export const HTMLImg = styled('img');
+export type HTMLImgProps_t = ComponentProps<typeof HTMLImg>;
+export interface HTMLImgElement_t extends HTMLImageElement {}
+
+export const HTMLInput = styled('input');
+export type HTMLInputProps_t = ComponentProps<typeof HTMLInput>;
+export interface HTMLInputElement_t extends HTMLInputElement {}
+
+export const HTMLInsert = styled('ins');
+export type HTMLInsertProps_t = ComponentProps<typeof HTMLInsert>;
+export interface HTMLInsertElement_t extends HTMLElement {}
+
+export const HTMLKeyboard = styled('kbd');
+export type HTMLKeyboardProps_t = ComponentProps<typeof HTMLKeyboard>;
+export interface HTMLKeyboardElement_t extends HTMLElement {}
+
+/** @deprecated */
+export const HTMLKeyGen = styled('keygen');
+/** @deprecated */
+export type HTMLKeyGenProps_t = ComponentProps<typeof HTMLKeyGen>;
+export interface HTMLKeyGenElement_t extends HTMLElement {}
+
+export const HTMLLabel = styled('label');
+export type HTMLLabelProps_t = ComponentProps<typeof HTMLLabel>;
+export interface HTMLLabelElement_t extends HTMLLabelElement {}
+
+export const HTMLLegend = styled('legend');
+export type HTMLLegendProps_t = ComponentProps<typeof HTMLLegend>;
+export interface HTMLLegendElement_t extends HTMLLegendElement {}
+
+export const HTMLListItem = styled('li');
+export type HTMLListItemProps_t = ComponentProps<typeof HTMLListItem>;
+export interface HTMLListItemElement_t extends HTMLLIElement {}
+
+export const HTMLLink = styled('link');
+export type HTMLLinkProps_t = ComponentProps<typeof HTMLLink>;
+export interface HTMLLinkElement_t extends HTMLLinkElement {}
+
+export const HTMLMain = styled('main');
+export type HTMLMainProps_t = ComponentProps<typeof HTMLMain>;
+export interface HTMLMainElement_t extends HTMLElement {}
+
+export const HTMLMap = styled('map');
+export type HTMLMapProps_t = ComponentProps<typeof HTMLMap>;
+export interface HTMLMapElement_t extends HTMLMapElement {}
+
+export const HTMLMark = styled('mark');
+export type HTMLMarkProps_t = ComponentProps<typeof HTMLMark>;
+export interface HTMLMarkElement_t extends HTMLElement {}
+
+export const HTMLMenu = styled('menu');
+export type HTMLMenuProps_t = ComponentProps<typeof HTMLMenu>;
+export interface HTMLMenuElement_t extends HTMLMenuElement {}
+
+/** @deprecated */
+export const HTMLMenuItem = styled('menuitem');
+/** @deprecated */
+export type HTMLMenuItemProps_t = ComponentProps<typeof HTMLMenuItem>;
+export interface HTMLMenuItemElement_t extends HTMLElement {}
+
+export const HTMLMeta = styled('meta');
+export type HTMLMetaProps_t = ComponentProps<typeof HTMLMeta>;
+export interface HTMLMetaElement_t extends HTMLMetaElement {}
+
+export const HTMLMeter = styled('meter');
+export type HTMLMeterProps_t = ComponentProps<typeof HTMLMeter>;
+export interface HTMLMeterElement_t extends HTMLMeterElement {}
+
+export const HTMLNav = styled('nav');
+export type HTMLNavProps_t = ComponentProps<typeof HTMLNav>;
+export interface HTMLNavElement_t extends HTMLElement {}
+
+export const HTMLNoIndex = styled('noindex');
+export type HTMLNoIndexProps_t = ComponentProps<typeof HTMLNoIndex>;
+export interface HTMLNoIndexElement_t extends HTMLElement {}
+
+export const HTMLNoScript = styled('noscript');
+export type HTMLNoScriptProps_t = ComponentProps<typeof HTMLNoScript>;
+export interface HTMLNoScriptElement_t extends HTMLElement {}
+
+export const HTMLObject = styled('object');
+export type HTMLObjectProps_t = ComponentProps<typeof HTMLObject>;
+export interface HTMLObjectElement_t extends HTMLObjectElement {}
+
+export const HTMLOrderedList = styled('ol');
+export type HTMLOrderedListProps_t = ComponentProps<typeof HTMLOrderedList>;
+export interface HTMLOrderedListElement_t extends HTMLOListElement {}
+
+export const HTMLOptGroup = styled('optgroup');
+export type HTMLOptGroupProps_t = ComponentProps<typeof HTMLOptGroup>;
+export interface HTMLOptGroupElement_t extends HTMLOptGroupElement {}
+
+export const HTMLOption = styled('option');
+export type HTMLOptionProps_t = ComponentProps<typeof HTMLOption>;
+export interface HTMLOptionElement_t extends HTMLOptionElement {}
+
+export const HTMLOutput = styled('output');
+export type HTMLOutputProps_t = ComponentProps<typeof HTMLOutput>;
+export interface HTMLOutputElement_t extends HTMLOutputElement {}
+
+export const HTMLParagraph = styled('p');
+export type HTMLParagraphProps_t = ComponentProps<typeof HTMLParagraph>;
+export interface HTMLParagraphElement_t extends HTMLParagraphElement {}
+
+/** @deprecated */
+export const HTMLParam = styled('param');
+/** @deprecated */
+export type HTMLParamProps_t = ComponentProps<typeof HTMLParam>;
+/** @deprecated */
+export interface HTMLParamElement_t extends HTMLParamElement {}
+
+export const HTMLPicture = styled('picture');
+export type HTMLPictureProps_t = ComponentProps<typeof HTMLPicture>;
+export interface HTMLPictureElement_t extends HTMLPictureElement {}
+
+export const HTMLPre = styled('pre');
+export type HTMLPreProps_t = ComponentProps<typeof HTMLPre>;
+export interface HTMLPreElement_t extends HTMLPreElement {}
+
+export const HTMLProgress = styled('progress');
+export type HTMLProgressProps_t = ComponentProps<typeof HTMLProgress>;
+export interface HTMLProgressElement_t extends HTMLProgressElement {}
+
+export const HTMLQuote = styled('q');
+export type HTMLQuoteProps_t = ComponentProps<typeof HTMLQuote>;
+export interface HTMLQuoteElement_t extends HTMLQuoteElement {}
+
+/** @deprecated */
+export const HTMLRp = styled('rp');
+/** @deprecated */
+export type HTMLRpProps_t = ComponentProps<typeof HTMLRp>;
+/** @deprecated */
+export interface HTMLRpElement_t extends HTMLElement {}
+
+/** @deprecated */
+export const HTMLRt = styled('rt');
+/** @deprecated */
+export type HTMLRtProps_t = ComponentProps<typeof HTMLRt>;
+/** @deprecated */
+export interface HTMLRtElement_t extends HTMLElement {}
+
+/** @deprecated */
+export const HTMLRuby = styled('ruby');
+/** @deprecated */
+export type HTMLRubyProps_t = ComponentProps<typeof HTMLRuby>;
+/** @deprecated */
+export interface HTMLRubyElement_t extends HTMLElement {}
+
+export const HTMLStrikeThrough = styled('s');
+export type HTMLStrikeThroughProps_t = ComponentProps<typeof HTMLStrikeThrough>;
+export interface HTMLStrikeThroughElement_t extends HTMLElement {}
+
+export const HTMLSample = styled('samp');
+export type HTMLSampleProps_t = ComponentProps<typeof HTMLSample>;
+export interface HTMLSampleElement_t extends HTMLElement {}
+
+export const HTMLSlot = styled('slot');
+export type HTMLSlotProps_t = ComponentProps<typeof HTMLSlot>;
+export interface HTMLSlotElement_t extends HTMLSlotElement {}
+
+export const HTMLScript = styled('script');
+export type HTMLScriptProps_t = ComponentProps<typeof HTMLScript>;
+export interface HTMLScriptElement_t extends HTMLScriptElement {}
+
+export const HTMLSection = styled('section');
+export type HTMLSectionProps_t = ComponentProps<typeof HTMLSection>;
+export interface HTMLSectionElement_t extends HTMLElement {}
+
+export const HTMLSelect = styled('select');
+export type HTMLSelectProps_t = ComponentProps<typeof HTMLSelect>;
+export interface HTMLSelectElement_t extends HTMLSelectElement {}
+
+export const HTMLSmall = styled('small');
+export type HTMLSmallProps_t = ComponentProps<typeof HTMLSmall>;
+export interface HTMLSmallElement_t extends HTMLElement {}
+
+export const HTMLSource = styled('source');
+export type HTMLSourceProps_t = ComponentProps<typeof HTMLSource>;
+export interface HTMLSourceElement_t extends HTMLSourceElement {}
+
+export const HTMLSpan = styled('span');
+export type HTMLSpanProps_t = ComponentProps<typeof HTMLSpan>;
+export interface HTMLSpanElement_t extends HTMLSpanElement {}
+
+export const HTMLStrong = styled('strong');
+export type HTMLStrongProps_t = ComponentProps<typeof HTMLStrong>;
+export interface HTMLStrongElement_t extends HTMLElement {}
+
+export const HTMLStyle = styled('style');
+export type HTMLStyleProps_t = ComponentProps<typeof HTMLStyle>;
+export interface HTMLStyleElement_t extends HTMLStyleElement {}
+
+export const HTMLSub = styled('sub');
+export type HTMLSubProps_t = ComponentProps<typeof HTMLSub>;
+export interface HTMLSubElement_t extends HTMLElement {}
+
+export const HTMLSummary = styled('summary');
+export type HTMLSummaryProps_t = ComponentProps<typeof HTMLSummary>;
+export interface HTMLSummaryElement_t extends HTMLElement {}
+
+export const HTMLSup = styled('sup');
+export type HTMLSupProps_t = ComponentProps<typeof HTMLSup>;
+export interface HTMLSupElement_t extends HTMLElement {}
+
+export const HTMLSvg = styled('svg');
+export type HTMLSvgProps_t = ComponentProps<typeof HTMLSvg>;
+export interface HTMLSvgElement_t extends SVGSVGElement {}
+
+export const HTMLTable = styled('table');
+export type HTMLTableProps_t = ComponentProps<typeof HTMLTable>;
+export interface HTMLTableElement_t extends HTMLTableElement {}
+
+export const HTMLTemplate = styled('template');
+export type HTMLTemplateProps_t = ComponentProps<typeof HTMLTemplate>;
+export interface HTMLTemplateElement_t extends HTMLTemplateElement {}
+
+export const HTMLTableBody = styled('tbody');
+export type HTMLTableBodyProps_t = ComponentProps<typeof HTMLTableBody>;
+export interface HTMLTableBodyElement_t extends HTMLElement {}
+
+export const HTMLTableCell = styled('td');
+export type HTMLTableCellProps_t = ComponentProps<typeof HTMLTableCell>;
+export interface HTMLTableCellElement_t extends HTMLTableCellElement {}
+
+export const HTMLTextArea = styled('textarea');
+export type HTMLTextAreaProps_t = ComponentProps<typeof HTMLTextArea>;
+export interface HTMLTextAreaElement_t extends HTMLTextAreaElement {}
+
+export const HTMLTableFooter = styled('tfoot');
+export type HTMLTableFooterProps_t = ComponentProps<typeof HTMLTableFooter>;
+export interface HTMLTableFooterElement_t extends HTMLElement {}
+
+export const HTMLTableHeaderCell = styled('th');
+export type HTMLTableHeaderCellProps_t = ComponentProps<
+  typeof HTMLTableHeaderCell
+>;
+export interface HTMLTableHeaderCellElement_t
+  extends HTMLTableCellElement,
+    CSS_t {}
+
+export const HTMLTableHeader = styled('thead');
+export type HTMLTableHeaderProps_t = ComponentProps<typeof HTMLTableHeader>;
+export interface HTMLTableHeaderElement_t extends HTMLElement {}
+
+export const HTMLTime = styled('time');
+export type HTMLTimeProps_t = ComponentProps<typeof HTMLTime>;
+export interface HTMLTimeElement_t extends HTMLTimeElement {}
+
+export const HTMLTitle = styled('title');
+export type HTMLTitleProps_t = ComponentProps<typeof HTMLTitle>;
+export interface HTMLTitleElement_t extends HTMLTitleElement {}
+
+export const HTMLTableRow = styled('tr');
+export type HTMLTableRowProps_t = ComponentProps<typeof HTMLTableRow>;
+export interface HTMLTableRowElement_t extends HTMLTableRowElement {}
+
+export const HTMLTrack = styled('track');
+export type HTMLTrackProps_t = ComponentProps<typeof HTMLTrack>;
+export interface HTMLTrackElement_t extends HTMLTrackElement {}
+
+export const HTMLUndlerline = styled('u');
+export type HTMLUndlerlineProps_t = ComponentProps<typeof HTMLUndlerline>;
+export interface HTMLUndlerlineElement_t extends HTMLElement {}
+
+export const HTMLUnorderedList = styled('ul');
+export type HTMLUnorderedListProps_t = ComponentProps<typeof HTMLUnorderedList>;
+export interface HTMLUnorderedListElement_t extends HTMLUListElement {}
+
+export const HTMLVar = styled('var');
+export type HTMLVarProps_t = ComponentProps<typeof HTMLVar>;
+export interface HTMLVarElement_t extends HTMLElement {}
+
+export const HTMLVideo = styled('video');
+export type HTMLVideoProps_t = ComponentProps<typeof HTMLVideo>;
+export interface HTMLVideoElement_t extends HTMLVideoElement {}
+
+export const HTMLWordBreak = styled('wbr');
+export type HTMLWordBreakProps_t = ComponentProps<typeof HTMLWordBreak>;
+export interface HTMLWordBreakElement_t extends HTMLElement {}

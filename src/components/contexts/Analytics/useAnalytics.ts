@@ -1,44 +1,35 @@
-import { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import { Context as SegmentContext } from '@segment/analytics-next';
 
-import {
-  AnalyticsContext,
-  Analytics_t,
-} from 'components/contexts/Analytics/AnalyticsContext';
+import { useAnalytics } from 'components/contexts/Analytics/AnalyticsContext';
 import {
   createPageEvent,
   createTrackEvent,
   SegmentEvent_t,
 } from 'utils/events';
 
-export const useAnalytics = (): Analytics_t => {
-  const analytics = useContext(AnalyticsContext);
-  if (analytics) return analytics;
+export type UseAnalyticsEvent_t = () => Promise<SegmentContext> | undefined;
 
-  throw new Error(
-    '`useAnalytics` cannot be used outside of an `AnalyticsProvider`',
-  );
-};
-
-export type UseAnalyticsTracker_t = () => Promise<SegmentContext>;
-export const useAnalyticsTrack = (
+export const useAnalyticsEvent = (
   eventName: string,
   segment?: SegmentEvent_t,
-): UseAnalyticsTracker_t => {
-  const analytics = useAnalytics();
+): UseAnalyticsEvent_t => {
+  const analyticsContext = useAnalytics('useAnalyticsEvent');
+  const { analytics } = analyticsContext;
 
   return useCallback(() => {
-    return analytics.track(createTrackEvent(eventName, segment));
+    return analytics?.track(createTrackEvent(eventName, segment));
   }, [analytics, eventName, segment]);
 };
 
-export const useAnalyticsPage = (
+export const useAnalyticsPageEvent = (
   pageName: string,
   segment?: SegmentEvent_t,
-): UseAnalyticsTracker_t => {
-  const analytics = useAnalytics();
+): UseAnalyticsEvent_t => {
+  const analyticsContext = useAnalytics('useAnalyticsPageEvent');
+  const { analytics } = analyticsContext;
 
   return useCallback(() => {
-    return analytics.track(createPageEvent(pageName, segment));
+    return analytics?.track(createPageEvent(pageName, segment));
   }, [analytics, pageName, segment]);
 };

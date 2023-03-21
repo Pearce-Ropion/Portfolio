@@ -1,15 +1,14 @@
-import { Box, Copy, Flex } from 'components';
 import { FC } from 'react';
+
+import { Box, Copy, Flex } from 'components';
 import { Elevation } from 'styles/tokens/elevation';
-import { mkStoryTitle } from 'utils/storybook';
-import { Chapter } from 'utils/storybook/chapters';
-import { toPx } from 'utils/style/units';
+import { Chapter, mkStoryTitle } from 'utils/storybook';
 
 export default {
   title: mkStoryTitle(Chapter.TOKEN, 'Elevation'),
 };
 
-export const Levels: FC = () => (
+export const Level: FC = () => (
   <Flex direction="row">
     {Object.entries(Elevation).map(([level, shadow], idx, arr) => (
       <Box
@@ -19,7 +18,7 @@ export const Levels: FC = () => (
         <Flex
           align="center"
           justify="center"
-          css={{ boxShadow: shadow, size: toPx(200) }}
+          css={{ boxShadow: shadow, size: '200px' }}
         >
           <Copy weight="medium">{level}</Copy>
         </Flex>

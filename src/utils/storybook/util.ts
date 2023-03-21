@@ -1,17 +1,39 @@
-import { startCase } from 'lodash-es';
+import { startCase } from 'lodash';
 
-import { baseEnumControl } from 'utils/storybook/controls';
-
-export const mkStoryTitle = (...segments: string[]): string => {
+export function mkStoryTitle(...segments: string[]): string {
   return segments.filter(Boolean).join('/');
-};
+}
 
-export const mkEnumOptions = (options: string[], transformLabel = true) => {
-  return baseEnumControl(options.length <= 4 ? 'radio' : 'select', {
+export interface Control {
+  type: string;
+  labels?: Record<string, string>;
+}
+export interface ArgType {
+  options?: string[];
+  control?: Control;
+}
+
+export function mkEnumOptions(options?: string[], withLabels = true) {
+  if (!options) {
+    return undefined;
+  }
+
+  const argType: ArgType = {
     options,
-    labels: options.reduce<Record<string, string>>((acc, option) => {
-      acc[option] = transformLabel ? startCase(option) : option;
-      return acc;
-    }, {}),
-  });
-};
+    control: {
+      type: options.length <= 4 ? 'radio' : 'select',
+    },
+  };
+
+  if (withLabels && argType.control) {
+    argType.control.labels = options.reduce<Record<string, string>>(
+      (acc, option) => {
+        acc[option] = startCase(option);
+        return acc;
+      },
+      {},
+    );
+  }
+
+  return argType;
+}

@@ -1,82 +1,24 @@
-import type { ComponentProps, VariantProps } from '@stitches/react';
+import { ElementRef } from 'react';
 
-import { Box } from 'components/foundations/Box';
-import { styled } from 'stitches.config';
+import {
+  createComponentWithRef,
+  OmitComponentVariantProps_t,
+} from 'utils/component';
+import { StyledFlex } from 'components/foundations/Flex/styles';
 
-export const Flex = styled(Box, {
-  display: 'flex',
+export type FlexElement_t = ElementRef<typeof StyledFlex>;
+export interface FlexProps_t
+  extends OmitComponentVariantProps_t<typeof StyledFlex> {
+  center?: boolean;
+  direction?: 'row' | 'column';
+  align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
+  justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
+  wrap?: 'noWrap' | 'wrap';
+  grow?: boolean;
+}
 
-  variants: {
-    center: {
-      true: {
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-    },
-    direction: {
-      row: {
-        flexDirection: 'row',
-      },
-      column: {
-        flexDirection: 'column',
-      },
-      rowReverse: {
-        flexDirection: 'row-reverse',
-      },
-      columnReverse: {
-        flexDirection: 'column-reverse',
-      },
-    },
-    align: {
-      start: {
-        alignItems: 'flex-start',
-      },
-      center: {
-        alignItems: 'center',
-      },
-      end: {
-        alignItems: 'flex-end',
-      },
-      stretch: {
-        alignItems: 'stretch',
-      },
-      baseline: {
-        alignItems: 'baseline',
-      },
-    },
-    justify: {
-      start: {
-        justifyContent: 'flex-start',
-      },
-      center: {
-        justifyContent: 'center',
-      },
-      end: {
-        justifyContent: 'flex-end',
-      },
-      between: {
-        justifyContent: 'space-between',
-      },
-      around: {
-        justifyContent: 'space-around',
-      },
-      even: {
-        justifyContent: 'space-evenly',
-      },
-    },
-    wrap: {
-      noWrap: {
-        flexWrap: 'nowrap',
-      },
-      wrap: {
-        flexWrap: 'wrap',
-      },
-      wrapReverse: {
-        flexWrap: 'wrap-reverse',
-      },
-    },
+export const Flex = createComponentWithRef<FlexElement_t, FlexProps_t>(
+  (props, forwardedRef) => {
+    return <StyledFlex ref={forwardedRef} {...props} />;
   },
-});
-
-export type FlexProps_t = ComponentProps<typeof Flex>;
-export type FlexVariants_t = VariantProps<typeof Flex>;
+);

@@ -22,7 +22,7 @@ export const HTML: FC<GatsbyHTMLProps> = ({
   globalStyles();
 
   return (
-    <html {...htmlAttributes}>
+    <html lang="en" {...htmlAttributes}>
       <head>
         <meta
           name="viewport"
@@ -41,7 +41,6 @@ export const HTML: FC<GatsbyHTMLProps> = ({
         <div
           key="body"
           id="___gatsby"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: body }}
         />
 

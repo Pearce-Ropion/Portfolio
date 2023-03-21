@@ -1,90 +1,46 @@
-import { createStitches } from '@stitches/react';
-import type { ConfigType } from '@stitches/react/types/config';
+import { createStitches, DefaultThemeMap } from '@stitches/react';
+import type Stitches from '@stitches/react/types/stitches';
 
-import { MQ } from 'utils/style/media-query';
+import { MediaQuery as mediaConfig } from 'utils/style/media-query';
+import { shorthandConfig } from 'utils/style/shorthands';
 import {
-  borderShorthands,
-  colorShorthands,
-  flexShorthands,
-  layoutShorthands,
-  marginShorthands,
-  paddingShorthands,
-} from 'utils/style/shorthands';
-
-import { BorderRadius } from 'styles/tokens/layout';
-import { Palette } from 'styles/tokens/color';
-import {
+  BorderRadius,
+  Palette,
   FontFamily,
   FontWeight,
   FontSize,
   LineHeight,
   LetterSpacing,
-} from 'styles/tokens/font';
-import { Scale } from 'styles/tokens/scale';
-import { Elevation, ZIndex } from 'styles/tokens/elevation';
+  Scale,
+  Elevation,
+  ZIndex,
+  Transition,
+} from 'styles/tokens';
 
-interface ThemeConfig_t {
-  colors: typeof Palette;
-  fonts: typeof FontFamily;
-  fontWeights: typeof FontWeight;
-  fontSizes: typeof FontSize;
-  lineHeights: typeof LineHeight;
-  letterSpacings: typeof LetterSpacing;
-  sizes: typeof Scale;
-  space: typeof Scale;
-  radii: typeof BorderRadius;
-  shadows: typeof Elevation;
-  zIndices: typeof ZIndex;
-}
-
-export const themeConfig: ConfigType.Theme<ThemeConfig_t> = {
+export const themeConfig = {
   colors: Palette,
   fonts: FontFamily,
   fontWeights: FontWeight,
   fontSizes: FontSize,
   lineHeights: LineHeight,
   letterSpacings: LetterSpacing,
-  sizes: Scale,
-  space: Scale,
   radii: BorderRadius,
   shadows: Elevation,
+  sizes: Scale,
+  space: Scale,
+  transitions: Transition,
   zIndices: ZIndex,
 };
 
-function stripMediaDecorator(query: string): string {
-  return query.slice('@media'.length).trim();
-}
-
-export interface MediaConfig_t {
-  mobile: string;
-  tabletSmall: string;
-  onlyTabletSmall: string;
-  tablet: string;
-  onlyTable: string;
-  desktop: string;
-  desktopMed: string;
-  desktopWide: string;
-}
-
-const mediaConfig: ConfigType.Media<MediaConfig_t> = {
-  mobile: stripMediaDecorator(MQ.isMobile),
-  tabletSmall: stripMediaDecorator(MQ.isTabletSmall),
-  onlyTabletSmall: stripMediaDecorator(MQ.isOnlyTabletSmall),
-  tablet: stripMediaDecorator(MQ.isTablet),
-  onlyTable: stripMediaDecorator(MQ.isOnlyTablet),
-  desktop: stripMediaDecorator(MQ.isDesktop),
-  desktopMed: stripMediaDecorator(MQ.isDesktopMed),
-  desktopWide: stripMediaDecorator(MQ.isDesktopWide),
-};
-
-const baseConfig = {
-  theme: themeConfig,
-  media: mediaConfig,
-};
-
 // Should only be used for type inference for shorthands
-const baseStitchesConfig = createStitches(baseConfig);
-export type BaseStitchesConfig_t = typeof baseStitchesConfig.config;
+export type BaseStitches_t = Stitches<
+  '',
+  typeof mediaConfig,
+  typeof themeConfig,
+  DefaultThemeMap,
+  {}
+>;
+export type BaseStitchesConfig_t = BaseStitches_t['config'];
 
 export const {
   config,
@@ -96,21 +52,10 @@ export const {
   keyframes,
   reset,
   styled,
-} = createStitches<
-  BaseStitchesConfig_t['prefix'],
-  BaseStitchesConfig_t['media'],
-  BaseStitchesConfig_t['theme']
->({
-  ...baseConfig,
-
-  utils: {
-    ...borderShorthands,
-    ...colorShorthands,
-    ...flexShorthands,
-    ...layoutShorthands,
-    ...marginShorthands,
-    ...paddingShorthands,
-  },
+} = createStitches({
+  media: mediaConfig,
+  theme: themeConfig,
+  utils: shorthandConfig,
 });
 
 export type StitchesConfig_t = typeof config;

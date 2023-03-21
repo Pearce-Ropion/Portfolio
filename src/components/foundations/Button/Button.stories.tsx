@@ -1,10 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {
-  Button,
-  ButtonProps_t,
-  ButtonVariants_t,
-} from 'components/foundations/Button/Button';
+import { Button, ButtonProps_t } from 'components/foundations/Button/Button';
 import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 import { toPx } from 'utils/style/units';
@@ -12,7 +8,7 @@ import { Flex } from 'components/foundations/Flex';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'Button'),
-  component: mkStoryComponent<ButtonVariants_t, ButtonProps_t>(Button),
+  component: mkStoryComponent<ButtonProps_t>(Button),
   subcomponents: {
     Copy: Button.Copy,
     Inner: Button.Inner,

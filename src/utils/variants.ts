@@ -1,4 +1,4 @@
-import type * as Stitches from '@stitches/react';
+import type { ComponentProps, VariantProps } from '@stitches/react';
 import type { StyledComponent } from '@stitches/react/types/styled-component';
 
 const NUMBER_REGEX = /^\d+(\.\d+)?$/;
@@ -28,6 +28,8 @@ type ExcludeTransformProps<V> = {
 };
 
 export type StyledProps_t<V, P> = Omit<P, keyof V> & ExcludeTransformProps<V>;
+export type StyledComponentProps_t<C extends StyledComponent<any>> =
+  StyledProps_t<VariantProps<C>, ComponentProps<C>>;
 
 /**
  * @function getDefaultVariants
@@ -40,17 +42,16 @@ export type StyledProps_t<V, P> = Omit<P, keyof V> & ExcludeTransformProps<V>;
  */
 export function getDefaultVariants<C extends StyledComponent<any>>(
   component: C,
-): ExcludeTransformProps<Stitches.VariantProps<C>> {
+): ExcludeTransformProps<VariantProps<C>> {
   type DefaultVariants_t = {
-    [Prop in keyof ExcludeTransformProps<Stitches.VariantProps<C>>]:
+    [Prop in keyof ExcludeTransformProps<VariantProps<C>>]:
       | string
       | boolean
       | number;
   };
 
   // @ts-ignore - Symbol is not a valid prop on React element internface - it is injected by Stitches
-  const { composers } = component[StitchesInternalSymbol];
-
+  const composers = component[StitchesInternalSymbol].composers;
   const defaultVariants = {} as DefaultVariants_t;
 
   for (const composer of composers) {
@@ -79,5 +80,5 @@ export function getDefaultVariants<C extends StyledComponent<any>>(
     }
   }
 
-  return defaultVariants as ExcludeTransformProps<Stitches.VariantProps<C>>;
+  return defaultVariants as ExcludeTransformProps<VariantProps<C>>;
 }

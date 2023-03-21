@@ -14,12 +14,12 @@ export const Elevation = {
   level5: `0 3px 12px ${PaletteShadows.dark}, 0 6px 24px -16px ${PaletteShadows.dark}`,
 } as const;
 
-export enum ZIndex {
-  drawer = 900,
-  modalOverlay = 1000,
-  modal = 1100,
-  dropdown = 2000,
-  popover = 2100,
-  tooltip = 2200,
-  toast = 3000,
-}
+export const ZIndex = {
+  drawer: 900,
+  modalOverlay: 1000,
+  modal: 1100,
+  dropdown: 2000,
+  popover: 2100,
+  tooltip: 2200,
+  toast: 3000,
+} as const;

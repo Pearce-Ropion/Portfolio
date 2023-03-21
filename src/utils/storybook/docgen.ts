@@ -1,4 +1,4 @@
-import type { PropsWithChildren, FC, VFC } from 'react';
+import type { ForwardRefExoticComponent } from 'react';
 import type { ComponentDoc } from 'react-docgen-typescript';
 
 import type { StyledProps_t } from 'utils/variants';
@@ -13,14 +13,15 @@ interface DocgenEnumValue_t {
   value: string;
 }
 
-// Uses FC or VFC based on whether the incoming props include `children`
-type Component_t<P> = (P extends PropsWithChildren<P> ? FC<P> : VFC<P>) & {
+type Component_t<P extends object = {}> = ForwardRefExoticComponent<P> & {
   __docgenInfo?: ComponentDoc;
 };
 
 const INVALID_DOCGEN_TYPES = ['{', '}', 'HTML', 'Omit', 'Pick', '=>'] as const;
 
-function isDocgenModified<P>(component: Component_t<P>): boolean {
+function isDocgenModified<P extends object = {}>(
+  component: Component_t<P>,
+): boolean {
   return Boolean(component.__docgenInfo && component.__docgenInfo?.isModified);
 }
 
@@ -55,7 +56,6 @@ function modifyStoryComponentProps<P extends Record<string, unknown>>(
         }
 
         propInfo.type.value = propValue.filter(enumValue => {
-          // remove any enum options that consist of a stringified object
           return !INVALID_DOCGEN_TYPES.some(option => {
             return enumValue.value.includes(option);
           });
@@ -79,21 +79,27 @@ function modifyStoryComponentProps<P extends Record<string, unknown>>(
 }
 
 /**
- * @function mkStoryComponent
+ * @function mkStyledStoryComponent
  * @description Remaps the static and generated types of a component such that the
  *  controls that storybook generates do not include confusing type info.
  *
  * @param {Component_t} component - the component the storybook is for
  * @returns {Component_t}
  */
-export function mkStoryComponent<V = {}, P extends {} = {}>(
-  component: Component_t<P>,
-) {
+export function mkStoryComponent<P extends {} = {}>(component: Component_t<P>) {
   if (!isDocgenModified<P>(component)) {
     modifyStoryComponentProps<P>(component);
   }
 
-  return component as unknown as Component_t<StyledProps_t<V, P>>;
+  return component;
+}
+
+export function mkStyledStoryComponent<V = {}, P extends {} = {}>(
+  component: Component_t<P>,
+) {
+  return mkStoryComponent<P>(component) as unknown as Component_t<
+    StyledProps_t<V, P>
+  >;
 }
 
 /**

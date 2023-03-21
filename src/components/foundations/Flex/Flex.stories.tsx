@@ -1,11 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Box } from 'components/foundations/Box';
-import {
-  Flex,
-  FlexProps_t,
-  FlexVariants_t,
-} from 'components/foundations/Flex/Flex';
+import { Flex, FlexProps_t } from 'components/foundations/Flex/Flex';
 import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 import { border } from 'utils/style/format';
@@ -17,8 +13,8 @@ const InnerBox = styled(Box, {
 });
 
 export default {
-  title: mkStoryTitle(Chapter.TOKEN, Foundation.LAYOUT, 'Flex'),
-  component: mkStoryComponent<FlexVariants_t, FlexProps_t>(Flex),
+  title: mkStoryTitle(Chapter.FOUNDATION, Foundation.LAYOUT, 'Flex'),
+  component: mkStoryComponent<FlexProps_t>(Flex),
   args: {
     ...Flex.defaultProps,
   },

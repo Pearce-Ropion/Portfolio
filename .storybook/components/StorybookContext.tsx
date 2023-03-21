@@ -1,8 +1,15 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'utils/context';
 
-export const StorybookContext = createContext(false);
-StorybookContext.displayName = 'StorybookContext';
+interface StorybookContext_t {
+  isStorybook: boolean;
+}
+
+export const [StorybookProvider, useStorybook] =
+  createContext<StorybookContext_t>('Storybook', {
+    isStorybook: false,
+  });
 
 export const useIsStorybookPreview = () => {
-  return useContext(StorybookContext);
+  const { isStorybook } = useStorybook();
+  return isStorybook;
 };

@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Box, BoxProps_t, BoxVariants_t } from 'components/foundations/Box/Box';
+import { Box, BoxProps_t } from 'components/foundations/Box/Box';
 import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 import { border } from 'utils/style/format';
@@ -13,7 +13,7 @@ const InnerBox = styled(Box, {
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.LAYOUT, 'Box'),
-  component: mkStoryComponent<BoxVariants_t, BoxProps_t>(Box),
+  component: mkStoryComponent<BoxProps_t>(Box),
   args: {
     ...Box.defaultProps,
   },

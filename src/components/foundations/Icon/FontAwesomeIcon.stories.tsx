@@ -9,7 +9,7 @@ import {
 
 import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkEnumOptions, mkStoryTitle } from 'utils/storybook';
-import { StoryComponentProps_t } from 'types/component';
+import { StoryComponentProps_t } from 'utils/component';
 import { Box } from 'components/foundations/Box';
 import { theme } from 'stitches.config';
 import {
