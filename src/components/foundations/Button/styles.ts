@@ -19,11 +19,27 @@ export const StyledButton = styled.withConfig(styledButtonConfig)(HTMLButton, {
   transition: '$standard',
   userSelect: 'none',
   whiteSpace: 'nowrap',
+  minWidth: '88px',
 
-  // Ensures we don't get a weird tap effect on some mobile devices
+  // Fixes an odd tap effect on some mobile devices
   WebkitTapHighlightColor: 'transparent',
 
+  '&:hover, &:focus': {
+    boxShadow: '$level2',
+    transform: 'translateY(-1px)',
+
+    '&:active': {
+      transform: 'translateY(0)',
+    },
+  },
+
   variants: {
+    compact: {
+      true: {
+        minWidth: 'unset',
+      },
+    },
+
     disabled: {
       true: {
         opacity: 0.4,
@@ -68,14 +84,14 @@ export const StyledButton = styled.withConfig(styledButtonConfig)(HTMLButton, {
       inverted: true,
       variant: 'primary',
       css: {
-        borderColor: '$orange800',
+        backgroundColor: '$orange800',
       },
     },
     {
       inverted: true,
       variant: 'secondary',
       css: {
-        color: '$yellow900',
+        color: '$neutral900',
         borderColor: '$yellow900',
       },
     },

@@ -56,7 +56,7 @@ export const webpackFinal = (config: Configuration) => {
   return config;
 };
 
-const skipPropsWithName = ['as', 'css', 'ref'];
+const skipPropsWithName = ['as', 'css', 'segment', 'asChild'];
 export const typescript = {
   reactDocgenTypescriptOptions: {
     propFilter: (prop: PropItem) => {

@@ -3,32 +3,17 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Button, ButtonProps_t } from 'components/foundations/Button/Button';
 import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
-import { toPx } from 'utils/style/units';
 import { Flex } from 'components/foundations/Flex';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'Button'),
   component: mkStoryComponent<ButtonProps_t>(Button),
-  subcomponents: {
-    Copy: Button.Copy,
-    Inner: Button.Inner,
-    AffixCopy: Button.AffixCopy,
-    Affix: Button.Affix,
-    Prefix: Button.Prefix,
-    Suffix: Button.Suffix,
-  },
   args: {
     ...Button.defaultProps,
     children: 'Click Me',
   },
   argTypes: {
-    prefix: {
-      control: false,
-    },
     segment: {
-      control: false,
-    },
-    suffix: {
       control: false,
     },
   },
@@ -42,18 +27,6 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
 };
-
-export const FullWidth = Template.bind({});
-FullWidth.args = {
-  fullWidth: true,
-};
-FullWidth.decorators = [
-  Story => (
-    <Flex center css={{ width: toPx(300) }}>
-      <Story />
-    </Flex>
-  ),
-];
 
 export const Primary = Template.bind({});
 Primary.storyName = 'Primary (default)';
@@ -78,12 +51,20 @@ SecondaryInverted.args = {
   inverted: true,
 };
 
-export const Prefix = Template.bind({});
-Prefix.args = {
-  prefix: '$',
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  fullWidth: true,
 };
+FullWidth.decorators = [
+  Story => (
+    <Flex center css={{ size: '400px', border: '5px solid $neutral300' }}>
+      <Story />
+    </Flex>
+  ),
+];
 
-export const Suffix = Template.bind({});
-Suffix.args = {
-  suffix: 'lbs',
+export const Compact = Template.bind({});
+Compact.args = {
+  compact: true,
+  children: 'OK',
 };
