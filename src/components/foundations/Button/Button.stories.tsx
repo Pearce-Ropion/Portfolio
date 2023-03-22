@@ -2,7 +2,11 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Button, ButtonProps_t } from 'components/foundations/Button/Button';
 import { Chapter, Foundation } from 'utils/storybook/chapters';
-import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
+import {
+  mkStoryTitle,
+  mkStoryComponent,
+  disableControl,
+} from 'utils/storybook';
 import { Flex } from 'components/foundations/Flex';
 
 export default {
@@ -13,9 +17,7 @@ export default {
     children: 'Click Me',
   },
   argTypes: {
-    segment: {
-      control: false,
-    },
+    segment: disableControl,
   },
 } as ComponentMeta<typeof Button>;
 

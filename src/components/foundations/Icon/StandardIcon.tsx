@@ -8,11 +8,15 @@ import {
   OmitComponentVariantProps_t,
 } from 'utils/component';
 import { StyledIcon } from 'components/foundations/Icon/styles';
+import {
+  IconPrefix_t,
+  iconToIconLookup,
+} from 'components/foundations/Icon/util';
 
 declare module 'react' {
   interface CSSProperties {
-    '--fa-primary-color'?: PropertyValue_t<'color'>;
-    '--fa-primary-opacity'?: PropertyValue_t<'opacity'>;
+    '--fa-main-color'?: PropertyValue_t<'color'>;
+    '--fa-main-opacity'?: PropertyValue_t<'opacity'>;
   }
 }
 
@@ -25,6 +29,7 @@ export interface StandardIconProps_t
   color?: PropertyValue_t<'color'>;
   opacity?: PropertyValue_t<'opacity'>;
   padded?: 'left' | 'right' | 'both';
+  prefix?: IconPrefix_t;
 }
 
 export const StandardIcon = createComponentWithRef<
@@ -32,31 +37,33 @@ export const StandardIcon = createComponentWithRef<
   StandardIconProps_t
 >(
   (
-    { color, icon, opacity, style: styleProp, title: titleProp, ...rest },
+    {
+      color,
+      icon,
+      opacity,
+      prefix,
+      style: styleProp,
+      title: titleProp,
+      ...rest
+    },
     forwardedRef,
   ) => {
+    const iconLookup = useMemo(() => {
+      return iconToIconLookup(icon, prefix);
+    }, [icon, prefix]);
+
     const title = useMemo(() => {
       if (titleProp) return titleProp;
-
-      let iconName: string | undefined;
-      if (typeof icon === 'string') {
-        iconName = icon;
-      } else if (Array.isArray(icon)) {
-        iconName = icon[1];
-      } else {
-        iconName = icon.iconName;
-      }
-
-      return `${startCase(iconName)} Icon`;
-    }, [icon, titleProp]);
+      return `${startCase(iconLookup.iconName)} Icon`;
+    }, [iconLookup, titleProp]);
 
     const style = useMemo<CSSProperties>(() => {
       return mergeStyle(styleProp, {
         ...(color && {
-          '--fa-primary-color': color,
+          '--fa-main-color': color,
         }),
         ...(opacity && {
-          '--fa-primary-opacity': opacity,
+          '--fa-main-opacity': opacity,
         }),
       });
     }, [color, opacity, styleProp]);
@@ -65,7 +72,7 @@ export const StandardIcon = createComponentWithRef<
       <StyledIcon
         ref={forwardedRef}
         {...rest}
-        icon={icon}
+        icon={iconLookup}
         style={style}
         title={title}
       />

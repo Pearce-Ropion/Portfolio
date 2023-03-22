@@ -44,17 +44,17 @@ Center.args = {
 
 export const Direction = Template.bind({});
 Direction.args = {
-  direction: 'row',
+  direction: 'column',
 };
 
 export const Align = Template.bind({});
 Align.args = {
-  align: 'center',
+  align: 'end',
 };
 
 export const Justify = Template.bind({});
 Justify.args = {
-  justify: 'center',
+  justify: 'evenly',
 };
 
 export const Wrap = Template.bind({});

@@ -1,39 +1,13 @@
-import {
-  IconDefinition,
-  IconLookup,
-  IconProp,
-} from '@fortawesome/fontawesome-svg-core';
+import { IconDefinition, IconProp } from '@fortawesome/fontawesome-svg-core';
 import { cloneElement, isValidElement, ReactElement } from 'react';
 
 import { Icon, IconProps_t } from 'components/foundations/Icon/Icon';
 import { cx } from 'utils/style/classes';
 import { mergeCSS, mergeStyle } from 'utils/style/css';
-
-export const DEFAULT_ICON_PREFIX = 'fas' as const;
-
-export const iconToIconLookup = (
-  icon: IconProp | IconDefinition,
-  shouldThrow = true,
-): IconLookup => {
-  const iconLookup: IconLookup = { prefix: DEFAULT_ICON_PREFIX } as IconLookup;
-  if (typeof icon === 'string') {
-    iconLookup.iconName = icon;
-  } else if (Array.isArray(icon) && icon.length === 2) {
-    iconLookup.prefix = icon[0];
-    iconLookup.iconName = icon[1];
-  } else if ('iconName' in icon) {
-    iconLookup.iconName = icon.iconName;
-    if ('prefix' in icon) {
-      iconLookup.prefix = icon.prefix;
-    }
-  }
-
-  if (shouldThrow && !iconLookup.iconName) {
-    throw new Error('Icon: Invalid `icon` passed to `iconToIconLookup`');
-  }
-
-  return iconLookup;
-};
+import {
+  IconPrefix_t,
+  iconToIconLookup,
+} from 'components/foundations/Icon/util';
 
 export type IconFactoryIconProp_t =
   | IconProp
@@ -42,6 +16,7 @@ export type IconFactoryIconProp_t =
 
 export const iconFactory = (
   icon: IconFactoryIconProp_t,
+  prefix?: IconPrefix_t | null,
   propDefaults: Partial<IconProps_t> = {},
 ): ReactElement<IconProps_t> => {
   if (isValidElement<IconProps_t>(icon)) {
@@ -53,6 +28,7 @@ export const iconFactory = (
       style: mergeStyle(propDefaults.style, icon.props.style),
       duotone:
         icon.props.duotone ||
+        prefix === 'fad' ||
         Boolean(
           icon.props.primaryColor ||
             icon.props.primaryOpacity ||
@@ -62,7 +38,7 @@ export const iconFactory = (
     });
   }
 
-  const iconLookup = iconToIconLookup(icon, false);
+  const iconLookup = iconToIconLookup(icon, prefix, false);
 
   if (!iconLookup.iconName) {
     throw new Error('Icon: Invalid `iconName` passed to iconFactory');
@@ -71,7 +47,7 @@ export const iconFactory = (
   return (
     <Icon
       icon={iconLookup}
-      duotone={iconLookup.prefix === 'fad'}
+      duotone={iconLookup.prefix === 'fad' || propDefaults.duotone}
       {...propDefaults}
     />
   );
