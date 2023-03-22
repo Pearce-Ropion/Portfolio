@@ -11,6 +11,30 @@ import { mergeCSS, mergeStyle } from 'utils/style/css';
 
 export const DEFAULT_ICON_PREFIX = 'fas' as const;
 
+export const iconToIconLookup = (
+  icon: IconProp | IconDefinition,
+  shouldThrow = true,
+): IconLookup => {
+  const iconLookup: IconLookup = { prefix: DEFAULT_ICON_PREFIX } as IconLookup;
+  if (typeof icon === 'string') {
+    iconLookup.iconName = icon;
+  } else if (Array.isArray(icon) && icon.length === 2) {
+    iconLookup.prefix = icon[0];
+    iconLookup.iconName = icon[1];
+  } else if ('iconName' in icon) {
+    iconLookup.iconName = icon.iconName;
+    if ('prefix' in icon) {
+      iconLookup.prefix = icon.prefix;
+    }
+  }
+
+  if (shouldThrow && !iconLookup.iconName) {
+    throw new Error('Icon: Invalid `icon` passed to `iconToIconLookup`');
+  }
+
+  return iconLookup;
+};
+
 export type IconFactoryIconProp_t =
   | IconProp
   | IconDefinition
@@ -38,16 +62,7 @@ export const iconFactory = (
     });
   }
 
-  const iconLookup: IconLookup = { prefix: DEFAULT_ICON_PREFIX } as IconLookup;
-  if (typeof icon === 'string') {
-    iconLookup.iconName = icon;
-  } else if (Array.isArray(icon) && icon.length === 2) {
-    iconLookup.prefix = icon[0];
-    iconLookup.iconName = icon[1];
-  } else if ('prefix' in icon && 'iconName' in icon) {
-    iconLookup.prefix = icon.prefix;
-    iconLookup.iconName = icon.iconName;
-  }
+  const iconLookup = iconToIconLookup(icon, false);
 
   if (!iconLookup.iconName) {
     throw new Error('Icon: Invalid `iconName` passed to iconFactory');

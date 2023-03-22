@@ -1,35 +1,26 @@
-import { forwardRef, memo } from 'react';
+import { ElementRef } from 'react';
 
 import {
   DuotoneIcon,
   DuotoneIconProps_t,
 } from 'components/foundations/Icon/DuotoneIcon';
-import { StandardIcon } from 'components/foundations/Icon/StandardIcon';
-import { IconElement_t } from 'components/foundations/Icon/util';
-import { MemoForwardRefComponent_t } from 'types/component';
+import {
+  StandardIcon,
+  StandardIconProps_t,
+} from 'components/foundations/Icon/StandardIcon';
+import { createComponentWithRef } from 'utils/component';
 
-export interface IconProps_t extends DuotoneIconProps_t {
+export type IconElement_t = ElementRef<typeof StandardIcon>;
+export interface IconProps_t extends StandardIconProps_t, DuotoneIconProps_t {
   duotone?: boolean;
 }
 
-export type Icon_t = MemoForwardRefComponent_t<
-  IconElement_t,
-  IconProps_t,
-  {
-    Standard: typeof StandardIcon;
-    Duotone: typeof DuotoneIcon;
-  }
->;
-
-export const Icon: Icon_t = memo(
-  forwardRef<IconElement_t, IconProps_t>(({ duotone, ...rest }, ref) => {
+export const Icon = createComponentWithRef<IconElement_t, IconProps_t>(
+  ({ duotone, ...rest }, forwardedRef) => {
     if (duotone) {
-      return <DuotoneIcon ref={ref} {...rest} />;
+      return <DuotoneIcon ref={forwardedRef} {...rest} />;
     }
 
-    return <StandardIcon ref={ref} {...rest} />;
-  }),
-) as Icon_t;
-
-Icon.Standard = StandardIcon;
-Icon.Duotone = DuotoneIcon;
+    return <StandardIcon ref={forwardedRef} {...rest} />;
+  },
+);

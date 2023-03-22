@@ -1,4 +1,8 @@
-import type { ForwardRefExoticComponent } from 'react';
+import type {
+  ComponentProps,
+  ForwardRefExoticComponent,
+  JSXElementConstructor,
+} from 'react';
 import type { ComponentDoc } from 'react-docgen-typescript';
 
 import type { StyledProps_t } from 'utils/variants';
@@ -16,6 +20,11 @@ interface DocgenEnumValue_t {
 type Component_t<P extends object = {}> = ForwardRefExoticComponent<P> & {
   __docgenInfo?: ComponentDoc;
 };
+
+export type StoryComponentProps_t<
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>,
+  P = {},
+> = (props: ComponentProps<T> & P) => JSX.Element;
 
 const INVALID_DOCGEN_TYPES = ['{', '}', 'HTML', 'Omit', 'Pick', '=>'] as const;
 

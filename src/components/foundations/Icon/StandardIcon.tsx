@@ -1,67 +1,74 @@
-import {
-  FontAwesomeIcon,
-  FontAwesomeIconProps,
-} from '@fortawesome/react-fontawesome';
+import { CSSProperties, ElementRef, useMemo } from 'react';
 import { startCase } from 'lodash';
-import { forwardRef, memo, useMemo } from 'react';
 
-import type { CSSObject_t, PropertyValue_t } from 'types/stitches';
-import { cx } from 'utils/style/classes';
+import type { PropertyValue_t } from 'types/stitches';
+import { mergeStyle } from 'utils/style/css';
 import {
-  getIconStyle,
-  IconElement_t,
-  IconVariants_t,
-} from 'components/foundations/Icon/util';
-import { mergeCSS } from 'utils/style/css';
+  createComponentWithRef,
+  OmitComponentVariantProps_t,
+} from 'utils/component';
+import { StyledIcon } from 'components/foundations/Icon/styles';
 
-export interface StandardIconProps_t
-  extends Omit<FontAwesomeIconProps, 'color' | 'opacity'>,
-    IconVariants_t {
-  css?: CSSObject_t;
-  color?: PropertyValue_t<'color'>;
-  opacity?: PropertyValue_t<'opacity'>;
+declare module 'react' {
+  interface CSSProperties {
+    '--fa-primary-color'?: PropertyValue_t<'color'>;
+    '--fa-primary-opacity'?: PropertyValue_t<'opacity'>;
+  }
 }
 
-export const StandardIcon = memo(
-  forwardRef<IconElement_t, StandardIconProps_t>(
-    ({ className, color, css, icon, opacity, padded, title, ...rest }, ref) => {
-      const classes = useMemo(() => {
-        return cx(
-          className,
-          getIconStyle({
-            padded,
-            css: mergeCSS(css, {
-              color,
-              opacity,
-            }),
-          }),
-        );
-      }, [className, color, css, opacity, padded]);
+export type StandardIconElement_t = ElementRef<typeof StyledIcon>;
+export interface StandardIconProps_t
+  extends Omit<
+    OmitComponentVariantProps_t<typeof StyledIcon>,
+    'color' | 'opacity'
+  > {
+  color?: PropertyValue_t<'color'>;
+  opacity?: PropertyValue_t<'opacity'>;
+  padded?: 'left' | 'right' | 'both';
+}
 
-      const iconTitle = useMemo(() => {
-        if (title) return title;
+export const StandardIcon = createComponentWithRef<
+  StandardIconElement_t,
+  StandardIconProps_t
+>(
+  (
+    { color, icon, opacity, style: styleProp, title: titleProp, ...rest },
+    forwardedRef,
+  ) => {
+    const title = useMemo(() => {
+      if (titleProp) return titleProp;
 
-        let iconName: string | undefined;
-        if (typeof icon === 'string') {
-          iconName = icon;
-        } else if (Array.isArray(icon)) {
-          iconName = icon[1];
-        } else {
-          iconName = icon.iconName;
-        }
+      let iconName: string | undefined;
+      if (typeof icon === 'string') {
+        iconName = icon;
+      } else if (Array.isArray(icon)) {
+        iconName = icon[1];
+      } else {
+        iconName = icon.iconName;
+      }
 
-        return `${startCase(iconName)} Icon`;
-      }, [icon, title]);
+      return `${startCase(iconName)} Icon`;
+    }, [icon, titleProp]);
 
-      return (
-        <FontAwesomeIcon
-          ref={ref}
-          {...rest}
-          icon={icon}
-          className={classes}
-          title={iconTitle}
-        />
-      );
-    },
-  ),
+    const style = useMemo<CSSProperties>(() => {
+      return mergeStyle(styleProp, {
+        ...(color && {
+          '--fa-primary-color': color,
+        }),
+        ...(opacity && {
+          '--fa-primary-opacity': opacity,
+        }),
+      });
+    }, [color, opacity, styleProp]);
+
+    return (
+      <StyledIcon
+        ref={forwardedRef}
+        {...rest}
+        icon={icon}
+        style={style}
+        title={title}
+      />
+    );
+  },
 );

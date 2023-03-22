@@ -1,15 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  IconName,
-  IconPrefix,
-  IconProp,
-  library,
-} from '@fortawesome/fontawesome-svg-core';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkEnumOptions, mkStoryTitle } from 'utils/storybook';
-import { StoryComponentProps_t } from 'utils/component';
 import { Box } from 'components/foundations/Box';
 import { theme } from 'stitches.config';
 import {
@@ -22,13 +16,7 @@ import {
   textControl,
   themedColorControl,
 } from 'utils/storybook/controls';
-
-type FontAwesomeIconStory_t = StoryComponentProps_t<
-  typeof FontAwesomeIcon,
-  {
-    prefix: IconPrefix;
-  }
->;
+import { iconToIconLookup } from 'components/foundations/Icon/iconFactory';
 
 const prefixes = ['fas', 'far', 'fal', 'fat', 'fad'];
 const icons = Object.keys(library.definitions.fas).sort();
@@ -82,15 +70,14 @@ export default {
     titleId: removeControl,
     swapOpacity: booleanControl,
   },
-} as ComponentMeta<FontAwesomeIconStory_t>;
+} as ComponentMeta<typeof FontAwesomeIcon>;
 
-const Template: ComponentStory<FontAwesomeIconStory_t> = ({
-  prefix,
-  icon: iconName,
+const Template: ComponentStory<typeof FontAwesomeIcon> = ({
+  icon,
   ...rest
 }) => {
-  const icon: IconProp = [prefix, iconName as IconName];
-  return <FontAwesomeIcon {...rest} icon={icon} />;
+  const iconLookup = iconToIconLookup(icon);
+  return <FontAwesomeIcon {...rest} icon={iconLookup} />;
 };
 
 export const Default = Template.bind({});
@@ -202,8 +189,7 @@ SwapOpacity.args = {
 
 export const Mask = Template.bind({});
 Mask.args = {
-  icon: 'pencil',
-  prefix: 'fas',
+  icon: ['fas', 'pencil'],
   mask: ['fas', 'comment'],
   transform: {
     size: 6,

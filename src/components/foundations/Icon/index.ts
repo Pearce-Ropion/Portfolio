@@ -1,24 +1,24 @@
-export {
-  DuotoneIcon,
+export type {
+  DuotoneIconElement_t,
   DuotoneIconProps_t,
 } from 'components/foundations/Icon/DuotoneIcon';
-export {
-  StandardIcon,
+export { DuotoneIcon } from 'components/foundations/Icon/DuotoneIcon';
+
+export type {
+  StandardIconElement_t,
   StandardIconProps_t,
 } from 'components/foundations/Icon/StandardIcon';
+export { StandardIcon } from 'components/foundations/Icon/StandardIcon';
 
+export type { IconFactoryIconProp_t } from 'components/foundations/Icon/iconFactory';
 export {
   DEFAULT_ICON_PREFIX,
+  iconToIconLookup,
   iconFactory,
-  IconFactoryIconProp_t,
 } from 'components/foundations/Icon/iconFactory';
 
-export { Icon, IconProps_t } from 'components/foundations/Icon/Icon';
-
-export {
-  getIconStyle,
-  IconVariants_t,
-  IconVariants_t as StandardIconVariants_t,
-  IconVariants_t as DuotoneIconVariants_t,
+export type {
   IconElement_t,
-} from 'components/foundations/Icon/util';
+  IconProps_t,
+} from 'components/foundations/Icon/Icon';
+export { Icon } from 'components/foundations/Icon/Icon';
