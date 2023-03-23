@@ -1,8 +1,7 @@
 import { ElementRef } from 'react';
-import { ComponentProps } from '@stitches/react';
 
 import { Flex, IconButton } from 'components/foundations';
-import { HTMLDiv } from 'components/foundations/Html';
+import { HTMLDivProps_t } from 'components/foundations/Html';
 import { createComponentWithRef } from 'utils/component';
 import { StyledSocialIcon } from 'components/composites/SocialIcons/styles';
 import { IconProp_t } from 'components/foundations/Icon/util';
@@ -15,8 +14,7 @@ const icons: Array<[string, IconProp_t]> = [
 ];
 
 export type SocialIconsElement_t = ElementRef<typeof Flex>;
-export interface SocialIconsProps_t
-  extends Omit<ComponentProps<typeof HTMLDiv>, 'children'> {
+export interface SocialIconsProps_t extends Omit<HTMLDivProps_t, 'children'> {
   direction?: 'horizontal' | 'vertical';
   inverted?: boolean;
 }

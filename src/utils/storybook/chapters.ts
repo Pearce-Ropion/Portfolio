@@ -20,4 +20,5 @@ export enum Foundation {
 export enum Composite {
   COPY = 'Copy',
   ICON = 'Icons',
+  SECTION = 'Section',
 }
