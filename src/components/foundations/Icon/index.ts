@@ -11,14 +11,16 @@ export type {
 export { StandardIcon } from 'components/foundations/Icon/StandardIcon';
 
 export type { IconFactoryIconProp_t } from 'components/foundations/Icon/iconFactory';
-export {
-  DEFAULT_ICON_PREFIX,
-  iconToIconLookup,
-  iconFactory,
-} from 'components/foundations/Icon/iconFactory';
+export { iconFactory } from 'components/foundations/Icon/iconFactory';
 
 export type {
   IconElement_t,
   IconProps_t,
 } from 'components/foundations/Icon/Icon';
 export { Icon } from 'components/foundations/Icon/Icon';
+
+export type { IconPrefix_t } from 'components/foundations/Icon/util';
+export {
+  DEFAULT_ICON_PREFIX,
+  iconToIconLookup,
+} from 'components/foundations/Icon/util';

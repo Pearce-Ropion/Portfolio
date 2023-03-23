@@ -6,11 +6,17 @@ import {
 } from '@fortawesome/fontawesome-svg-core';
 
 export type IconPrefix_t = Exclude<IconPrefix, 'fak' | 'fass'>;
+export type IconProp_t = IconProp | IconDefinition;
+
+export interface IconLookupProps_t {
+  icon: IconProp_t;
+  prefix?: IconPrefix_t;
+}
 
 export const DEFAULT_ICON_PREFIX = 'fas' as const;
 
 export const iconToIconLookup = (
-  icon: IconProp | IconDefinition,
+  icon: IconProp_t,
   prefix?: IconPrefix_t | null,
   shouldThrow = true,
 ): IconLookup => {

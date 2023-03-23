@@ -9,7 +9,7 @@ import {
 } from 'utils/component';
 import { StyledIcon } from 'components/foundations/Icon/styles';
 import {
-  IconPrefix_t,
+  IconLookupProps_t,
   iconToIconLookup,
 } from 'components/foundations/Icon/util';
 
@@ -23,13 +23,13 @@ declare module 'react' {
 export type StandardIconElement_t = ElementRef<typeof StyledIcon>;
 export interface StandardIconProps_t
   extends Omit<
-    OmitComponentVariantProps_t<typeof StyledIcon>,
-    'color' | 'opacity'
-  > {
+      OmitComponentVariantProps_t<typeof StyledIcon>,
+      'color' | 'icon' | 'opacity'
+    >,
+    IconLookupProps_t {
   color?: PropertyValue_t<'color'>;
   opacity?: PropertyValue_t<'opacity'>;
   padded?: 'left' | 'right' | 'both';
-  prefix?: IconPrefix_t;
 }
 
 export const StandardIcon = createComponentWithRef<

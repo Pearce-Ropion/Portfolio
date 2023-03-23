@@ -4,5 +4,6 @@ export const BorderRadius = {
   medium: '8px',
   large: '10px',
   xLarge: '16px',
+  pill: '100px',
   circle: '50%',
 } as const;
