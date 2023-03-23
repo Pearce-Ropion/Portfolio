@@ -13,7 +13,7 @@ import {
 import { faker } from 'utils/storybook/faker';
 
 export default {
-  title: mkStoryTitle(Chapter.FOUNDATION, Composite.COPY, 'BlockQuote'),
+  title: mkStoryTitle(Chapter.COMPOSITE, Composite.COPY, 'BlockQuote'),
   component: mkStoryComponent<BlockQuoteProps_t>(BlockQuote),
   args: {
     ...BlockQuote.defaultProps,

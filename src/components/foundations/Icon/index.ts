@@ -19,7 +19,11 @@ export type {
 } from 'components/foundations/Icon/Icon';
 export { Icon } from 'components/foundations/Icon/Icon';
 
-export type { IconPrefix_t } from 'components/foundations/Icon/util';
+export type {
+  IconPrefix_t,
+  IconProp_t,
+  IconLookupProps_t,
+} from 'components/foundations/Icon/util';
 export {
   DEFAULT_ICON_PREFIX,
   iconToIconLookup,
