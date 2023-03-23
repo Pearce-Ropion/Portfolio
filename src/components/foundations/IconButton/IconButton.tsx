@@ -13,6 +13,8 @@ export type IconButtonElement_t = ElementRef<typeof StyledIconButton>;
 export interface IconButtonProps_t
   extends Omit<OmitComponentVariantProps_t<typeof StyledIconButton>, 'prefix'>,
     Omit<IconLookupProps_t, 'prefix'> {
+  disabled?: boolean;
+  inverted?: boolean;
   label: string;
   prefix?: Extract<IconLookupProps_t['prefix'], 'fas' | 'fab'>;
 }

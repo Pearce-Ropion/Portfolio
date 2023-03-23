@@ -1,24 +1,49 @@
 import { HTMLButton } from 'components/foundations/Html';
 import { styled } from 'stitches.config';
+import { StyledConfig_t } from 'types/stitches';
 
-export const StyledIconButton = styled(HTMLButton, {
-  borderRadius: '$circle',
-  backgroundColor: '$orange900',
-  color: '$neutral0',
-  border: 'none',
-  outline: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  size: '$10',
-  transition: '$standard',
+const styledIconButtonConfig: StyledConfig_t = {
+  shouldForwardStitchesProp: prop => prop === 'disabled',
+};
 
-  '&:hover, &:focus': {
-    boxShadow: '$level2',
-    transform: 'translateY(-1px)',
+export const StyledIconButton = styled.withConfig(styledIconButtonConfig)(
+  HTMLButton,
+  {
+    borderRadius: '$circle',
+    backgroundColor: '$navy800',
+    border: 'none',
+    outline: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    size: '$10',
+    transition: '$standard',
+    cursor: 'pointer',
 
-    '&:active': {
-      transform: 'translateY(0px)',
+    '&:not(:disabled)': {
+      '&:hover, &:focus': {
+        boxShadow: '$level2',
+        transform: 'translateY(-1px)',
+
+        '&:active': {
+          transform: 'translateY(0px)',
+        },
+      },
+    },
+
+    variants: {
+      disabled: {
+        true: {
+          cursor: 'default',
+          opacity: 0.4,
+        },
+      },
+
+      inverted: {
+        true: {
+          backgroundColor: '$orange900',
+        },
+      },
     },
   },
-});
+);

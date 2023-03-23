@@ -32,21 +32,17 @@ const Template: ComponentStory<typeof IconButton> = args => (
   <IconButton {...args} />
 );
 
-export const Email = Template.bind({});
+export const Default = Template.bind({});
 
-export const LinkedIn = Template.bind({});
-LinkedIn.args = {
-  icon: 'linkedin-in',
-  prefix: 'fab',
+export const Inverted = Template.bind({});
+Inverted.args = {
+  inverted: true,
+};
+Inverted.parameters = {
+  backgrounds: { default: 'navy900' },
 };
 
-export const Github = Template.bind({});
-Github.args = {
-  icon: 'github',
-  prefix: 'fab',
-};
-
-export const Resume = Template.bind({});
-Resume.args = {
-  icon: 'file-user',
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
 };
