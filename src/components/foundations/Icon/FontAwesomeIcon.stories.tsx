@@ -16,7 +16,7 @@ import {
   textControl,
   themedColorControl,
 } from 'utils/storybook/controls';
-import { iconToIconLookup } from 'components/foundations/Icon/iconFactory';
+import { iconToIconLookup } from 'components/foundations/Icon/util';
 
 const prefixes = ['fas', 'far', 'fal', 'fat', 'fad'];
 const icons = Object.keys(library.definitions.fas).sort();

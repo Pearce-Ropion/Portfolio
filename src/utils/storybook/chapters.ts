@@ -16,3 +16,7 @@ export enum Foundation {
   NAVIGATION = 'Navigation',
   ICON = 'Icons',
 }
+
+export enum Composite {
+  COPY = 'Copy',
+}
