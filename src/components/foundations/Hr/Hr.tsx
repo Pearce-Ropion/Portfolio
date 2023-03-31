@@ -13,12 +13,20 @@ export interface HrProps_t
   direction?: 'horizontal' | 'vertical';
 }
 
-export const Hr = createComponentWithRef<HrElement_t, HrProps_t>(
-  ({ direction = 'horizontal', ...rest }, forwardedRef) => {
-    return <StyledHr ref={forwardedRef} {...rest} direction={direction} />;
-  },
-);
+interface HrComponents_t {
+  Styled: typeof StyledHr;
+}
+
+export const Hr = createComponentWithRef<
+  HrElement_t,
+  HrProps_t,
+  HrComponents_t
+>(({ direction = 'horizontal', ...rest }, forwardedRef) => {
+  return <StyledHr ref={forwardedRef} {...rest} direction={direction} />;
+});
 
 Hr.defaultProps = {
   direction: 'horizontal',
 };
+
+Hr.Styled = StyledHr;

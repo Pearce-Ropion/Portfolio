@@ -3,7 +3,7 @@ import { ElementRef } from 'react';
 import {
   StyledFooter,
   StyledFooterSocialIcons,
-} from 'components/composites/Footer/styles';
+} from 'components/sections/Footer/styles';
 import { Copy, Flex } from 'components/foundations';
 import {
   createComponentWithRef,

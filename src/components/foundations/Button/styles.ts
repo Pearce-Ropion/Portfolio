@@ -68,6 +68,7 @@ export const StyledButton = styled.withConfig(styledButtonConfig)(HTMLButton, {
         color: '$neutral0',
         paddingY: '$3',
         paddingX: '$6',
+        fontWeight: '$semiBold',
       },
       secondary: {
         backgroundColor: 'transparent',

@@ -7,9 +7,9 @@ export const createTrackEvent = (
   segment?: SegmentEvent_t,
 ): SegmentEvent => {
   return {
+    name: eventName,
     ...segment,
     type: 'track',
-    name: eventName,
   };
 };
 
@@ -18,8 +18,8 @@ export const createPageEvent = (
   segment?: SegmentEvent_t,
 ): SegmentEvent => {
   return {
+    name: pageName,
     ...segment,
     type: 'page',
-    name: pageName,
   };
 };

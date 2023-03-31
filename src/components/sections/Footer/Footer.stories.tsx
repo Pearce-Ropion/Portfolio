@@ -6,7 +6,7 @@ import {
   mkStoryComponent,
   mkStoryTitle,
 } from 'utils/storybook';
-import { Footer, FooterProps_t } from 'components/composites/Footer/Footer';
+import { Footer, FooterProps_t } from 'components/sections/Footer/Footer';
 
 export default {
   title: mkStoryTitle(Chapter.COMPOSITE, Composite.SECTION, 'Footer'),

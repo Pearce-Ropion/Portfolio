@@ -20,8 +20,16 @@ export interface MonoProps_t
     | 'black';
 }
 
-export const Mono = createComponentWithRef<MonoElement_t, MonoProps_t>(
-  (props, forwardedRef) => {
-    return <StyledMono ref={forwardedRef} {...props} />;
-  },
-);
+interface MonoComponents_t {
+  Styled: typeof StyledMono;
+}
+
+export const Mono = createComponentWithRef<
+  MonoElement_t,
+  MonoProps_t,
+  MonoComponents_t
+>((props, forwardedRef) => {
+  return <StyledMono ref={forwardedRef} {...props} />;
+});
+
+Mono.Styled = StyledMono;

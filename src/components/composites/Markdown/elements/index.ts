@@ -1,0 +1,42 @@
+import { BlockQuote } from 'components/composites/Markdown/elements/BlockQuote';
+import {
+  Bold,
+  Caption,
+  Italic,
+  Label,
+  Paragraph,
+  Underline,
+} from 'components/composites/Markdown/elements/Paragraph';
+import { Rule } from 'components/composites/Markdown/elements/Rule';
+
+export const MarkdownComponents = {
+  // a: Link,
+  blockquote: BlockQuote,
+  // button: Button,
+  caption: Caption,
+  // code: Code,
+  em: Italic,
+  figcaption: Caption,
+  // h1: Heading1,
+  // h2: Heading2,
+  // h3: Heading3,
+  // h4: Heading4,
+  // h5: Heading5,
+  // h6: Heading6,
+  hr: Rule,
+  // img: Image,
+  // inlineCode: InlineCode,
+  label: Label,
+  // li: ListItem,
+  // ol: OrderedList,
+  p: Paragraph,
+  // pre: Preformat,
+  strong: Bold,
+  // sup: Sup,
+  // table: Table,
+  // td: TableCell,
+  // th: TableHeaderCell,
+  // tr: TableRow,
+  u: Underline,
+  // ul: UnorderedList,
+};

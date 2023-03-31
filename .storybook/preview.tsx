@@ -5,7 +5,7 @@ import { DecoratorFn } from '@storybook/react';
 // import { Example } from 'components/Example';
 // import { Layout } from 'components/Layout';
 import { Page } from 'components/Page';
-import { StorybookProvider } from 'components/StorybookContext';
+import { StorybookProvider } from 'components/contexts/StorybookContext';
 import { backgrounds } from 'utils/backgrounds';
 import {
   StoryContext,

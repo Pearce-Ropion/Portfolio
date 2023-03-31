@@ -13,15 +13,23 @@ export interface CopyProps_t
   weight?: 'thin' | 'light' | 'normal' | 'medium' | 'bold' | 'black';
 }
 
-export const Copy = createComponentWithRef<CopyElement_t, CopyProps_t>(
-  ({ size = 'medium', weight = 'normal', ...rest }, forwardedRef) => {
-    return (
-      <StyledCopy ref={forwardedRef} {...rest} size={size} weight={weight} />
-    );
-  },
-);
+interface CopyComponents_t {
+  Styled: typeof StyledCopy;
+}
+
+export const Copy = createComponentWithRef<
+  CopyElement_t,
+  CopyProps_t,
+  CopyComponents_t
+>(({ size = 'medium', weight = 'normal', ...rest }, forwardedRef) => {
+  return (
+    <StyledCopy ref={forwardedRef} {...rest} size={size} weight={weight} />
+  );
+});
 
 Copy.defaultProps = {
   size: 'medium',
   weight: 'normal',
 };
+
+Copy.Styled = StyledCopy;

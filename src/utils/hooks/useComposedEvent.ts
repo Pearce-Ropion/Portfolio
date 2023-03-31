@@ -5,7 +5,7 @@ import { Maybe_t } from 'types';
 export interface UseComposedEventOptions_t {
   checkDefaultPrevented?: boolean;
 }
-type ComposedEventHandler_t<E> = (event?: E) => void;
+type ComposedEventHandler_t<E = {}> = (event?: E) => void;
 type ComposedEventCallback_t<E> = Maybe_t<
   ComposedEventHandler_t<E> | UseComposedEventOptions_t
 >;

@@ -2,6 +2,7 @@ export * from 'components/foundations/Box';
 export * from 'components/foundations/Button';
 export * from 'components/foundations/Flex';
 export * from 'components/foundations/Hr';
+export * from 'components/foundations/Html';
 export * from 'components/foundations/Icon';
 export * from 'components/foundations/IconButton';
 export * from 'components/foundations/Typography/Copy';

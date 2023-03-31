@@ -17,9 +17,16 @@ export interface TypographyProps_t
   noWrap?: boolean;
 }
 
+interface TypographyComponents_t {
+  Styled: typeof StyledTypography;
+}
+
 export const Typography = createComponentWithRef<
   TypographyElement_t,
-  TypographyProps_t
+  TypographyProps_t,
+  TypographyComponents_t
 >((props, forwardedRef) => {
   return <StyledTypography ref={forwardedRef} {...props} />;
 });
+
+Typography.Styled = StyledTypography;

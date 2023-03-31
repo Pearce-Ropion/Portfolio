@@ -7,7 +7,7 @@ export const stories = ['../src/**/*.stories.tsx'];
 export const staticDirs = ['../static'];
 
 export const addons = [
-  // 'storybook-addon-gatsby',
+  'storybook-addon-gatsby',
   '@storybook/addon-essentials',
   '@storybook/addon-a11y',
 ];

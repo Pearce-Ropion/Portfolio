@@ -1,6 +1,6 @@
 import { createContext } from 'utils/context';
 
-interface StorybookContext_t {
+export interface StorybookContext_t {
   isStorybook: boolean;
 }
 
@@ -11,5 +11,5 @@ export const [StorybookProvider, useStorybook] =
 
 export const useIsStorybookPreview = () => {
   const { isStorybook } = useStorybook();
-  return isStorybook;
+  return !!isStorybook;
 };

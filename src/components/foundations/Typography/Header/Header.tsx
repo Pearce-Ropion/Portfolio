@@ -12,8 +12,16 @@ export interface HeaderProps_t
   subheader?: boolean;
 }
 
-export const Header = createComponentWithRef<HeaderElement_t, HeaderProps_t>(
-  (props, forwardedRef) => {
-    return <StyledHeader ref={forwardedRef} {...props} />;
-  },
-);
+interface HeaderComponents_t {
+  Styled: typeof StyledHeader;
+}
+
+export const Header = createComponentWithRef<
+  HeaderElement_t,
+  HeaderProps_t,
+  HeaderComponents_t
+>((props, forwardedRef) => {
+  return <StyledHeader ref={forwardedRef} {...props} />;
+});
+
+Header.Styled = StyledHeader;

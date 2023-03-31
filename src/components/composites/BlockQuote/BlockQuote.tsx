@@ -13,9 +13,14 @@ export interface BlockQuoteProps_t
   inverted?: boolean;
 }
 
+interface BlockQuoteComponents_t {
+  Styled: typeof StyledBlockQuote;
+}
+
 export const BlockQuote = createComponentWithRef<
   BlockQuoteElement_t,
-  BlockQuoteProps_t
+  BlockQuoteProps_t,
+  BlockQuoteComponents_t
 >(({ children, inverted, ...rest }, forwardedRef) => {
   return (
     <StyledBlockQuote ref={forwardedRef} {...rest} inverted={inverted}>
@@ -25,3 +30,5 @@ export const BlockQuote = createComponentWithRef<
     </StyledBlockQuote>
   );
 });
+
+BlockQuote.Styled = StyledBlockQuote;

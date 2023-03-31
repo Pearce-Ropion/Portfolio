@@ -1,16 +1,11 @@
-export {
-  AnalyticsContext,
-  Analytics_t,
-} from 'components/contexts/Analytics/AnalyticsContext';
+export type { AnalyticsContext_t } from 'components/contexts/Analytics/AnalyticsContext';
+export type { useAnalytics } from 'components/contexts/Analytics/AnalyticsContext';
 
-export {
-  AnalyticsProvider,
-  AnalyticsProviderProps_t,
-} from 'components/contexts/Analytics/AnalyticsProvider';
+export type { AnalyticsProviderProps_t } from 'components/contexts/Analytics/AnalyticsProvider';
+export { AnalyticsProvider } from 'components/contexts/Analytics/AnalyticsProvider';
 
+export type { UseAnalyticsEvent_t } from 'components/contexts/Analytics/useAnalytics';
 export {
-  useAnalytics,
-  useAnalyticsTrack,
-  useAnalyticsPage,
-  UseAnalyticsTracker_t,
+  useAnalyticsEvent,
+  useAnalyticsPageEvent,
 } from 'components/contexts/Analytics/useAnalytics';
