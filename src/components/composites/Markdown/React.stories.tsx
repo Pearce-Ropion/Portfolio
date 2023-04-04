@@ -7,6 +7,7 @@ import {
   mkStoryTitle,
 } from 'utils/storybook';
 import { Markdown } from 'components/composites/Markdown/Markdown';
+import { useInverted } from 'utils/hooks';
 
 interface Args_t {
   inverted?: boolean;
@@ -24,8 +25,9 @@ export default {
   },
 } as Meta<Args_t>;
 
-const Template: Story<Args_t> = ({ inverted, markdown }) => {
-  return <Markdown inverted={inverted} markdown={markdown} />;
+const Template: Story<Args_t> = args => {
+  const inverted = useInverted();
+  return <Markdown {...args} inverted={inverted} />;
 };
 
 export const Default = Template.bind({});

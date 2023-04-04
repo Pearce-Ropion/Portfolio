@@ -11,6 +11,7 @@ import {
   BlockQuoteProps_t,
 } from 'components/composites/BlockQuote/BlockQuote';
 import { faker } from 'utils/storybook/faker';
+import { useInverted } from 'utils/hooks';
 
 export default {
   title: mkStoryTitle(Chapter.COMPOSITE, Composite.COPY, 'BlockQuote'),
@@ -21,9 +22,10 @@ export default {
   },
 } as ComponentMeta<typeof BlockQuote>;
 
-const Template: ComponentStory<typeof BlockQuote> = args => (
-  <BlockQuote {...args} />
-);
+const Template: ComponentStory<typeof BlockQuote> = args => {
+  const inverted = useInverted();
+  return <BlockQuote {...args} inverted={inverted} />;
+};
 
 export const Default = Template.bind({});
 

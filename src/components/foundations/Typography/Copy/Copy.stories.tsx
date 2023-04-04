@@ -4,6 +4,7 @@ import { Typography } from 'components/foundations/Typography/Typography';
 import { Copy, CopyProps_t } from 'components/foundations/Typography/Copy';
 import { Chapter, Token } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
+import { useInverted } from 'utils/hooks';
 
 export default {
   title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Copy'),
@@ -17,7 +18,10 @@ export default {
   },
 } as ComponentMeta<typeof Copy>;
 
-const Template: ComponentStory<typeof Copy> = args => <Copy {...args} />;
+const Template: ComponentStory<typeof Copy> = args => {
+  const inverted = useInverted();
+  return <Copy {...args} inverted={inverted} />;
+};
 
 export const Default = Template.bind({});
 

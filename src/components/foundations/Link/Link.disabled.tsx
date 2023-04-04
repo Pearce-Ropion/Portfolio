@@ -7,6 +7,7 @@ import {
   mkStoryTitle,
 } from 'utils/storybook';
 import { Link, LinkProps_t } from 'components/foundations/Link/Link';
+import { useInverted } from 'utils/hooks';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'Link'),
@@ -17,8 +18,11 @@ export default {
   },
 } as ComponentMeta<typeof Link>;
 
-// eslint-disable-next-line jsx-a11y/anchor-has-content
-const Template: ComponentStory<typeof Link> = args => <Link {...args} />;
+const Template: ComponentStory<typeof Link> = args => {
+  const inverted = useInverted();
+  // eslint-disable-next-line jsx-a11y/anchor-has-content
+  return <Link {...args} inverted={inverted} />;
+};
 
 export const Default = Template.bind({});
 

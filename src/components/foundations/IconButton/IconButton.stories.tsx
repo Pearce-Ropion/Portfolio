@@ -12,6 +12,7 @@ import {
   IconButton,
   IconButtonProps_t,
 } from 'components/foundations/IconButton/IconButton';
+import { useInverted } from 'utils/hooks';
 
 const icons = Object.keys(library.definitions.fas).sort();
 
@@ -28,9 +29,10 @@ export default {
   },
 } as ComponentMeta<typeof IconButton>;
 
-const Template: ComponentStory<typeof IconButton> = args => (
-  <IconButton {...args} />
-);
+const Template: ComponentStory<typeof IconButton> = args => {
+  const inverted = useInverted();
+  return <IconButton {...args} inverted={inverted} />;
+};
 
 export const Default = Template.bind({});
 

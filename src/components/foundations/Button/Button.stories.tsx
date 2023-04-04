@@ -8,6 +8,7 @@ import {
   disableControl,
 } from 'utils/storybook';
 import { Flex } from 'components/foundations/Flex';
+import { useInverted } from 'utils/hooks';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'Button'),
@@ -21,7 +22,10 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = args => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = args => {
+  const inverted = useInverted();
+  return <Button {...args} inverted={inverted} />;
+};
 
 export const Default = Template.bind({});
 

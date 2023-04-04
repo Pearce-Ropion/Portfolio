@@ -6,6 +6,7 @@ import {
 } from 'components/foundations/Typography/Typography';
 import { Chapter, Token } from 'utils/storybook/chapters';
 import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
+import { useInverted } from 'utils/hooks';
 
 export default {
   title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Typography'),
@@ -16,8 +17,9 @@ export default {
   },
 } as ComponentMeta<typeof Typography>;
 
-const Template: ComponentStory<typeof Typography> = args => (
-  <Typography {...args} />
-);
+const Template: ComponentStory<typeof Typography> = args => {
+  const inverted = useInverted();
+  return <Typography {...args} inverted={inverted} />;
+};
 
 export const Default = Template.bind({});

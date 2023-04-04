@@ -10,6 +10,7 @@ import {
   SocialIcons,
   SocialIconsProps_t,
 } from 'components/composites/SocialIcons/SocialIcons';
+import { useInverted } from 'utils/hooks';
 
 export default {
   title: mkStoryTitle(Chapter.COMPOSITE, Composite.ICON, 'SocialIcons'),
@@ -19,9 +20,10 @@ export default {
   },
 } as ComponentMeta<typeof SocialIcons>;
 
-const Template: ComponentStory<typeof SocialIcons> = args => (
-  <SocialIcons {...args} />
-);
+const Template: ComponentStory<typeof SocialIcons> = args => {
+  const inverted = useInverted();
+  return <SocialIcons {...args} inverted={inverted} />;
+};
 
 export const Default = Template.bind({});
 
