@@ -42,7 +42,6 @@ export const decorators: DecoratorFn[] = [
   (Story, context) => {
     globalStyles();
     globalStorybookStyles();
-    console.log(context);
     return (
       <StorybookProvider
         isStorybook
@@ -57,42 +56,3 @@ export const decorators: DecoratorFn[] = [
     );
   },
 ];
-//     (Story, context: StoryContext) => {
-//         // console.log(context);
-//         const { name, parameters, component } = context;
-//         const { description, notes, componentName } =
-//             parameters as StoryParameters; // params that we've added
-
-//         const inverted = useInvertPage(context);
-//         const noHorizontalPadding = useDisablePagePadding(context);
-
-//         let pageName: string | undefined = name;
-//         let inner: ReactNode = <Story />;
-
-//         if (component) {
-//             pageName =
-//                 componentName ||
-//                 (component as NamedExoticComponent).displayName;
-//             inner = (
-//                 <Example title={name} description={notes} inverted={inverted}>
-//                     <Story />
-//                 </Example>
-//             );
-//         }
-
-//         return (
-//             <StorybookContext.Provider value={IS_STORYBOOK_PREVIEW}>
-//                 <Layout>
-//                     <Page
-//                         title={pageName}
-//                         description={description}
-//                         noHorizontalPadding={noHorizontalPadding}
-//                         inverted={inverted}
-//                     >
-//                         {inner}
-//                     </Page>
-//                 </Layout>
-//             </StorybookContext.Provider>
-//         );
-//     },
-// ];

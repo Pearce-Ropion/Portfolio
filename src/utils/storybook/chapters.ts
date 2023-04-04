@@ -18,6 +18,7 @@ export enum Foundation {
 }
 
 export enum Composite {
+  CONTROL = 'Control',
   COPY = 'Copy',
   ICON = 'Icons',
   SECTION = 'Section',

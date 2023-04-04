@@ -1,0 +1,41 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import * as Form from '@radix-ui/react-form';
+
+import { Input } from 'components/foundations/Input/Input';
+import { useInverted } from 'utils/hooks';
+import {
+  Chapter,
+  Composite,
+  mkStoryComponent,
+  mkStoryTitle,
+} from 'utils/storybook';
+
+export default {
+  title: mkStoryTitle(Chapter.FOUNDATION, Composite.CONTROL, 'Input'),
+  component: mkStoryComponent(Input),
+  args: {
+    label: 'First Name',
+    name: 'fname',
+  },
+  decorators: [
+    Story => (
+      <Form.Root asChild>
+        <div>
+          <Story />
+        </div>
+      </Form.Root>
+    ),
+  ],
+} as ComponentMeta<typeof Input>;
+
+const Template: ComponentStory<typeof Input> = args => {
+  const inverted = useInverted();
+  return <Input {...args} inverted={inverted} />;
+};
+
+export const Default = Template.bind({});
+
+export const Floating = Template.bind({});
+Floating.args = {
+  floating: true,
+};
