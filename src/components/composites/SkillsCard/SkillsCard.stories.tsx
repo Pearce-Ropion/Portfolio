@@ -2,11 +2,13 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { SkillsCard } from 'components/composites/SkillsCard/SkillsCard';
 import { useInverted } from 'utils/hooks';
+import { iconControl } from 'utils/library';
 import {
   Chapter,
   Composite,
   mkStoryComponent,
   mkStoryTitle,
+  textControl,
 } from 'utils/storybook';
 
 export default {
@@ -23,6 +25,10 @@ export default {
       'Figma',
       'Sketch',
     ],
+  },
+  argTypes: {
+    icon: iconControl,
+    title: textControl,
   },
 } as ComponentMeta<typeof SkillsCard>;
 

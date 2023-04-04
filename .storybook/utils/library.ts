@@ -8,9 +8,33 @@ import { fal } from '@fortawesome/pro-light-svg-icons';
 import { fat } from '@fortawesome/pro-thin-svg-icons';
 import { fad } from '@fortawesome/pro-duotone-svg-icons';
 
-library.add(fab);
-library.add(fas);
-library.add(far);
-library.add(fal);
-library.add(fat);
-library.add(fad);
+import { mkEnumOptions, selectControl } from 'utils/storybook';
+
+let initialized = false;
+
+if (!initialized) {
+  library.add(fab);
+  library.add(fas);
+  library.add(far);
+  library.add(fal);
+  library.add(fat);
+  library.add(fad);
+
+  initialized = true;
+}
+
+const prefixes = ['fas', 'far', 'fal', 'fat', 'fad'];
+const icons = Object.keys(library.definitions.fas).sort();
+
+export const iconPrefixControl = selectControl({
+  options: prefixes,
+  labels: {
+    fas: 'Solid',
+    far: 'Regular',
+    fal: 'Light',
+    fat: 'Thin',
+    fad: 'Duotone',
+  },
+});
+
+export const iconControl = mkEnumOptions(icons);

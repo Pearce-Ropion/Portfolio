@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
 import { Chapter, Foundation } from 'utils/storybook/chapters';
 import { mkEnumOptions, mkStoryTitle } from 'utils/storybook';
@@ -11,15 +10,12 @@ import {
   disableControl,
   radioControl,
   removeControl,
-  selectControl,
   tabIndexControl,
   textControl,
   themedColorControl,
 } from 'utils/storybook/controls';
 import { lookupIcon } from 'components/foundations/Icon/util';
-
-const prefixes = ['fas', 'far', 'fal', 'fat', 'fad'];
-const icons = Object.keys(library.definitions.fas).sort();
+import { iconControl, iconPrefixControl } from 'utils/library';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.ICON, 'FontAwesomeIcon'),
@@ -30,17 +26,8 @@ export default {
     size: '3x',
   },
   argTypes: {
-    icon: mkEnumOptions(icons),
-    prefix: selectControl({
-      options: prefixes,
-      labels: {
-        fas: 'Solid',
-        far: 'Regular',
-        fal: 'Light',
-        fat: 'Thin',
-        fad: 'Duotone',
-      },
-    }),
+    icon: iconControl,
+    prefix: iconPrefixControl,
     color: themedColorControl,
     mask: disableControl,
     spin: booleanControl,

@@ -2,7 +2,6 @@ import { Box } from 'components/foundations';
 import { styled } from 'stitches.config';
 
 export const StyledPage = styled(Box, {
-  margin: 0,
   transition: 'background-color 0.3s',
 
   variants: {

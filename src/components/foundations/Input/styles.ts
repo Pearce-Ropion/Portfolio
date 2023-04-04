@@ -11,7 +11,6 @@ export const StyledInputField = styled(Form.Field, {});
 export const StyledInputControl = styled(Box, {
   appearance: 'none',
   cursor: 'text',
-  margin: 0,
   width: '100%',
   minWidth: 0, // override firefox's default minWidth
   alignItems: 'center',
@@ -75,7 +74,6 @@ export const StyledInputControl = styled(Box, {
 });
 
 export const StyledInputLabel = styled(Form.Label, Copy.Styled, {
-  margin: 0,
   marginBottom: '$1',
 
   variants: {

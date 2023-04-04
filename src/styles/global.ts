@@ -64,19 +64,24 @@ export const globalStyles = globalCss({
   '*': {
     '&': {
       boxSizing: 'border-box',
+      marginX: 0,
+      marginY: 0,
     },
     '&::before': {
       boxSizing: 'border-box',
+      marginX: 0,
+      marginY: 0,
     },
     '&::after': {
       boxSizing: 'border-box',
+      marginX: 0,
+      marginY: 0,
     },
   },
 
   body: {
     fontFamily: '$primary',
     color: '$neutral900',
-    margin: 0,
     textRendering: 'optimizeLegibility',
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'greyscale',

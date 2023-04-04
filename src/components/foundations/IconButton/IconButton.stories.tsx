@@ -1,10 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
 import {
   Chapter,
   Foundation,
-  mkEnumOptions,
   mkStoryComponent,
   mkStoryTitle,
 } from 'utils/storybook';
@@ -13,8 +11,7 @@ import {
   IconButtonProps_t,
 } from 'components/foundations/IconButton/IconButton';
 import { useInverted } from 'utils/hooks';
-
-const icons = Object.keys(library.definitions.fas).sort();
+import { iconControl } from 'utils/library';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'IconButton'),
@@ -25,7 +22,7 @@ export default {
     label: 'Email',
   },
   argTypes: {
-    icon: mkEnumOptions(icons),
+    icon: iconControl,
   },
 } as ComponentMeta<typeof IconButton>;
 

@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
 import { Icon, IconProps_t } from 'components/foundations/Icon/Icon';
 import {
@@ -10,13 +9,10 @@ import {
   mkStoryComponent,
   mkStoryTitle,
   rangeControl,
-  selectControl,
   themedColorControl,
 } from 'utils/storybook';
 import { theme } from 'stitches.config';
-
-const prefixes = ['fas', 'far', 'fal', 'fat', 'fad'];
-const icons = Object.keys(library.definitions.fas).sort();
+import { iconControl, iconPrefixControl } from 'utils/library';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.ICON, 'Icon'),
@@ -28,17 +24,8 @@ export default {
     size: '3x',
   },
   argTypes: {
-    prefix: selectControl({
-      options: prefixes,
-      labels: {
-        fas: 'Solid',
-        far: 'Regular',
-        fal: 'Light',
-        fat: 'Thin',
-        fad: 'Duotone',
-      },
-    }),
-    icon: mkEnumOptions(icons),
+    prefix: iconPrefixControl,
+    icon: iconControl,
     color: themedColorControl,
     opacity: rangeControl({ min: 0, max: 1, step: 0.1 }),
     primaryColor: {

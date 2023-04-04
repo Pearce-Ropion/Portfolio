@@ -7,6 +7,7 @@ import {
   Composite,
   mkStoryComponent,
   mkStoryTitle,
+  textControl,
 } from 'utils/storybook';
 
 export default {
@@ -16,6 +17,10 @@ export default {
     ...SkillBubble.defaultProps,
     skill: 'Javascript',
     size: 'medium',
+  },
+  argTypes: {
+    skill: textControl,
+    subSkill: textControl,
   },
 } as ComponentMeta<typeof SkillBubble>;
 

@@ -7,7 +7,6 @@ export const StyledTypography = styled(Box, {
   fontStyle: 'normal',
   fontVariantNumeric: 'tabular-nums',
   display: 'block',
-  margin: 0,
   padding: 0,
 
   variants: {

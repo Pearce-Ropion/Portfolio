@@ -16,12 +16,12 @@ export const StyledHr = styled(HTMLHorizontalRule, {
       horizontal: {
         width: '100%',
         height: '1px',
-        margin: '0 auto',
+        marginX: 'auto',
       },
       vertical: {
         width: '1px',
         height: '100%',
-        margin: 'auto 0',
+        marginY: 'auto',
       },
     },
   },
