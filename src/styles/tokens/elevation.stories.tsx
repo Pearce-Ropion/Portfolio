@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Box, Copy, Flex } from 'components';
+import { Box, Copy, Flex } from 'components/foundations';
 import { Elevation } from 'styles/tokens/elevation';
 import { Chapter, mkStoryTitle } from 'utils/storybook';
 

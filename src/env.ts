@@ -2,7 +2,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       readonly NODE_ENV: 'development' | 'production' | 'test';
-      readonly STORYBOOK_ENV: boolean;
+      readonly STORYBOOK_ENV: 'true' | 'false';
     }
   }
 }
@@ -10,7 +10,7 @@ declare global {
 export const { NODE_ENV, STORYBOOK_ENV } = process.env;
 export const IS_PRODUCTION = NODE_ENV === 'production';
 export const IS_DEVELOPMENT = NODE_ENV === 'development';
-export const IS_STORYBOOK = STORYBOOK_ENV === true;
+export const IS_STORYBOOK = STORYBOOK_ENV === 'true';
 
 export const BASE_URL = 'pearce-ropion.com';
 export const SITE_ORIGIN = new URL(`https://www.${BASE_URL}`);

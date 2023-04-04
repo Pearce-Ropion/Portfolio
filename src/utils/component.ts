@@ -70,10 +70,12 @@ export interface ComponentRendererWithRef_t<
 }
 
 export type ComponentWithRef_t<
-  T extends HTMLOrSVGElement_t,
+  T extends HTMLOrSVGElement_t | unknown,
   P extends object = {},
   SC = {},
-> = ForwardRefExoticComponent<ForwardRefProps_t<T, P>> & ComponentMeta_t<P, SC>;
+> = T extends HTMLOrSVGElement_t
+  ? ForwardRefExoticComponent<ForwardRefProps_t<T, P>> & ComponentMeta_t<P, SC>
+  : never;
 
 export function createComponentWithRef<
   T extends HTMLOrSVGElement_t,

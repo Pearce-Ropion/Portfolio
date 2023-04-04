@@ -1,3 +1,5 @@
+import 'utils/colord';
+
 import { globalCss } from 'stitches.config';
 
 import 'normalize.css/normalize.css';

@@ -7,7 +7,7 @@ import {
   createTrackEvent,
   SegmentEvent_t,
 } from 'utils/events';
-import { useIsStorybookPreview } from 'components/contexts/StorybookContext';
+import { useIsStorybookPreview } from 'components/contexts';
 
 export type UseAnalyticsEvent_t =
   | (() => Promise<SegmentContext> | undefined)

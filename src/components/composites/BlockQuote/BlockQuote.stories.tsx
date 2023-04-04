@@ -31,6 +31,3 @@ export const Inverted = Template.bind({});
 Inverted.args = {
   inverted: true,
 };
-Inverted.parameters = {
-  backgrounds: { default: 'navy900' },
-};

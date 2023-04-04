@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { Maybe_t } from 'types';
+import { Maybe_t } from 'types/helpers';
 
 export interface UseComposedEventOptions_t {
   checkDefaultPrevented?: boolean;

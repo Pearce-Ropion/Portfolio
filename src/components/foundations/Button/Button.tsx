@@ -4,10 +4,11 @@ import {
   createComponentWithRef,
   OmitComponentVariantProps_t,
 } from 'utils/component';
-import { StyledButton } from 'components/foundations/Button/styles';
 import { useComposedEvent } from 'utils/hooks/useComposedEvent';
-import { useAnalyticsEvent } from 'components/contexts/Analytics/useAnalytics';
+import { useAnalyticsEvent } from 'components/contexts';
 import { SegmentEvent_t } from 'utils/events';
+
+import { StyledButton } from './styles';
 
 export type ButtonElement_t = ElementRef<typeof StyledButton>;
 export interface ButtonProps_t

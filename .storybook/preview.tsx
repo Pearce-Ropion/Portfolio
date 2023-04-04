@@ -1,23 +1,19 @@
-import { NamedExoticComponent, ReactNode } from 'react';
 import { action } from '@storybook/addon-actions';
 import { DecoratorFn } from '@storybook/react';
 
-// import { Example } from 'components/Example';
-// import { Layout } from 'components/Layout';
+import 'utils/colord';
+import 'utils/library';
+
 import { Page } from 'components/Page';
-import { StorybookProvider } from 'components/contexts/StorybookContext';
-import { backgrounds } from 'utils/backgrounds';
 import {
-  StoryContext,
-  StoryParameters,
-  //   useDisablePagePadding,
-  // shouldInvertPage,
-} from 'utils/preview';
+  AnalyticsProvider,
+  StorybookProvider,
+  StoryContext_t,
+} from 'components/contexts';
+import { backgroundsParameter } from 'utils/backgrounds';
+import { globalStyles as globalStorybookStyles } from 'utils/styles';
 import { globalStyles } from 'styles/global';
 import { Viewports } from 'utils/viewports';
-import { AnalyticsProvider } from 'components/contexts';
-
-import 'utils/library';
 
 // This is to utilized to override the window.___navigate method Gatsby defines and uses to report what path a Link would be taking us to if it wasn't inside a storybook
 window.___navigate = (pathname: string): void => {
@@ -26,10 +22,7 @@ window.___navigate = (pathname: string): void => {
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
-  backgrounds: {
-    default: 'neutral0',
-    values: backgrounds,
-  },
+  backgrounds: backgroundsParameter,
   controls: {
     exclude: ['as', 'css', 'ref'],
     hideNoControlsWarning: true,
@@ -42,16 +35,23 @@ export const parameters = {
   viewport: {
     viewports: Viewports,
   },
-  layout: 'centered',
+  // layout: 'centered',
 };
 
 export const decorators: DecoratorFn[] = [
-  Story => {
+  (Story, context) => {
     globalStyles();
+    globalStorybookStyles();
+    console.log(context);
     return (
-      <StorybookProvider isStorybook>
+      <StorybookProvider
+        isStorybook
+        context={context as unknown as StoryContext_t}
+      >
         <AnalyticsProvider>
-          <Story />
+          <Page>
+            <Story />
+          </Page>
         </AnalyticsProvider>
       </StorybookProvider>
     );

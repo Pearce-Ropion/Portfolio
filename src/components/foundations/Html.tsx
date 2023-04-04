@@ -1,7 +1,7 @@
 import type { ComponentProps } from '@stitches/react';
 
 import { styled } from 'stitches.config';
-import { CSS_t } from 'types';
+import { CSS_t } from 'types/stitches';
 
 export const HTMLAnchor = styled('a');
 export type HTMLAnchorProps_t = ComponentProps<typeof HTMLAnchor>;

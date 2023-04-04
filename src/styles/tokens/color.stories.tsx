@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { colord } from 'colord';
 
-import { Box, Flex, Copy, Mono } from 'components';
+import { Box, Flex, Copy, Mono } from 'components/foundations';
 import { Palette } from 'styles/tokens/color';
 import { mkStoryTitle } from 'utils/storybook';
 import { Chapter } from 'utils/storybook/chapters';

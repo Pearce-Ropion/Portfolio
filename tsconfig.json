@@ -36,7 +36,7 @@
     ".jest/**/*",
     ".storybook/**/*",
     "babel-plugin-macros.config.js",
-    "gatsby-*.{js,ts}",
+    "gatsby-{browser,config,node}.{js,ts}",
     "jest.config.ts",
     ".eslintrc.js",
     ".prettierrc.js"
