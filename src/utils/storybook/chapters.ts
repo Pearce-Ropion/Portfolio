@@ -11,14 +11,13 @@ export enum Token {
 }
 
 export enum Foundation {
+  CONTROL = 'Controls',
   LAYOUT = 'Layout',
-  INPUT = 'Inputs',
   NAVIGATION = 'Navigation',
   ICON = 'Icons',
 }
 
 export enum Composite {
-  CONTROL = 'Control',
   COPY = 'Copy',
   ICON = 'Icons',
   SECTION = 'Section',

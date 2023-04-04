@@ -5,13 +5,13 @@ import { Input } from 'components/foundations/Input/Input';
 import { useInverted } from 'utils/hooks';
 import {
   Chapter,
-  Composite,
+  Foundation,
   mkStoryComponent,
   mkStoryTitle,
 } from 'utils/storybook';
 
 export default {
-  title: mkStoryTitle(Chapter.FOUNDATION, Composite.CONTROL, 'Input'),
+  title: mkStoryTitle(Chapter.FOUNDATION, Foundation.CONTROL, 'Input'),
   component: mkStoryComponent(Input),
   args: {
     label: 'First Name',
@@ -19,10 +19,8 @@ export default {
   },
   decorators: [
     Story => (
-      <Form.Root asChild>
-        <div>
-          <Story />
-        </div>
+      <Form.Root>
+        <Story />
       </Form.Root>
     ),
   ],
