@@ -35,8 +35,3 @@ export const Direction = Template.bind({});
 Direction.args = {
   direction: 'vertical',
 };
-
-export const Inverted = Template.bind({});
-Inverted.args = {
-  inverted: true,
-};

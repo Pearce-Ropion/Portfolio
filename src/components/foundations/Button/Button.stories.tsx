@@ -41,9 +41,6 @@ PrimaryInverted.args = {
   variant: 'primary',
   inverted: true,
 };
-PrimaryInverted.parameters = {
-  backgrounds: { default: 'navy900' },
-};
 
 export const Secondary = Template.bind({});
 Secondary.args = {
