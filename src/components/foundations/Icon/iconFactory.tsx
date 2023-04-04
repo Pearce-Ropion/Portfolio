@@ -4,10 +4,7 @@ import { cloneElement, isValidElement, ReactElement } from 'react';
 import { Icon, IconProps_t } from 'components/foundations/Icon/Icon';
 import { cx } from 'utils/style/classes';
 import { mergeCSS, mergeStyle } from 'utils/style/css';
-import {
-  IconPrefix_t,
-  iconToIconLookup,
-} from 'components/foundations/Icon/util';
+import { IconPrefix_t, lookupIcon } from 'components/foundations/Icon/util';
 
 export type IconFactoryIconProp_t =
   | IconProp
@@ -38,7 +35,7 @@ export const iconFactory = (
     });
   }
 
-  const iconLookup = iconToIconLookup(icon, prefix, false);
+  const iconLookup = lookupIcon(icon, prefix, false);
 
   if (!iconLookup.iconName) {
     throw new Error('Icon: Invalid `iconName` passed to iconFactory');

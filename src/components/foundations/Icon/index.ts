@@ -26,5 +26,5 @@ export type {
 } from 'components/foundations/Icon/util';
 export {
   DEFAULT_ICON_PREFIX,
-  iconToIconLookup,
+  lookupIcon,
 } from 'components/foundations/Icon/util';

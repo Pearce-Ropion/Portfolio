@@ -16,7 +16,7 @@ import {
   textControl,
   themedColorControl,
 } from 'utils/storybook/controls';
-import { iconToIconLookup } from 'components/foundations/Icon/util';
+import { lookupIcon } from 'components/foundations/Icon/util';
 
 const prefixes = ['fas', 'far', 'fal', 'fat', 'fad'];
 const icons = Object.keys(library.definitions.fas).sort();
@@ -76,7 +76,7 @@ const Template: ComponentStory<typeof FontAwesomeIcon> = ({
   icon,
   ...rest
 }) => {
-  const iconLookup = iconToIconLookup(icon);
+  const iconLookup = lookupIcon(icon);
   return <FontAwesomeIcon {...rest} icon={iconLookup} />;
 };
 

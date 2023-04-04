@@ -15,7 +15,7 @@ export interface IconLookupProps_t {
 
 export const DEFAULT_ICON_PREFIX = 'fas' as const;
 
-export const iconToIconLookup = (
+export const lookupIcon = (
   icon: IconProp_t,
   prefix?: IconPrefix_t | null,
   shouldThrow = true,
@@ -36,7 +36,7 @@ export const iconToIconLookup = (
   }
 
   if (shouldThrow && !iconLookup.iconName) {
-    throw new Error('Icon: Invalid `icon` passed to `iconToIconLookup`');
+    throw new Error('Icon: Invalid `icon` passed to `lookupIcon`');
   }
 
   return iconLookup;

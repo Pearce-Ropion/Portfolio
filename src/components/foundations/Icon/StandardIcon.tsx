@@ -10,7 +10,7 @@ import {
 import { StyledIcon } from 'components/foundations/Icon/styles';
 import {
   IconLookupProps_t,
-  iconToIconLookup,
+  lookupIcon,
 } from 'components/foundations/Icon/util';
 
 declare module 'react' {
@@ -49,7 +49,7 @@ export const StandardIcon = createComponentWithRef<
     forwardedRef,
   ) => {
     const iconLookup = useMemo(() => {
-      return iconToIconLookup(icon, prefix);
+      return lookupIcon(icon, prefix);
     }, [icon, prefix]);
 
     const title = useMemo(() => {
