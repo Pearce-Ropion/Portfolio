@@ -1,4 +1,4 @@
-import { ElementRef } from 'react';
+import { ElementRef, MouseEvent } from 'react';
 
 import {
   createComponentWithRef,
@@ -10,7 +10,10 @@ import { Icon } from 'components/foundations/Icon';
 import { theme } from 'stitches.config';
 import { SegmentEvent_t } from 'utils/events';
 import { useAnalyticsEvent } from 'components/contexts';
-import { useComposedEvent } from 'utils/hooks/useComposedEvent';
+import {
+  ComposedEventHandler_t,
+  useComposedEvent,
+} from 'utils/hooks/useComposedEvent';
 
 export type IconButtonElement_t = ElementRef<typeof StyledIconButton>;
 export interface IconButtonProps_t
@@ -37,7 +40,7 @@ export const IconButton = createComponentWithRef<
     forwardedRef,
   ) => {
     const handleClick = useComposedEvent(
-      onClick,
+      onClick as ComposedEventHandler_t<MouseEvent<IconButtonElement_t>>,
       useAnalyticsEvent('button-click', segment),
     );
 

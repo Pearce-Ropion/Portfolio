@@ -1,5 +1,5 @@
 import { GatsbyLinkProps } from 'gatsby';
-import { ElementRef, MouseEventHandler } from 'react';
+import { ElementRef, MouseEvent, MouseEventHandler } from 'react';
 
 import {
   StyledLink,
@@ -9,7 +9,10 @@ import {
   createComponentWithRef,
   OmitComponentVariantProps_t,
 } from 'utils/component';
-import { useComposedEvent } from 'utils/hooks/useComposedEvent';
+import {
+  ComposedEventHandler_t,
+  useComposedEvent,
+} from 'utils/hooks/useComposedEvent';
 import { useAnalyticsEvent } from 'components/contexts/Analytics/useAnalytics';
 import { SegmentEvent_t } from 'utils/events';
 import { useNormalizedLink } from 'components/foundations/Link/util';
@@ -76,7 +79,7 @@ export const Link = createComponentWithRef<
     forwardedRef,
   ) => {
     const handleClick = useComposedEvent(
-      onClick,
+      onClick as ComposedEventHandler_t<MouseEvent<LinkElement_t>>,
       useAnalyticsEvent('link-click', segment),
     );
 

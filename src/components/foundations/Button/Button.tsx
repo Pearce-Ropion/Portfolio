@@ -1,10 +1,13 @@
-import { ElementRef } from 'react';
+import { ElementRef, MouseEvent } from 'react';
 
 import {
   createComponentWithRef,
   OmitComponentVariantProps_t,
 } from 'utils/component';
-import { useComposedEvent } from 'utils/hooks/useComposedEvent';
+import {
+  ComposedEventHandler_t,
+  useComposedEvent,
+} from 'utils/hooks/useComposedEvent';
 import { useAnalyticsEvent } from 'components/contexts';
 import { SegmentEvent_t } from 'utils/events';
 
@@ -31,7 +34,7 @@ export const Button = createComponentWithRef<
   ButtonComponents_t
 >(({ onClick, segment, variant = 'primary', ...rest }, forwardedRef) => {
   const handleClick = useComposedEvent(
-    onClick,
+    onClick as ComposedEventHandler_t<MouseEvent<ButtonElement_t>>,
     useAnalyticsEvent('button-click', segment),
   );
   return (
