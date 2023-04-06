@@ -33,7 +33,22 @@ const Template: ComponentStory<typeof Input> = args => {
 
 export const Default = Template.bind({});
 
-export const Floating = Template.bind({});
-Floating.args = {
-  floating: true,
+export const Placeholder = Template.bind({});
+Placeholder.args = {
+  placeholder: 'Enter your name',
+};
+
+export const Focused = Template.bind({});
+Focused.args = {
+  focused: true,
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  error: true,
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  success: true,
 };

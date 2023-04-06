@@ -13,8 +13,8 @@ export const FontSize = {
 } as const;
 
 export const LineHeight = {
-  small: '24px',
-  medium: '27px',
+  small: '20px',
+  medium: '24px',
   large: '36px',
   xLarge: '48px',
 } as const;
