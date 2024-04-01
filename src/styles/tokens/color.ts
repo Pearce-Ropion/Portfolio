@@ -39,9 +39,10 @@ export const Palette = {
   green200: '#e6fcee',
 } as const;
 
-export const PaletteShadows = {
-  lightest: 'rgba(22, 22, 22, 0.1)',
-  light: 'rgba(22, 22, 22, 0.2)',
-  dark: 'rgba(22, 22, 22, 0.3)',
-  darkest: 'rgba(22, 22, 22, 0.4)',
+export const PaletteElevation = {
+  shadowSoft: 'rgba(23, 23, 23, 0.05)',
+  shadow: 'rgba(23, 23, 23, 0.1)',
+  shadowStrong: 'rgba(23, 23, 23, 0.15)',
+  shadowStronger: 'rgba(23, 23, 23, 0.20)',
+  shadowOverlay: 'rgba(23, 23, 23, 0.40)',
 } as const;

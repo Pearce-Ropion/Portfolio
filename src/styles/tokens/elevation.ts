@@ -1,17 +1,10 @@
-import { PaletteShadows } from 'styles/tokens/color';
+import { PaletteElevation } from 'styles/tokens/color';
 
 export const Elevation = {
-  level0: 'none',
-  // cards
-  level1: `0 2px 4px -2px ${PaletteShadows.lightest}`,
-  // popups
-  level2: `0 4px 8px -2px ${PaletteShadows.light}`,
-  // tooltips / dnd
-  level3: `0 2px 8px -4px ${PaletteShadows.light}, 0 1px 4px ${PaletteShadows.light}`,
-  // modals
-  level4: `0 2px 8px ${PaletteShadows.dark}, 0 4px 16px -8px ${PaletteShadows.dark}`,
-  // system-level actions
-  level5: `0 3px 12px ${PaletteShadows.dark}, 0 6px 24px -16px ${PaletteShadows.dark}`,
+  low: `0px -1px 8px 0px ${PaletteElevation.shadowStrong}, 0px 4px 8px 0px ${PaletteElevation.shadowSoft}, 4px 0px 8px 0px ${PaletteElevation.shadowSoft}`,
+  lowFilter: `drop-shadow(0px -1px 8px ${PaletteElevation.shadowStrong}) drop-shadow(0px 4px 8px ${PaletteElevation.shadowSoft}) drop-shadow(4px 0px 8px ${PaletteElevation.shadowSoft})`,
+  high: `0px -1px 8px 0px ${PaletteElevation.shadowStronger}, 0px 4px 8px 0px ${PaletteElevation.shadowStrong}, 4px 0px 8px 0px ${PaletteElevation.shadowStrong}`,
+  highFilter: `drop-shadow(0px -1px 8px ${PaletteElevation.shadowStronger}) drop-shadow(0px 4px 8px ${PaletteElevation.shadowStrong}) drop-shadow(4px 0px 8px ${PaletteElevation.shadowStrong})`,
 } as const;
 
 export const ZIndex = {

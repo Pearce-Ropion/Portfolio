@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import { Box, Copy, Flex } from 'components/foundations';
-import { Elevation } from 'styles/tokens/elevation';
 import { Chapter, mkStoryTitle } from 'utils/storybook';
 
 export default {
@@ -10,19 +9,23 @@ export default {
 
 export const Level: FC = () => (
   <Flex direction="row">
-    {Object.entries(Elevation).map(([level, shadow], idx, arr) => (
-      <Box
-        key={level}
-        css={{ marginRight: idx === arr.length - 1 ? '$0' : '$7' }}
+    <Box>
+      <Flex
+        align="center"
+        justify="center"
+        css={{ boxShadow: '$low', size: '200px' }}
       >
-        <Flex
-          align="center"
-          justify="center"
-          css={{ boxShadow: shadow, size: '200px' }}
-        >
-          <Copy weight="medium">{level}</Copy>
-        </Flex>
-      </Box>
-    ))}
+        <Copy weight="medium">High</Copy>
+      </Flex>
+    </Box>
+    <Box>
+      <Flex
+        align="center"
+        justify="center"
+        css={{ boxShadow: '$high', size: '200px' }}
+      >
+        <Copy weight="medium">Low</Copy>
+      </Flex>
+    </Box>
   </Flex>
 );
