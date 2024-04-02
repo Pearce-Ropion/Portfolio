@@ -1,28 +1,11 @@
-import { ElementRef, MouseEvent } from 'react';
+import { useCallback } from 'react';
 
-import {
-  createComponentWithRef,
-  OmitComponentVariantProps_t,
-} from 'utils/component';
-import {
-  ComposedEventHandler_t,
-  useComposedEvent,
-} from 'utils/hooks/useComposedEvent';
+import { createComponentWithRef } from 'utils/component';
 import { useAnalyticsEvent } from 'components/contexts';
-import { SegmentEvent_t } from 'utils/events';
+import { useComposedCallback } from 'utils/hooks';
 
 import { StyledButton } from './styles';
-
-export type ButtonElement_t = ElementRef<typeof StyledButton>;
-export interface ButtonProps_t
-  extends OmitComponentVariantProps_t<typeof StyledButton> {
-  compact?: boolean;
-  disabled?: boolean;
-  fullWidth?: boolean;
-  inverted?: boolean;
-  segment?: SegmentEvent_t;
-  variant?: 'primary' | 'secondary';
-}
+import { ButtonElement_t, ButtonProps_t } from './types';
 
 interface ButtonComponents_t {
   Styled: typeof StyledButton;
@@ -33,10 +16,13 @@ export const Button = createComponentWithRef<
   ButtonProps_t,
   ButtonComponents_t
 >(({ onClick, segment, variant = 'primary', ...rest }, forwardedRef) => {
-  const handleClick = useComposedEvent(
-    onClick as ComposedEventHandler_t<MouseEvent<ButtonElement_t>>,
-    useAnalyticsEvent('button-click', segment),
+  const handleClickEvent = useAnalyticsEvent('button-click', segment);
+
+  const handleClick = useComposedCallback(
+    onClick,
+    useCallback(() => handleClickEvent(), [handleClickEvent]),
   );
+
   return (
     <StyledButton
       ref={forwardedRef}
@@ -46,9 +32,5 @@ export const Button = createComponentWithRef<
     />
   );
 });
-
-Button.defaultProps = {
-  variant: 'primary',
-};
 
 Button.Styled = StyledButton;

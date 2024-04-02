@@ -1,24 +1,32 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Button, ButtonProps_t } from 'components/foundations/Button/Button';
-import { Chapter, Foundation } from 'utils/storybook/chapters';
-import {
-  mkStoryTitle,
-  mkStoryComponent,
-  disableControl,
-} from 'utils/storybook';
 import { Flex } from 'components/foundations/Flex';
+import {
+  Chapter,
+  Foundation,
+  mkStoryTitle,
+  disableControl,
+  mkEnumOptions,
+  booleanControl,
+} from 'utils/storybook';
 import { useInverted } from 'utils/hooks';
+
+import { Button } from './Button';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'Button'),
-  component: mkStoryComponent<ButtonProps_t>(Button),
+  component: Button,
   args: {
-    ...Button.defaultProps,
     children: 'Click Me',
+    variant: 'primary',
   },
   argTypes: {
+    isCompact: booleanControl,
+    isDisabled: booleanControl,
+    isFullWidth: booleanControl,
+    isInverted: booleanControl,
     segment: disableControl,
+    variant: mkEnumOptions(['primary', 'secondary']),
   },
 } as ComponentMeta<typeof Button>;
 

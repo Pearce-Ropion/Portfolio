@@ -1,4 +1,4 @@
-export * from './useComposedEvent';
+export * from './useComposedCallback';
 export * from './useComposedRef';
 export * from './useEnv';
 export * from './useMergeCSS';

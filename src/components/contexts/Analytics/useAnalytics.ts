@@ -9,16 +9,14 @@ import {
 } from 'utils/events';
 import { useIsStorybookPreview } from 'components/contexts';
 
-export type UseAnalyticsEvent_t =
-  | (() => Promise<SegmentContext> | undefined)
-  | undefined;
+export type UseAnalyticsEvent_t = () => Promise<SegmentContext> | undefined;
 
 export const useAnalyticsEvent = (
   eventName: string,
   segment?: SegmentEvent_t,
 ): UseAnalyticsEvent_t => {
   const isStorybook = useIsStorybookPreview();
-  const analyticsContext = useAnalytics('useAnalyticsEvent');
+  const analyticsContext = useAnalytics();
   const { analytics } = analyticsContext;
 
   return useCallback(() => {
@@ -33,7 +31,7 @@ export const useAnalyticsPageEvent = (
   segment?: SegmentEvent_t,
 ): UseAnalyticsEvent_t => {
   const isStorybook = useIsStorybookPreview();
-  const analyticsContext = useAnalytics('useAnalyticsPageEvent');
+  const analyticsContext = useAnalytics();
   const { analytics } = analyticsContext;
 
   return useCallback(() => {
