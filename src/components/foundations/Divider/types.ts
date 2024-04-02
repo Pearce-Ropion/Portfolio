@@ -7,13 +7,16 @@ import {
 import { PropertyValue_t } from 'types/stitches';
 
 export type DividerElement_t = HTMLHRElement;
-export interface DividerProps_t
+
+export interface DividerDOMProps_t
   extends DOMProps_t,
     StyleDOMProps_t,
-    CSSProps_t,
-    StandardDOMEvents_t<DividerElement_t> {
+    StandardDOMEvents_t<DividerElement_t> {}
+
+export interface DividerImplProps_t extends CSSProps_t {
   direction?: 'horizontal' | 'vertical';
   length?: PropertyValue_t<'width' | 'height'>;
   squared?: boolean;
   thickness?: PropertyValue_t<'width' | 'height'>;
 }
+export interface DividerProps_t extends DividerDOMProps_t, DividerImplProps_t {}

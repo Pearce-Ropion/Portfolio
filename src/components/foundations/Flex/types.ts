@@ -1,7 +1,9 @@
 import { CSSProps_t, HTMLAttributes_t } from 'types/dom';
 
 export type FlexElement_t = HTMLDivElement;
-export interface FlexProps_t
+
+export interface FlexDOMProps_t extends HTMLAttributes_t<FlexElement_t> {}
+export interface FlexImplProps_t
   extends HTMLAttributes_t<FlexElement_t>,
     CSSProps_t {
   center?: boolean;
@@ -12,3 +14,5 @@ export interface FlexProps_t
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   wrap?: 'noWrap' | 'wrap';
 }
+
+export interface FlexProps_t extends FlexDOMProps_t, FlexImplProps_t {}
