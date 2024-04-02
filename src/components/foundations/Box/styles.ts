@@ -1,6 +1,13 @@
 import { styled } from 'stitches.config';
-import { HTMLDiv } from 'components/foundations/Html';
+import { HTML } from 'components/foundations/Html';
+import { flexGrowPreset } from 'styles/css';
 
-export const StyledBox = styled(HTMLDiv, {
+export const StyledBox = styled(HTML.Div, {
   boxSizing: 'border-box',
+
+  variants: {
+    grow: {
+      true: flexGrowPreset,
+    },
+  },
 });

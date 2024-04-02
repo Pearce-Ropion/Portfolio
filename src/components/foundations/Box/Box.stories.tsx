@@ -1,9 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Box, BoxProps_t } from 'components/foundations/Box/Box';
-import { Chapter, Foundation } from 'utils/storybook/chapters';
-import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
-import { border } from 'utils/style/format';
+import { Box } from 'components/foundations/Box';
+import {
+  Chapter,
+  Foundation,
+  mkStoryTitle,
+  mkStoryComponent,
+} from 'utils/storybook';
 import { styled } from 'stitches.config';
 
 const InnerBox = styled(Box, {
@@ -13,17 +16,14 @@ const InnerBox = styled(Box, {
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.LAYOUT, 'Box'),
-  component: mkStoryComponent<BoxProps_t>(Box),
-  args: {
-    ...Box.defaultProps,
-  },
+  component: mkStoryComponent(Box),
 } as ComponentMeta<typeof Box>;
 
 const Template: ComponentStory<typeof Box> = args => (
   <Box
     {...args}
     css={{
-      border: border(3, '$neutral800'),
+      border: '3px solid $neutral800',
       borderRadius: '$large',
       size: '400px',
     }}
@@ -35,3 +35,8 @@ const Template: ComponentStory<typeof Box> = args => (
 );
 
 export const Default = Template.bind({});
+
+export const Grow = Template.bind({});
+Grow.args = {
+  grow: true,
+};

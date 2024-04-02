@@ -1,11 +1,15 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Box } from 'components/foundations/Box';
-import { Flex, FlexProps_t } from 'components/foundations/Flex/Flex';
-import { Chapter, Foundation } from 'utils/storybook/chapters';
-import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
-import { border } from 'utils/style/format';
+import {
+  Chapter,
+  Foundation,
+  mkStoryTitle,
+  mkStoryComponent,
+} from 'utils/storybook';
 import { styled } from 'stitches.config';
+
+import { Flex } from './Flex';
 
 const InnerBox = styled(Box, {
   size: '100px',
@@ -14,7 +18,7 @@ const InnerBox = styled(Box, {
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.LAYOUT, 'Flex'),
-  component: mkStoryComponent<FlexProps_t>(Flex),
+  component: mkStoryComponent(Flex),
   args: {
     ...Flex.defaultProps,
   },
@@ -24,7 +28,7 @@ const Template: ComponentStory<typeof Flex> = args => (
   <Flex
     {...args}
     css={{
-      border: border(3, '$neutral800'),
+      border: '3px solid $neutral800',
       borderRadius: '$large',
       size: args.wrap ? '250px' : '400px',
     }}
@@ -37,6 +41,11 @@ const Template: ComponentStory<typeof Flex> = args => (
 
 export const Default = Template.bind({});
 
+export const Align = Template.bind({});
+Align.args = {
+  align: 'end',
+};
+
 export const Center = Template.bind({});
 Center.args = {
   center: true,
@@ -47,9 +56,14 @@ Direction.args = {
   direction: 'column',
 };
 
-export const Align = Template.bind({});
-Align.args = {
-  align: 'end',
+export const Gap = Template.bind({});
+Gap.args = {
+  gap: 3,
+};
+
+export const Grow = Template.bind({});
+Grow.args = {
+  grow: true,
 };
 
 export const Justify = Template.bind({});

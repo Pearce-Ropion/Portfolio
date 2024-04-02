@@ -1,16 +1,9 @@
-import { ElementRef } from 'react';
+import { createComponentWithRef } from 'utils/component';
 
-import {
-  createComponentWithRef,
-  OmitComponentVariantProps_t,
-} from 'utils/component';
-import { StyledBox } from 'components/foundations/Box/styles';
+import { StyledBox } from './styles';
+import { BoxElement_t, BoxProps_t } from './types';
 
-export type BoxElement_t = ElementRef<typeof StyledBox>;
-export interface BoxProps_t
-  extends OmitComponentVariantProps_t<typeof StyledBox> {}
-
-interface BoxComponents_t {
+export interface BoxComponents_t {
   Styled: typeof StyledBox;
 }
 

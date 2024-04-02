@@ -1,23 +1,9 @@
-import { ElementRef } from 'react';
+import { createComponentWithRef } from 'utils/component';
 
-import {
-  createComponentWithRef,
-  OmitComponentVariantProps_t,
-} from 'utils/component';
-import { StyledFlex } from 'components/foundations/Flex/styles';
+import { StyledFlex } from './styles';
+import { FlexElement_t, FlexProps_t } from './types';
 
-export type FlexElement_t = ElementRef<typeof StyledFlex>;
-export interface FlexProps_t
-  extends OmitComponentVariantProps_t<typeof StyledFlex> {
-  center?: boolean;
-  direction?: 'row' | 'column';
-  align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
-  justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
-  wrap?: 'noWrap' | 'wrap';
-  grow?: boolean;
-}
-
-interface FlexComponents_t {
+export interface FlexComponents_t {
   Styled: typeof StyledFlex;
 }
 
