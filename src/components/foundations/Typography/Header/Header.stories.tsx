@@ -12,18 +12,18 @@ export default {
     children: 'The inner machinations of my mind are an enigma.',
   },
   argTypes: {
-    subheader: booleanControl,
+    isSubheader: booleanControl,
   },
 } as ComponentMeta<typeof Header>;
 
 const Template: ComponentStory<typeof Header> = args => {
   const inverted = useInverted();
-  return <Header {...args} inverted={inverted} />;
+  return <Header {...args} isInverted={inverted} />;
 };
 
 export const Default = Template.bind({});
 
 export const Subheader = Template.bind({});
 Subheader.args = {
-  subheader: true,
+  isSubheader: true,
 };

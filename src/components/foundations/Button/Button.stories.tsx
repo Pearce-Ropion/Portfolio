@@ -31,15 +31,15 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = args => {
-  const inverted = useInverted();
-  return <Button {...args} inverted={inverted} />;
+  const isInverted = useInverted();
+  return <Button {...args} isInverted={isInverted} />;
 };
 
 export const Default = Template.bind({});
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  disabled: true,
+  isDisabled: true,
 };
 
 export const Primary = Template.bind({});
@@ -51,7 +51,7 @@ Primary.args = {
 export const PrimaryInverted = Template.bind({});
 PrimaryInverted.args = {
   variant: 'primary',
-  inverted: true,
+  isInverted: true,
 };
 
 export const Secondary = Template.bind({});
@@ -62,12 +62,12 @@ Secondary.args = {
 export const SecondaryInverted = Template.bind({});
 SecondaryInverted.args = {
   variant: 'secondary',
-  inverted: true,
+  isInverted: true,
 };
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
-  fullWidth: true,
+  isFullWidth: true,
 };
 FullWidth.decorators = [
   Story => (
@@ -79,6 +79,6 @@ FullWidth.decorators = [
 
 export const Compact = Template.bind({});
 Compact.args = {
-  compact: true,
+  isCompact: true,
   children: 'OK',
 };

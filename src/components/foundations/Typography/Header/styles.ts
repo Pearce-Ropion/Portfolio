@@ -9,7 +9,7 @@ export const StyledHeader = styled(Typography, {
   letterSpacing: '$long',
 
   variants: {
-    subheader: {
+    isSubheader: {
       true: {
         fontFamily: '$primary',
         fontWeight: '$semiBold',

@@ -1,12 +1,7 @@
+import { HTML } from 'components/foundations/Html';
 import { styled } from 'stitches.config';
-import { HTMLButton } from 'components/foundations/Html';
-import { StyledConfig_t } from 'types/stitches';
 
-const styledButtonConfig: StyledConfig_t = {
-  shouldForwardStitchesProp: prop => prop === 'disabled',
-};
-
-export const StyledButton = styled.withConfig(styledButtonConfig)(HTMLButton, {
+export const StyledButton = styled(HTML.Button, {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
@@ -17,7 +12,6 @@ export const StyledButton = styled.withConfig(styledButtonConfig)(HTMLButton, {
   border: 'none',
   outline: 'none',
   transition: '$standard',
-  userSelect: 'none',
   whiteSpace: 'nowrap',
   minWidth: '88px',
 
@@ -34,13 +28,13 @@ export const StyledButton = styled.withConfig(styledButtonConfig)(HTMLButton, {
   },
 
   variants: {
-    compact: {
+    isCompact: {
       true: {
         minWidth: 'unset',
       },
     },
 
-    disabled: {
+    isDisabled: {
       true: {
         opacity: 0.4,
         cursor: 'default',
@@ -52,13 +46,13 @@ export const StyledButton = styled.withConfig(styledButtonConfig)(HTMLButton, {
       },
     },
 
-    fullWidth: {
+    isFullWidth: {
       true: {
         width: '100%',
       },
     },
 
-    inverted: {
+    isInverted: {
       true: {},
     },
 
@@ -82,14 +76,14 @@ export const StyledButton = styled.withConfig(styledButtonConfig)(HTMLButton, {
 
   compoundVariants: [
     {
-      inverted: true,
+      isInverted: true,
       variant: 'primary',
       css: {
         backgroundColor: '$orange800',
       },
     },
     {
-      inverted: true,
+      isInverted: true,
       variant: 'secondary',
       css: {
         color: '$neutral900',

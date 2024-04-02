@@ -11,20 +11,20 @@ export const StyledCard = styled(Box, {
   maxWidth: '400px',
 
   variants: {
-    bordered: {
+    isBordered: {
       true: {
         border: border(1, '$navy500'),
       },
     },
 
-    inverted: {
+    isInverted: {
       true: {
         boxShadow: 'none',
         backgroundColor: '$navy200',
       },
     },
 
-    padded: {
+    isPadded: {
       true: {
         padding: '$7',
       },
@@ -33,8 +33,8 @@ export const StyledCard = styled(Box, {
 
   compoundVariants: [
     {
-      bordered: true,
-      inverted: true,
+      isBordered: true,
+      isInverted: true,
       css: {
         border: border(1, 'transparent'),
       },
@@ -42,6 +42,6 @@ export const StyledCard = styled(Box, {
   ],
 
   defaultVariants: {
-    padded: true,
+    isPadded: true,
   },
 });

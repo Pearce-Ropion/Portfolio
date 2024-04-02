@@ -8,11 +8,11 @@ export interface TypographyDOMProps_t
 export interface TypographyImplProps_t extends CSSProps_t {
   align?: 'left' | 'center' | 'right';
   grow?: boolean;
-  inline?: boolean;
-  inverted?: boolean;
-  italic?: boolean;
-  noWrap?: boolean;
-  truncate?: boolean;
+  isInline?: boolean;
+  isInverted?: boolean;
+  isItalic?: boolean;
+  isTruncated?: boolean;
+  wrap?: boolean;
 }
 
 export interface TypographyProps_t

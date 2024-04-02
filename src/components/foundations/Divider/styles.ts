@@ -1,9 +1,8 @@
 import { HTML } from 'components/foundations/Html';
 import { styled } from 'stitches.config';
-import { mkThemeVar } from 'utils/styles/mkThemeVar';
 
 export const StyledDivider = styled(HTML.Span, {
-  backgroundColor: mkThemeVar('divider-background', '$borderComponentStatic'),
+  backgroundColor: '$neutral500',
   borderRadius: '$pill',
 
   variants: {
@@ -11,18 +10,18 @@ export const StyledDivider = styled(HTML.Span, {
       horizontal: {
         marginX: 'auto',
         maxWidth: '100%',
-        minHeight: 'var(--phi-divider-thickness, 1px)',
-        width: 'var(--phi-divider-length, 100%)',
+        minHeight: 'var(--divider-thickness, 1px)',
+        width: 'var(--divider-length, 100%)',
       },
       vertical: {
-        height: 'var(--phi-divider-length, 100%)',
+        height: 'var(--divider-length, 100%)',
         marginY: 'auto',
         maxHeight: '100%',
-        minWidth: 'var(--phi-divider-thickness, 1px)',
+        minWidth: 'var(--divider-thickness, 1px)',
       },
     },
 
-    squared: {
+    isSquared: {
       true: {
         borderRadius: 0,
       },

@@ -6,9 +6,9 @@ export interface FlexDOMProps_t extends HTMLAttributes_t<FlexElement_t> {}
 export interface FlexImplProps_t
   extends HTMLAttributes_t<FlexElement_t>,
     CSSProps_t {
+  align?: 'start' | 'center' | 'end';
   center?: boolean;
   direction?: 'column' | 'columnReverse' | 'row' | 'rowReverse';
-  align?: 'start' | 'center' | 'end';
   gap?: 1 | 2 | 3 | 4 | 5 | 6 | 7;
   grow?: boolean;
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';

@@ -15,22 +15,30 @@ export const Button = createComponentWithRef<
   ButtonElement_t,
   ButtonProps_t,
   ButtonComponents_t
->(({ onClick, segment, variant = 'primary', ...rest }, forwardedRef) => {
-  const handleClickEvent = useAnalyticsEvent('button-click', segment);
+>(
+  (
+    { isDisabled, onClick, segment, variant = 'primary', ...rest },
+    forwardedRef,
+  ) => {
+    const handleClickEvent = useAnalyticsEvent('button-click', segment);
 
-  const handleClick = useComposedCallback(
-    onClick,
-    useCallback(() => handleClickEvent(), [handleClickEvent]),
-  );
+    const handleClick = useComposedCallback(
+      onClick,
+      useCallback(() => handleClickEvent(), [handleClickEvent]),
+      { disabled: isDisabled },
+    );
 
-  return (
-    <StyledButton
-      ref={forwardedRef}
-      {...rest}
-      onClick={handleClick}
-      variant={variant}
-    />
-  );
-});
+    return (
+      <StyledButton
+        ref={forwardedRef}
+        {...rest}
+        disabled={isDisabled}
+        isDisabled={isDisabled}
+        onClick={handleClick}
+        variant={variant}
+      />
+    );
+  },
+);
 
 Button.Styled = StyledButton;

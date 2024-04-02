@@ -3,40 +3,45 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Card } from 'components/foundations/Card/Card';
 import { useInverted } from 'utils/hooks';
 import {
+  booleanControl,
   Chapter,
   faker,
   Foundation,
-  mkStoryComponent,
   mkStoryTitle,
 } from 'utils/storybook';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.LAYOUT, 'Card'),
-  component: mkStoryComponent(Card),
+  component: Card,
   args: {
-    ...Card.defaultProps,
     children: faker.lorem.paragraph(),
+    isPadded: true,
+  },
+  argTypes: {
+    isBordered: booleanControl,
+    isPadded: booleanControl,
+    isInverted: booleanControl,
   },
 } as ComponentMeta<typeof Card>;
 
 const Template: ComponentStory<typeof Card> = args => {
   const inverted = useInverted();
-  return <Card {...args} inverted={inverted} />;
+  return <Card {...args} isInverted={inverted} />;
 };
 
 export const Default = Template.bind({});
 
 export const Bordered = Template.bind({});
 Bordered.args = {
-  bordered: true,
+  isBordered: true,
 };
 
 export const NoPadding = Template.bind({});
 NoPadding.args = {
-  padded: false,
+  isPadded: false,
 };
 
 export const Inverted = Template.bind({});
 Inverted.args = {
-  inverted: true,
+  isInverted: true,
 };

@@ -32,31 +32,31 @@ export const StyledTypography = styled(HTML.Div, {
       true: flexGrowPreset,
     },
 
-    inline: {
+    isInline: {
       true: {
         display: 'inline-block',
       },
     },
 
-    inverted: {
+    isInverted: {
       true: {
         color: '$neutral0',
       },
     },
 
-    italic: {
+    isItalic: {
       true: {
         fontStyle: 'italic',
       },
     },
 
-    noWrap: {
-      true: {
+    wrap: {
+      false: {
         whiteSpace: 'nowrap',
       },
     },
 
-    truncate: {
+    isTruncated: {
       true: {
         overflow: 'hidden',
         textOverflow: 'ellipsis',
