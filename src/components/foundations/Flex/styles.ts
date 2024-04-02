@@ -36,12 +36,6 @@ export const StyledFlex = styled(HTML.Div, {
       end: {
         alignItems: 'flex-end',
       },
-      stretch: {
-        alignItems: 'stretch',
-      },
-      baseline: {
-        alignItems: 'baseline',
-      },
     },
     gap: {
       1: {

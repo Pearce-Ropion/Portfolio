@@ -1,17 +1,7 @@
-import { ElementRef } from 'react';
+import { createComponentWithRef } from 'utils/component';
 
-import {
-  createComponentWithRef,
-  OmitComponentVariantProps_t,
-} from 'utils/component';
-import { StyledCopy } from 'components/foundations/Typography/Copy/styles';
-
-export type CopyElement_t = ElementRef<typeof StyledCopy>;
-export interface CopyProps_t
-  extends OmitComponentVariantProps_t<typeof StyledCopy> {
-  size?: 'small' | 'medium' | 'large';
-  weight?: 'thin' | 'light' | 'normal' | 'medium' | 'bold' | 'black';
-}
+import { StyledCopy } from './styles';
+import { CopyElement_t, CopyProps_t } from './types';
 
 interface CopyComponents_t {
   Styled: typeof StyledCopy;
@@ -26,10 +16,5 @@ export const Copy = createComponentWithRef<
     <StyledCopy ref={forwardedRef} {...rest} size={size} weight={weight} />
   );
 });
-
-Copy.defaultProps = {
-  size: 'medium',
-  weight: 'normal',
-};
 
 Copy.Styled = StyledCopy;

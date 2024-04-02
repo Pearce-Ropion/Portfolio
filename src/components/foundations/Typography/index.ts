@@ -1,3 +1,5 @@
-export * from 'components/foundations/Typography/Copy';
-export * from 'components/foundations/Typography/Header';
-export * from 'components/foundations/Typography/Mono';
+export * from './Copy';
+export * from './Header';
+export * from './Mono';
+
+export { TypographyElement_t, TypographyProps_t } from './types';

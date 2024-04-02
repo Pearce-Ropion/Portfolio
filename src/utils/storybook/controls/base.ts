@@ -22,26 +22,38 @@ export interface NumberControlOptions_t {
 
 export type EnumOption_t = string | number;
 export type EnumOptions_t = EnumOption_t[];
+
 export interface EnumControlOptions_t {
-  options?: EnumOptions_t;
-  labels?: Record<string, string>;
+  labels: Record<string, string>;
+}
+
+export interface EnumControlMappingOptions_t {
+  labels?: Record<string, EnumOption_t>;
   mapping?: Record<string, unknown>;
+}
+
+export interface EnumArgOptions_t<T extends string>
+  extends EnumControlMappingOptions_t {
+  control: ControlOptions_t<T, EnumControlOptions_t>;
+}
+export interface BaseEnumOptions_t extends EnumControlMappingOptions_t {
+  options?: EnumOptions_t;
 }
 
 export type ControlParams_t =
   | ControlOptions_t<'boolean'>
-  | ControlOptions_t<'check', EnumControlOptions_t>
+  | ControlOptions_t<'check', BaseEnumOptions_t>
   | ControlOptions_t<'color', ColorControlOptions_t>
   | ControlOptions_t<'date'>
   | ControlOptions_t<'file', FileControlOptions_t>
-  | ControlOptions_t<'inline-check', EnumControlOptions_t>
-  | ControlOptions_t<'inline-radio', EnumControlOptions_t>
+  | ControlOptions_t<'inline-check', BaseEnumOptions_t>
+  | ControlOptions_t<'inline-radio', BaseEnumOptions_t>
   | ControlOptions_t<'object'>
-  | ControlOptions_t<'multi-select', EnumControlOptions_t>
+  | ControlOptions_t<'multi-select', BaseEnumOptions_t>
   | ControlOptions_t<'number', NumberControlOptions_t>
-  | ControlOptions_t<'radio', EnumControlOptions_t>
+  | ControlOptions_t<'radio', BaseEnumOptions_t>
   | ControlOptions_t<'range', NumberControlOptions_t>
-  | ControlOptions_t<'select', EnumControlOptions_t>
+  | ControlOptions_t<'select', BaseEnumOptions_t>
   | ControlOptions_t<'text'>;
 
 export type ControlType_t = ControlParams_t['type'];
@@ -60,7 +72,7 @@ export interface TypeParams_t {
   required?: boolean;
 }
 
-export interface PropOptions_t {
+export interface PropOptions_t extends EnumControlMappingOptions_t {
   control?: ControlParams_t | false;
   description?: string;
   table?: TableParams_t;
@@ -77,17 +89,19 @@ type ControlTypeOptions_t = Omit<ControlParams_t, 'type'>;
 export const setControlType = (
   control: ControlArg_t,
   options: ControlTypeOptions_t = {},
+  additional: Record<string, unknown> = {},
 ): PropOptions_t => {
   if (control === false) {
     return { control: false };
   }
 
   return {
+    // @ts-ignore - type cannot reconncile with a single control type
     control: {
-      // @ts-ignore - type cannot reconncile with a single control type
       type: control,
       ...options,
     },
+    ...additional,
   };
 };
 
@@ -121,8 +135,8 @@ export const baseEnumControl = (
     | 'radio'
     | 'inline-radio'
   >,
-  { options = [], labels = {}, mapping = {} }: EnumControlOptions_t = {},
-): PropOptions_t => setControlType(control, { options, labels, mapping });
+  { options = [], labels = {}, mapping = {} }: BaseEnumOptions_t = {},
+): PropOptions_t => setControlType(control, { options }, { labels, mapping });
 
 export const radioControl = (options: EnumControlOptions_t) =>
   baseEnumControl('radio', options);

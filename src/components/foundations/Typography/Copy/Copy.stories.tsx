@@ -1,20 +1,17 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Typography } from 'components/foundations/Typography/Typography';
-import { Copy, CopyProps_t } from 'components/foundations/Typography/Copy';
-import { Chapter, Token } from 'utils/storybook/chapters';
-import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
 import { useInverted } from 'utils/hooks';
+import { Chapter, Token, mkStoryTitle } from 'utils/storybook';
+
+import { Copy } from './Copy';
 
 export default {
   title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Copy'),
-  component: mkStoryComponent<CopyProps_t>(Copy),
-  subcomponents: {
-    Typography,
-  },
+  component: Copy,
   args: {
-    ...Copy.defaultProps,
     children: 'The inner machinations of my mind are an enigma.',
+    size: 'medium',
+    weight: 'normal',
   },
 } as ComponentMeta<typeof Copy>;
 
@@ -31,7 +28,6 @@ Small.args = {
 };
 
 export const Medium = Template.bind({});
-Medium.storyName = 'Medium (default)';
 Medium.args = {
   size: 'medium',
 };

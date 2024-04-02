@@ -58,6 +58,8 @@ export const webpackFinal = (config: Configuration) => {
 
 const skipPropsWithName = ['as', 'css', 'segment', 'asChild'];
 export const typescript = {
+  reactDocgen: false,
+  reactDocgenTypescript: false,
   reactDocgenTypescriptOptions: {
     propFilter: (prop: PropItem) => {
       if (skipPropsWithName.includes(prop.name)) {

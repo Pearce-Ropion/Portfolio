@@ -1,13 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Box } from 'components/foundations/Box';
+import { styled } from 'stitches.config';
 import {
   Chapter,
   Foundation,
   mkStoryTitle,
-  mkStoryComponent,
+  booleanControl,
+  mkEnumOptions,
 } from 'utils/storybook';
-import { styled } from 'stitches.config';
 
 import { Flex } from './Flex';
 
@@ -18,9 +19,22 @@ const InnerBox = styled(Box, {
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.LAYOUT, 'Flex'),
-  component: mkStoryComponent(Flex),
-  args: {
-    ...Flex.defaultProps,
+  component: Flex,
+  argTypes: {
+    center: booleanControl,
+    direction: mkEnumOptions(['column', 'columnReverse', 'row', 'rowReverse']),
+    align: mkEnumOptions(['center', 'end', 'start']),
+    gap: mkEnumOptions([1, 2, 3, 4, 5, 6, 7]),
+    grow: booleanControl,
+    justify: mkEnumOptions([
+      'start',
+      'center',
+      'end',
+      'between',
+      'around',
+      'evenly',
+    ]),
+    wrap: mkEnumOptions(['noWrap', 'wrap']),
   },
 } as ComponentMeta<typeof Flex>;
 

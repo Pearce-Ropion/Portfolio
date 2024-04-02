@@ -70,14 +70,36 @@ const borderShorthandConfig = {
   }),
 };
 
-export const shorthandConfig = {
-  align: (value: PropertyValue_t<'alignItems'>) => ({ alignItems: value }),
-  justify: (value: PropertyValue_t<'justifyContent'>) => ({
-    justifyContent: value,
+const sizeShorthandConfig = {
+  exactHeight: (value: PropertyValue_t<'width'>) => ({
+    maxHeight: value,
+    minHeight: value,
   }),
-  linearGradient: (value: string) => ({
-    backgroundColor: `linear-gradient(${value})`,
+  exactWidth: (value: PropertyValue_t<'width'>) => ({
+    maxWidth: value,
+    minWidth: value,
   }),
+  exactSize: (value: PropertyValue_t<'width'>) => ({
+    maxWidth: value,
+    maxHeight: value,
+    minWidth: value,
+    minHeight: value,
+  }),
+  minSize: (value: PropertyValue_t<'width'>) => ({
+    minHeight: value,
+    minWidth: value,
+  }),
+  maxSize: (value: PropertyValue_t<'width'>) => ({
+    maxHeight: value,
+    maxWidth: value,
+  }),
+  size: (value: PropertyValue_t<'width'>) => ({
+    width: value,
+    height: value,
+  }),
+};
+
+const spaceShorthandConfig = {
   marginX: (
     value: PropertyValue_t<'marginLeft'> | PropertyValue_t<'marginRight'>,
   ) => ({
@@ -102,9 +124,22 @@ export const shorthandConfig = {
     paddingTop: value,
     paddingBottom: value,
   }),
-  ...borderShorthandConfig,
-  size: (value: PropertyValue_t<'width'>) => ({
-    width: value,
-    height: value,
+};
+
+const flexShorthandlConfig = {
+  align: (value: PropertyValue_t<'alignItems'>) => ({ alignItems: value }),
+  justify: (value: PropertyValue_t<'justifyContent'>) => ({
+    justifyContent: value,
   }),
+};
+
+export const shorthandConfig = {
+  linearGradient: (value: string) => ({
+    backgroundColor: `linear-gradient(${value})`,
+  }),
+
+  ...borderShorthandConfig,
+  ...flexShorthandlConfig,
+  ...sizeShorthandConfig,
+  ...spaceShorthandConfig,
 };

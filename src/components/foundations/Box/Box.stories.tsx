@@ -1,13 +1,13 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Box } from 'components/foundations/Box';
+import { styled } from 'stitches.config';
 import {
   Chapter,
   Foundation,
+  booleanControl,
   mkStoryTitle,
-  mkStoryComponent,
 } from 'utils/storybook';
-import { styled } from 'stitches.config';
 
 const InnerBox = styled(Box, {
   size: '100px',
@@ -16,7 +16,10 @@ const InnerBox = styled(Box, {
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.LAYOUT, 'Box'),
-  component: mkStoryComponent(Box),
+  component: Box,
+  argTypes: {
+    grow: booleanControl,
+  },
 } as ComponentMeta<typeof Box>;
 
 const Template: ComponentStory<typeof Box> = args => (
@@ -28,9 +31,9 @@ const Template: ComponentStory<typeof Box> = args => (
       size: '400px',
     }}
   >
-    <InnerBox css={{ backgroundColor: '$green800' }} />
-    <InnerBox css={{ backgroundColor: '$yellow800' }} />
-    <InnerBox css={{ backgroundColor: '$red800' }} />
+    <InnerBox style={{ backgroundColor: '$green800' }} />
+    <InnerBox style={{ backgroundColor: '$yellow800' }} />
+    <InnerBox style={{ backgroundColor: '$red800' }} />
   </Box>
 );
 

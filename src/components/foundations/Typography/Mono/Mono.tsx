@@ -1,24 +1,7 @@
-import { ElementRef } from 'react';
+import { createComponentWithRef } from 'utils/component';
 
-import {
-  createComponentWithRef,
-  OmitComponentVariantProps_t,
-} from 'utils/component';
-import { StyledMono } from 'components/foundations/Typography/Mono/styles';
-
-export type MonoElement_t = ElementRef<typeof StyledMono>;
-export interface MonoProps_t
-  extends OmitComponentVariantProps_t<typeof StyledMono> {
-  weight?:
-    | 'extraLight'
-    | 'light'
-    | 'normal'
-    | 'medium'
-    | 'semiBold'
-    | 'bold'
-    | 'extraBold'
-    | 'black';
-}
+import { StyledMono } from './styles';
+import { MonoElement_t, MonoProps_t } from './types';
 
 interface MonoComponents_t {
   Styled: typeof StyledMono;

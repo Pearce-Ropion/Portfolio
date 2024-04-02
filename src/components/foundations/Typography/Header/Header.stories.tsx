@@ -1,23 +1,18 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Typography } from 'components/foundations/Typography/Typography';
-import {
-  Header,
-  HeaderProps_t,
-} from 'components/foundations/Typography/Header';
-import { Chapter, Token } from 'utils/storybook/chapters';
-import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
+import { Chapter, Token, mkStoryTitle, booleanControl } from 'utils/storybook';
 import { useInverted } from 'utils/hooks';
+
+import { Header } from './Header';
 
 export default {
   title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Header'),
-  component: mkStoryComponent<HeaderProps_t>(Header),
-  subcomponents: {
-    Typography,
-  },
+  component: Header,
   args: {
-    ...Header.defaultProps,
     children: 'The inner machinations of my mind are an enigma.',
+  },
+  argTypes: {
+    subheader: booleanControl,
   },
 } as ComponentMeta<typeof Header>;
 

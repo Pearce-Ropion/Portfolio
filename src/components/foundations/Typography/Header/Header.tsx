@@ -1,16 +1,7 @@
-import { ElementRef } from 'react';
+import { createComponentWithRef } from 'utils/component';
 
-import {
-  createComponentWithRef,
-  OmitComponentVariantProps_t,
-} from 'utils/component';
-import { StyledHeader } from 'components/foundations/Typography/Header/styles';
-
-export type HeaderElement_t = ElementRef<typeof StyledHeader>;
-export interface HeaderProps_t
-  extends OmitComponentVariantProps_t<typeof StyledHeader> {
-  subheader?: boolean;
-}
+import { StyledHeader } from './styles';
+import { HeaderElement_t, HeaderProps_t } from './types';
 
 interface HeaderComponents_t {
   Styled: typeof StyledHeader;

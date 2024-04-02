@@ -1,19 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Typography } from 'components/foundations/Typography/Typography';
-import { Mono, MonoProps_t } from 'components/foundations/Typography/Mono';
-import { Chapter, Token } from 'utils/storybook/chapters';
-import { mkStoryTitle, mkStoryComponent } from 'utils/storybook';
+import { Chapter, Token, mkStoryTitle } from 'utils/storybook';
 import { useInverted } from 'utils/hooks';
+
+import { Mono } from './Mono';
 
 export default {
   title: mkStoryTitle(Chapter.TOKEN, Token.TYPOGRAPHY, 'Mono'),
-  component: mkStoryComponent<MonoProps_t>(Mono),
-  subcomponents: {
-    Typography,
-  },
+  component: Mono,
   args: {
-    ...Mono.defaultProps,
     children: 'The inner machinations of my mind are an enigma.',
   },
 } as ComponentMeta<typeof Mono>;

@@ -1,7 +1,8 @@
 import { styled } from 'stitches.config';
-import { Box } from 'components/foundations/Box';
+import { HTML } from 'components/foundations/Html';
+import { flexGrowPreset } from 'styles/css';
 
-export const StyledTypography = styled(Box, {
+export const StyledTypography = styled(HTML.Div, {
   fontFamily: '$primary',
   fontWeight: '$regular',
   fontStyle: 'normal',
@@ -27,6 +28,10 @@ export const StyledTypography = styled(Box, {
       },
     },
 
+    grow: {
+      true: flexGrowPreset,
+    },
+
     inline: {
       true: {
         display: 'inline-block',
@@ -45,16 +50,16 @@ export const StyledTypography = styled(Box, {
       },
     },
 
-    truncate: {
+    noWrap: {
       true: {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       },
     },
 
-    noWrap: {
+    truncate: {
       true: {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       },
     },
