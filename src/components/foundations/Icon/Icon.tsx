@@ -1,21 +1,12 @@
-import { ElementRef, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import {
-  DuotoneIcon,
-  DuotoneIconProps_t,
-} from 'components/foundations/Icon/DuotoneIcon';
-import {
-  StandardIcon,
-  StandardIconProps_t,
-} from 'components/foundations/Icon/StandardIcon';
 import { createComponentWithRef } from 'utils/component';
-import { StyledIcon } from 'components/foundations/Icon/styles';
-import { lookupIcon } from 'components/foundations/Icon/util';
 
-export type IconElement_t = ElementRef<typeof StandardIcon>;
-export interface IconProps_t extends StandardIconProps_t, DuotoneIconProps_t {
-  duotone?: boolean;
-}
+import { DuotoneIcon } from './DuotoneIcon';
+import { StandardIcon } from './StandardIcon';
+import { StyledIcon } from './styles';
+import { lookupIcon } from './util';
+import { IconElement_t, IconProps_t } from './types/icon';
 
 interface IconComponents_t {
   Styled: typeof StyledIcon;
@@ -27,16 +18,14 @@ export const Icon = createComponentWithRef<
   IconElement_t,
   IconProps_t,
   IconComponents_t
->(({ duotone: duotoneProp, icon, prefix, ...rest }, forwardedRef) => {
-  const duotone = useMemo(() => {
-    if (duotoneProp) return duotoneProp;
-    if (prefix) return prefix === 'fad';
-
+>(({ isDuotone: isDuotoneProp, icon, ...rest }, forwardedRef) => {
+  const isDuotone = useMemo(() => {
+    if (isDuotoneProp !== undefined) return isDuotoneProp;
     return lookupIcon(icon).prefix === 'fad';
-  }, [duotoneProp, icon, prefix]);
+  }, [isDuotoneProp, icon]);
 
-  const Component = duotone ? DuotoneIcon : StandardIcon;
-  return <Component ref={forwardedRef} {...rest} icon={icon} prefix={prefix} />;
+  const Component = isDuotone ? DuotoneIcon : StandardIcon;
+  return <Component ref={forwardedRef} {...rest} icon={icon} />;
 });
 
 Icon.Styled = StyledIcon;

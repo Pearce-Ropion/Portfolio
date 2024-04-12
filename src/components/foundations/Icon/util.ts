@@ -1,24 +1,12 @@
-import {
-  IconDefinition,
-  IconLookup,
-  IconProp,
-  IconPrefix,
-} from '@fortawesome/fontawesome-svg-core';
+import { IconLookup } from '@fortawesome/fontawesome-svg-core';
 
-export type IconPrefix_t = Exclude<IconPrefix, 'fak' | 'fass'>;
-export type IconProp_t = IconProp | IconDefinition;
-
-export interface IconLookupProps_t {
-  icon: IconProp_t;
-  prefix?: IconPrefix_t;
-}
+import { IconPrefix_t, IconProp_t } from './types/lookup';
 
 export const DEFAULT_ICON_PREFIX = 'fas' as const;
 
 export const lookupIcon = (
   icon: IconProp_t,
   prefix?: IconPrefix_t | null,
-  shouldThrow = true,
 ): IconLookup => {
   const iconLookup: IconLookup = {
     prefix: prefix ?? DEFAULT_ICON_PREFIX,
@@ -35,7 +23,7 @@ export const lookupIcon = (
     }
   }
 
-  if (shouldThrow && !iconLookup.iconName) {
+  if (!iconLookup.iconName) {
     throw new Error('Icon: Invalid `icon` passed to `lookupIcon`');
   }
 

@@ -1,6 +1,5 @@
 import { Box } from 'components/foundations/Box';
 import { styled } from 'stitches.config';
-import { border } from 'utils/style/format';
 
 export const StyledCard = styled(Box, {
   borderRadius: '$large',
@@ -13,7 +12,7 @@ export const StyledCard = styled(Box, {
   variants: {
     isBordered: {
       true: {
-        border: border(1, '$navy500'),
+        border: '1px solid $navy500',
       },
     },
 
@@ -36,7 +35,7 @@ export const StyledCard = styled(Box, {
       isBordered: true,
       isInverted: true,
       css: {
-        border: border(1, 'transparent'),
+        border: '1px solid transparent',
       },
     },
   ],

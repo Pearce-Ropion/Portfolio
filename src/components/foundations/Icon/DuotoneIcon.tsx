@@ -1,13 +1,13 @@
-import { CSSProperties, ElementRef, useMemo } from 'react';
+import { CSSProperties, useMemo } from 'react';
 
-import {
-  StandardIcon,
-  StandardIconProps_t,
-} from 'components/foundations/Icon/StandardIcon';
 import { PropertyValue_t } from 'types/stitches';
 import { cx } from 'utils/style/classes';
 import { createComponentWithRef } from 'utils/component';
-import { mergeStyle } from 'utils/style/css';
+import { mergeStyle } from 'utils/hooks';
+import { tokenToVariable } from 'utils/style/tokens';
+
+import { StandardIcon } from './StandardIcon';
+import { DuotoneIconElement_t, DuotoneIconProps_t } from './types/duotone';
 
 declare module 'react' {
   interface CSSProperties {
@@ -16,15 +16,6 @@ declare module 'react' {
     '--fa-secondary-color'?: PropertyValue_t<'color'>;
     '--fa-secondary-opacity'?: PropertyValue_t<'opacity'>;
   }
-}
-
-export type DuotoneIconElement_t = ElementRef<typeof StandardIcon>;
-export interface DuotoneIconProps_t extends StandardIconProps_t {
-  primaryColor?: PropertyValue_t<'color'>;
-  primaryOpacity?: PropertyValue_t<'opacity'>;
-  secondaryColor?: PropertyValue_t<'color'>;
-  secondaryOpacity?: PropertyValue_t<'opacity'>;
-  swapOpacity?: boolean;
 }
 
 export const DuotoneIcon = createComponentWithRef<
@@ -53,25 +44,26 @@ export const DuotoneIcon = createComponentWithRef<
     }, [className, swapOpacity]);
 
     const styles = useMemo<CSSProperties>(() => {
-      const faPrimaryColor = color || primaryColor;
-      const faPrimaryOpacity = opacity || primaryOpacity;
-      const faSecondaryColor = color || secondaryColor;
-      const faSecondaryOpacity = opacity || secondaryOpacity;
+      const faPrimaryColor = color ?? primaryColor;
+      const faPrimaryOpacity = opacity ?? primaryOpacity;
+      const faSecondaryColor = color ?? secondaryColor;
+      const faSecondaryOpacity = opacity ?? secondaryOpacity;
 
-      return mergeStyle(styleProp, {
-        ...(faPrimaryColor && {
-          '--fa-primary-color': faPrimaryColor,
-        }),
-        ...(faPrimaryOpacity && {
+      return mergeStyle(
+        styleProp,
+        faPrimaryColor && {
+          '--fa-primary-color': tokenToVariable(faPrimaryColor),
+        },
+        faPrimaryOpacity && {
           '--fa-primary-opacity': faPrimaryOpacity,
-        }),
-        ...(faSecondaryColor && {
-          '--fa-secondary-color': faSecondaryColor,
-        }),
-        ...(faSecondaryOpacity && {
+        },
+        faSecondaryColor && {
+          '--fa-secondary-color': tokenToVariable(faSecondaryColor),
+        },
+        faSecondaryOpacity && {
           '--fa-secondary-opacity': faSecondaryOpacity,
-        }),
-      });
+        },
+      );
     }, [
       styleProp,
       color,
