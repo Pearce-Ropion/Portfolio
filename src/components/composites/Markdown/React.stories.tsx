@@ -6,7 +6,7 @@ import {
   Composite,
   mkStoryTitle,
 } from 'utils/storybook';
-import { useInverted } from 'utils/hooks';
+import { useInverted } from '@sb/utils/hooks';
 
 import { Markdown } from './Markdown';
 

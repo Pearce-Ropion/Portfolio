@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Chapter, Token, mkStoryTitle, booleanControl } from 'utils/storybook';
-import { useInverted } from 'utils/hooks';
+import { useInverted } from '@sb/utils/hooks';
 
 import { Header } from './Header';
 

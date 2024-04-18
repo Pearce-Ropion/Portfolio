@@ -1,8 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Chapter, Foundation, mkStoryTitle } from 'utils/storybook';
-import { useInverted } from 'utils/hooks';
-import { iconControl } from 'utils/library';
+import { useInverted } from '@sb/utils/hooks';
+import { iconControl } from '@sb/utils/library';
 
 import { IconButton } from './IconButton';
 

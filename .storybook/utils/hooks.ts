@@ -1,7 +1,7 @@
 import { invert, last, words } from 'lodash';
 import { useMemo } from 'react';
 
-import { invertedBackgrounds } from 'utils/backgrounds';
+import { invertedBackgrounds } from '@sb/utils/backgrounds';
 import { Palette } from 'styles/tokens/color';
 import { StoryLayout_t, useStoryContext } from 'components/contexts';
 import { ValueOf_t } from 'types/helpers';

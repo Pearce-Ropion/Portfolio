@@ -7,7 +7,7 @@ export const stories = ['../src/**/*.stories.tsx'];
 export const staticDirs = ['../static'];
 
 export const addons = [
-  'storybook-addon-gatsby',
+  // 'storybook-addon-gatsby',
   '@storybook/addon-essentials',
   '@storybook/addon-a11y',
 ];
@@ -30,17 +30,23 @@ export const webpackFinal = (config: Configuration) => {
   if (!config.resolve.modules) config.resolve.modules = [];
   if (!config.plugins) config.plugins = [];
 
-  if (typeof config.resolve.alias === 'object') {
-    // @ts-ignore
-    config.resolve.alias['@sb'] = path.resolve(__dirname);
+  if (!Array.isArray(config.resolve.alias)) {
+    Object.assign(config.resolve.alias, {
+      '@sb': path.resolve(__dirname),
+    });
   }
 
-  config.resolve.modules.push(path.resolve(__dirname, '../src'));
+  config.resolve.modules.push(
+    path.resolve(__dirname),
+    path.resolve(__dirname, '../src'),
+  );
 
-  Object.assign(config.resolve.fallback, {
-    path: require.resolve('path-browserify'),
-    process: require.resolve('process/browser'),
-  });
+  if (!Array.isArray(config.resolve.fallback)) {
+    Object.assign(config.resolve.fallback, {
+      path: require.resolve('path-browserify'),
+      process: require.resolve('process/browser'),
+    });
+  }
 
   const rawEnv = {
     NODE_ENV: process.env.NODE_ENV || 'development',

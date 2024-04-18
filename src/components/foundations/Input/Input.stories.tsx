@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import * as Form from '@radix-ui/react-form';
 
-import { useInverted } from 'utils/hooks';
+import { useInverted } from '@sb/utils/hooks';
 import { Chapter, Foundation, mkStoryTitle } from 'utils/storybook';
 
 import { Input } from './Input';

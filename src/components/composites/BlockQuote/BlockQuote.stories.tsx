@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Chapter, Composite, mkStoryTitle } from 'utils/storybook';
 import { faker } from 'utils/storybook/faker';
-import { useInverted } from 'utils/hooks';
+import { useInverted } from '@sb/utils/hooks';
 
 import { BlockQuote } from './BlockQuote';
 

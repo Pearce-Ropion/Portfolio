@@ -1,4 +1,4 @@
-import { IconLookupProps_t } from './lookup';
+import { IconLookupProps_t, IconVariant_t } from './lookup';
 import {
   DuotoneIconDOMProps_t,
   DuotoneIconElement_t,
@@ -20,6 +20,7 @@ export interface IconImplProps_t
   extends StandardIconImplProps_t,
     DuotoneIconImplProps_t {
   isDuotone?: boolean;
+  variant?: IconVariant_t;
 }
 
 export interface IconProps_t

@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Card } from 'components/foundations/Card/Card';
-import { useInverted } from 'utils/hooks';
+import { useInverted } from '@sb/utils/hooks';
 import {
   booleanControl,
   Chapter,

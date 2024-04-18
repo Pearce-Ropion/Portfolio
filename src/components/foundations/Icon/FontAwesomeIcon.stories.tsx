@@ -14,9 +14,7 @@ import {
   textControl,
   themedColorControl,
 } from 'utils/storybook/controls';
-
-// import { iconControl, iconVariantControl } from './library';
-import { lookupIcon } from './lookup';
+import { iconControl, iconVariantControl } from '@sb/utils/library';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.ICON, 'FontAwesomeIcon'),
@@ -27,8 +25,8 @@ export default {
     size: '3x',
   },
   argTypes: {
-    // icon: iconControl,
-    // prefix: iconPrefixControl,
+    icon: iconControl,
+    variant: iconVariantControl,
     color: themedColorControl,
     mask: disableControl,
     spin: booleanControl,
@@ -62,10 +60,12 @@ export default {
 
 const Template: ComponentStory<typeof FontAwesomeIcon> = ({
   icon,
+  // @ts-expect-error - inflating arg types for added storybook control
+  prefix,
   ...rest
 }) => {
-  const iconLookup = lookupIcon(icon);
-  return <FontAwesomeIcon {...rest} icon={iconLookup} />;
+  // @ts-expect-error - inflating arg types for added storybook control
+  return <FontAwesomeIcon {...rest} icon={[prefix, icon]} />;
 };
 
 export const Default = Template.bind({});

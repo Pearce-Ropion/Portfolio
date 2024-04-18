@@ -1,5 +1,4 @@
 import { useLayout, useBackground } from '@sb/utils/hooks';
-
 import { useStoryContext } from 'components/contexts';
 import {
   createComponentWithRef,

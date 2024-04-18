@@ -3,7 +3,7 @@ import { ComponentProps, CSSProperties, ElementRef } from 'react';
 import { Palette } from 'styles/tokens';
 import { ValueOf_t } from 'types/helpers';
 import { JSXComponent_t } from 'types/react';
-import { Background_t } from 'utils/backgrounds';
+import { Background_t } from '@sb/utils/backgrounds';
 import { ComponentWithRef_t } from 'utils/component';
 
 export type DefaultBackground_t<

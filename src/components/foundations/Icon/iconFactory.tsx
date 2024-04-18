@@ -31,16 +31,14 @@ export const iconFactory = (
     );
   }
 
-  const iconLookup = lookupIcon(icon);
   const props = mergeProps(defaultProps, propOverrides);
+  const iconLookup = lookupIcon(icon, props.variant);
 
   return (
     <Icon
       {...props}
-      icon={{
-        icon: iconLookup.iconName,
-        variant: iconLookup.prefix ?? DEFAULT_ICON_PREFIX,
-      }}
+      icon={iconLookup.iconName}
+      variant={iconLookup.prefix ?? DEFAULT_ICON_PREFIX}
       isDuotone={iconLookup.prefix === 'fad' || props.isDuotone}
     />
   );

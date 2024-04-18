@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { useInverted } from 'utils/hooks';
+import { useInverted } from '@sb/utils/hooks';
 import { Chapter, Token, mkStoryTitle } from 'utils/storybook';
 
 import { Copy } from './Copy';
@@ -17,7 +17,7 @@ export default {
 
 const Template: ComponentStory<typeof Copy> = args => {
   const inverted = useInverted();
-  return <Copy {...args} inverted={inverted} />;
+  return <Copy {...args} isInverted={inverted} />;
 };
 
 export const Default = Template.bind({});
