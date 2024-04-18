@@ -42,5 +42,5 @@
     ".eslintrc.js",
     ".prettierrc.js"
   ],
-  "exclude": ["node_modules", "src/pages", "src/data", "src/**/*.stories.tsx"]
+  "exclude": ["node_modules", "src/pages", "src/data"]
 }

@@ -3,9 +3,7 @@ import { FC } from 'react';
 import { Box, Copy, Flex } from 'components/foundations';
 import { Chapter, mkStoryTitle } from 'utils/storybook';
 
-export default {
-  title: mkStoryTitle(Chapter.TOKEN, 'Elevation'),
-};
+export default {};
 
 export const Level: FC = () => (
   <Flex direction="row">

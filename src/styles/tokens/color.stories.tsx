@@ -66,9 +66,7 @@ const ColorBlock: FC<ColorBlockProps_t> = ({ token, color }) => (
   </Box>
 );
 
-export default {
-  title: mkStoryTitle(Chapter.TOKEN, 'Color'),
-};
+export default {};
 
 export const Colors: FC = () => {
   return (
