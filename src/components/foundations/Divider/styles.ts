@@ -2,7 +2,6 @@ import { HTML } from 'components/Html';
 import { styled } from 'stitches.config';
 
 export const StyledDivider = styled(HTML.Span, {
-  backgroundColor: '$neutral500',
   borderRadius: '$pill',
 
   variants: {
@@ -21,10 +20,23 @@ export const StyledDivider = styled(HTML.Span, {
       },
     },
 
+    isInverted: {
+      true: {
+        backgroundColor: '$neutral0',
+      },
+      false: {
+        backgroundColor: '$neutral500',
+      },
+    },
+
     isSquared: {
       true: {
         borderRadius: 0,
       },
     },
+  },
+
+  defaultVariants: {
+    isInverted: false,
   },
 });

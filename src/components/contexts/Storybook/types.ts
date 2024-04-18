@@ -3,7 +3,7 @@ import { ComponentProps, CSSProperties, ElementRef } from 'react';
 import { Palette } from 'styles/tokens';
 import { ValueOf_t } from 'types/helpers';
 import { JSXComponent_t } from 'types/react';
-import { Background_t } from '@sb/utils/backgrounds';
+// import { Background_t } from '@sb/utils/backgrounds';
 import { ComponentWithRef_t } from 'utils/component';
 
 export type DefaultBackground_t<
@@ -45,15 +45,15 @@ export interface StoryParameters_t<Args extends StoryArgs_t = StoryArgs_t> {
   actions: Record<string, unknown>;
   args: Args;
   argTypes: StoryArgTypes_t<Args>;
-  backgrounds: {
-    default: DefaultBackground_t;
-    values: Background_t[];
-    grid?: {
-      cellAmount: number;
-      cellSize: number;
-      opacity: number;
-    };
-  };
+  // backgrounds: {
+  //   default: DefaultBackground_t;
+  //   values: Background_t[];
+  //   grid?: {
+  //     cellAmount: number;
+  //     cellSize: number;
+  //     opacity: number;
+  //   };
+  // };
   componentName?: string;
   controls: {
     exclude: string[];

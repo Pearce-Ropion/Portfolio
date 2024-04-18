@@ -4,7 +4,12 @@ import {
   StyledSkillsCardTitle,
   StyledSkillsCardSkill,
 } from 'components/composites/SkillsCard/styles';
-import { Box, IconProp_t } from 'components/foundations';
+import {
+  Box,
+  IconFactoryIconProp_t,
+  IconProp_t,
+  iconFactory,
+} from 'components/foundations';
 import { createComponentWithRef } from 'utils/component';
 import { theme } from 'stitches.config';
 import { HTML } from 'components/Html';
@@ -12,7 +17,7 @@ import { HTML } from 'components/Html';
 export type SkillsCardElement_t = HTML.DivElement_t;
 export interface SkillsCardProps_t extends HTML.DivProps_t {
   inverted?: boolean;
-  icon: IconProp_t;
+  icon: IconFactoryIconProp_t;
   skills: string[];
   title: string;
 }
@@ -28,12 +33,12 @@ export const SkillsCard = createComponentWithRef<
 >(({ icon, skills, title, ...rest }, forwardedRef) => {
   return (
     <StyledSkillsCard ref={forwardedRef} {...rest} center direction="column">
-      <StyledSkillsCardIcon
-        icon={icon}
+      {/* <StyledSkillsCardIcon
+        icon={iconFactory(icon, size)}
         size="4x"
         primaryColor={theme.colors.navy800.computedValue}
         secondaryColor={theme.colors.navy500.computedValue}
-      />
+      /> */}
       <StyledSkillsCardTitle size="large" weight="medium">
         {title}
       </StyledSkillsCardTitle>

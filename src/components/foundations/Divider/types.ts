@@ -15,6 +15,7 @@ export interface DividerDOMProps_t
 
 export interface DividerImplProps_t extends CSSProps_t {
   direction?: 'horizontal' | 'vertical';
+  isInverted?: boolean;
   isSquared?: boolean;
   length?: PropertyValue_t<'width' | 'height'>;
   thickness?: PropertyValue_t<'width' | 'height'>;

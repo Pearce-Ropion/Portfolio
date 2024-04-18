@@ -2,7 +2,7 @@ export {
   IconVariant_t,
   IconName_t,
   IconProp_t,
-  IconLookup_t,
+  IconDefinition_t,
   IconLookupProps_t,
 } from './lookup';
 export {

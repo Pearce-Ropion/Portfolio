@@ -43,7 +43,7 @@ export const SocialIcons = createComponentWithRef<
     >
       {icons.map(([label, icon]) => (
         <StyledSocialIcon key={label} direction={direction}>
-          <IconButton icon={icon} isInverted={inverted} label={label} />
+          {/* <IconButton icon={icon} isInverted={inverted} label={label} /> */}
         </StyledSocialIcon>
       ))}
     </Flex>

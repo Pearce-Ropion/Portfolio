@@ -1,4 +1,4 @@
-import { ElementRef } from 'react';
+import { ElementRef, useEffect, useState } from 'react';
 
 import {
   StyledFooter,
@@ -18,13 +18,32 @@ export interface FooterProps_t
 
 export const Footer = createComponentWithRef<FooterElement_t, FooterProps_t>(
   ({ inverted, ...rest }, forwardedRef) => {
-    const now = new Date();
+    const [date, setDate] = useState(new Date());
+
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        setDate(state => {
+          const next = new Date();
+          return state.getFullYear() === next.getFullYear() ? state : next;
+        });
+      }, 1000 * 60 * 60 * 24); // 24 hours
+
+      return () => {
+        clearInterval(intervalId);
+      };
+    }, []);
+
     return (
       <StyledFooter ref={forwardedRef} {...rest}>
         <Flex direction="column" justify="center">
           <StyledFooterSocialIcons inverted={inverted} />
-          <Copy align="center" inverted={inverted} size="large" weight="light">
-            @ {now.getFullYear()} Pearce Ropion
+          <Copy
+            align="center"
+            isInverted={inverted}
+            size="large"
+            weight="light"
+          >
+            @ {date.getFullYear()} Pearce Ropion
           </Copy>
         </Flex>
       </StyledFooter>

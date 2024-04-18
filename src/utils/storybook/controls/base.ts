@@ -98,6 +98,7 @@ export const setControlType = (
   return {
     // @ts-ignore - type cannot reconncile with a single control type
     control: {
+      // @ts-ignore - type cannot reconncile with a single control type
       type: control,
       ...options,
     },
