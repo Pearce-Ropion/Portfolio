@@ -1,14 +1,14 @@
 import { Link as GatsbyLink } from 'gatsby';
 
 import { styled } from 'stitches.config';
-import { HTMLAnchor } from 'components/foundations/Html';
+import { HTML } from 'components/Html';
 import { StyledConfig_t } from 'types/stitches';
 
 const styledLinkConfig: StyledConfig_t = {
   shouldForwardStitchesProp: prop => prop === 'disabled',
 };
 
-export const StyledLink = styled.withConfig(styledLinkConfig)(HTMLAnchor, {
+export const StyledLink = styled.withConfig(styledLinkConfig)(HTML.A, {
   $$border: '0.125em',
 
   color: '$navy500',

@@ -25,14 +25,17 @@ export const features = {
 
 export const webpackFinal = (config: Configuration) => {
   if (!config.resolve) config.resolve = {};
+  if (!config.resolve.alias) config.resolve.alias = {};
   if (!config.resolve.fallback) config.resolve.fallback = {};
   if (!config.resolve.modules) config.resolve.modules = [];
   if (!config.plugins) config.plugins = [];
 
-  config.resolve.modules.push(
-    path.resolve(__dirname),
-    path.resolve(__dirname, '../src'),
-  );
+  if (typeof config.resolve.alias === 'object') {
+    // @ts-ignore
+    config.resolve.alias['@sb'] = path.resolve(__dirname);
+  }
+
+  config.resolve.modules.push(path.resolve(__dirname, '../src'));
 
   Object.assign(config.resolve.fallback, {
     path: require.resolve('path-browserify'),

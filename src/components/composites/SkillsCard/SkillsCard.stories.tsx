@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { useInverted } from 'utils/hooks';
-import { iconControl } from 'utils/library';
+import { useInverted } from '@sb/utils/hooks';
+import { iconControl } from '@sb/utils/library';
 import { Chapter, Composite, mkStoryTitle, textControl } from 'utils/storybook';
 
 import { SkillsCard } from './SkillsCard';

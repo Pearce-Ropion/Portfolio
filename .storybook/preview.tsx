@@ -2,18 +2,18 @@ import { action } from '@storybook/addon-actions';
 import { DecoratorFn } from '@storybook/react';
 
 import 'utils/colord';
-import 'utils/library';
+import 'components/foundations/Icon/library';
 
-import { Page } from 'components/Page';
+import { Page } from '@sb/components/Page';
+import { backgroundsParameter } from '@sb/utils/backgrounds';
+import { globalStyles as globalStorybookStyles } from '@sb/utils/styles';
+import { Viewports } from '@sb/utils/viewports';
 import {
   AnalyticsProvider,
   StorybookProvider,
   StoryContext_t,
 } from 'components/contexts';
-import { backgroundsParameter } from 'utils/backgrounds';
-import { globalStyles as globalStorybookStyles } from 'utils/styles';
 import { globalStyles } from 'styles/global';
-import { Viewports } from 'utils/viewports';
 
 // This is to utilized to override the window.___navigate method Gatsby defines and uses to report what path a Link would be taking us to if it wasn't inside a storybook
 window.___navigate = (pathname: string): void => {

@@ -10,7 +10,7 @@ import {
   themedColorControl,
 } from 'utils/storybook';
 import { theme } from 'stitches.config';
-import { iconControl } from 'utils/library';
+import { iconControl } from '@sb/utils/library';
 
 import { Icon } from './Icon';
 
@@ -27,19 +27,19 @@ export default {
     opacity: rangeControl({ min: 0, max: 1, step: 0.1 }),
     primaryColor: {
       ...themedColorControl,
-      if: { arg: 'duotone' },
+      if: { arg: 'isDuotone' },
     },
     secondaryColor: {
       ...themedColorControl,
-      if: { arg: 'duotone' },
+      if: { arg: 'isDuotone' },
     },
     primaryOpacity: {
       ...rangeControl({ min: 0, max: 1, step: 0.1 }),
-      if: { arg: 'duotone' },
+      if: { arg: 'isDuotone' },
     },
     secondaryOpacity: {
       ...rangeControl({ min: 0, max: 1, step: 0.1 }),
-      if: { arg: 'duotone' },
+      if: { arg: 'isDuotone' },
     },
     size: mkEnumOptions(
       ['1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x'],
@@ -65,41 +65,41 @@ Opacity.args = {
 
 export const Duotone = Template.bind({});
 Duotone.args = {
-  duotone: true,
-  prefix: 'fad',
+  isDuotone: true,
+  variant: 'fad',
 };
 
 export const SwapOpacity = Template.bind({});
 SwapOpacity.args = {
-  duotone: true,
-  prefix: 'fad',
+  isDuotone: true,
+  variant: 'fad',
   swapOpacity: true,
 };
 
 export const PrimaryColor = Template.bind({});
 PrimaryColor.args = {
-  duotone: true,
-  prefix: 'fad',
+  isDuotone: true,
+  variant: 'fad',
   primaryColor: theme.colors.orange800.value,
 };
 
 export const PrimaryOpacity = Template.bind({});
 PrimaryOpacity.args = {
-  duotone: true,
-  prefix: 'fad',
+  isDuotone: true,
+  variant: 'fad',
   primaryOpacity: 0.7,
 };
 
 export const SecondaryColor = Template.bind({});
 SecondaryColor.args = {
-  duotone: true,
-  prefix: 'fad',
+  isDuotone: true,
+  variant: 'fad',
   secondaryColor: theme.colors.orange800.value,
 };
 
 export const SecondaryOpacity = Template.bind({});
 SecondaryOpacity.args = {
-  duotone: true,
-  prefix: 'fad',
+  isDuotone: true,
+  variant: 'fad',
   secondaryOpacity: 0.7,
 };

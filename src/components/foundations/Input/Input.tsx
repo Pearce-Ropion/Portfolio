@@ -1,6 +1,5 @@
 import {
   ChangeEvent,
-  FocusEvent,
   ElementRef,
   HTMLInputTypeAttribute,
   ReactNode,
@@ -24,11 +23,8 @@ import {
   OmitComponentVariantProps_t,
 } from 'utils/component';
 import { IconProp_t } from 'components/foundations/Icon';
-import {
-  ComposedEventHandler_t,
-  useComposedEvent,
-} from 'utils/hooks/useComposedEvent';
 import { useLocalRef } from 'utils/hooks/useComposedRef';
+import { useComposedCallback } from 'utils/hooks';
 
 export const FLOAT_TYPES: Set<HTMLInputTypeAttribute> = new Set([
   'email',
@@ -103,8 +99,8 @@ export const Input = createComponentWithRef<InputElement_t, InputProps_t>(
       return false;
     }, [value]);
 
-    const handleChange = useComposedEvent(
-      onChange as ComposedEventHandler_t<ChangeEvent<InputElement_t>>,
+    const handleChange = useComposedCallback(
+      onChange,
       useCallback(
         (event?: ChangeEvent<InputElement_t>) => {
           if (event) {
@@ -116,16 +112,16 @@ export const Input = createComponentWithRef<InputElement_t, InputProps_t>(
       ),
     );
 
-    const handleFocus = useComposedEvent(
-      onFocus as ComposedEventHandler_t<FocusEvent<InputElement_t>>,
+    const handleFocus = useComposedCallback(
+      onFocus,
       useCallback(() => {
         if (focusedProp) return;
         setFocused(true);
       }, [focusedProp]),
     );
 
-    const handleBlur = useComposedEvent(
-      onBlur as ComposedEventHandler_t<FocusEvent<InputElement_t>>,
+    const handleBlur = useComposedCallback(
+      onBlur,
       useCallback(() => {
         if (focusedProp) return;
         setFocused(false);

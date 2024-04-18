@@ -1,4 +1,4 @@
-import { HTML } from 'components/foundations/Html';
+import { HTML } from 'components/Html';
 import { styled } from 'stitches.config';
 
 export const StyledDivider = styled(HTML.Span, {

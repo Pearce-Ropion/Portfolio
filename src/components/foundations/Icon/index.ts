@@ -8,4 +8,4 @@ export { Icon } from './Icon';
 
 export * from './types';
 
-export { DEFAULT_ICON_PREFIX, lookupIcon } from './util';
+export { DEFAULT_ICON_PREFIX, lookupIcon } from './lookup';

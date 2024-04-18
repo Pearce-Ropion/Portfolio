@@ -5,7 +5,7 @@ import { Box, Flex, Copy, Mono } from 'components/foundations';
 import { Palette } from 'styles/tokens/color';
 import { mkStoryTitle } from 'utils/storybook';
 import { Chapter } from 'utils/storybook/chapters';
-import { HTMLBr } from 'components/foundations/Html';
+import { HTML } from 'components/Html';
 import { toPx } from 'utils/style/units';
 
 interface ColorEntry_t {
@@ -59,7 +59,7 @@ const ColorBlock: FC<ColorBlockProps_t> = ({ token, color }) => (
       <Copy weight="bold">{token}</Copy>
       <Mono>
         {color}
-        <HTMLBr />
+        <HTML.Br />
         {colord(color).toRgbString()}
       </Mono>
     </Box>

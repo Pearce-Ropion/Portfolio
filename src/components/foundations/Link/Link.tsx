@@ -1,5 +1,5 @@
+import { MouseEventHandler } from 'react';
 import { GatsbyLinkProps } from 'gatsby';
-import { ElementRef, MouseEvent, MouseEventHandler } from 'react';
 
 import {
   StyledLink,
@@ -9,17 +9,14 @@ import {
   createComponentWithRef,
   OmitComponentVariantProps_t,
 } from 'utils/component';
-import {
-  ComposedEventHandler_t,
-  useComposedEvent,
-} from 'utils/hooks/useComposedEvent';
+import { useComposedCallback } from 'utils/hooks';
 import { useAnalyticsEvent } from 'components/contexts/Analytics/useAnalytics';
 import { SegmentEvent_t } from 'utils/events';
 import { useNormalizedLink } from 'components/foundations/Link/util';
-import { HTMLSpan } from 'components/foundations/Html';
+import { HTML } from 'components/Html';
 import { cx } from 'utils/style/classes';
 
-export type AnchorElement_t = ElementRef<typeof StyledLink>;
+export type AnchorElement_t = HTMLAnchorElement;
 export interface AnchorProps_t
   extends OmitComponentVariantProps_t<typeof StyledLink> {}
 
@@ -39,7 +36,7 @@ type GatsbyLinkProps_t = Pick<
   | 'getProps'
 >;
 
-export type LinkElement_t = ElementRef<typeof StyledLink>;
+export type LinkElement_t = HTMLAnchorElement;
 export interface LinkProps_t
   extends Omit<OmitComponentVariantProps_t<typeof StyledLink>, 'href'>,
     GatsbyLinkProps_t {
@@ -78,8 +75,8 @@ export const Link = createComponentWithRef<
     },
     forwardedRef,
   ) => {
-    const handleClick = useComposedEvent(
-      onClick as ComposedEventHandler_t<MouseEvent<LinkElement_t>>,
+    const handleClick = useComposedCallback(
+      onClick,
       useAnalyticsEvent('link-click', segment),
     );
 
@@ -88,7 +85,7 @@ export const Link = createComponentWithRef<
     if (!to || disabled) {
       return (
         <StyledLink
-          as={HTMLSpan}
+          as={HTML.Span}
           {...rest}
           disabled={disabled}
           onClick={handleClick as MouseEventHandler<HTMLSpanElement>}

@@ -1,5 +1,5 @@
 import { styled } from 'stitches.config';
-import { HTML } from 'components/foundations/Html';
+import { HTML } from 'components/Html';
 import { flexGrowPreset } from 'styles/css';
 
 export const StyledTypography = styled(HTML.Div, {

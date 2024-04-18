@@ -50,7 +50,7 @@ function getInternalImports(dirPath, options = {}) {
   }, []);
 
   // https://regex101.com/r/bWdapV/1
-  return `^(${internalImports.join('|')})(\\/|$)`;
+  return `^(@sb\\/)?(${internalImports.join('|')})(\\/|$)`;
 }
 
 module.exports = {

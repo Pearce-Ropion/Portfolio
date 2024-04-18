@@ -2,7 +2,7 @@ import * as Form from '@radix-ui/react-form';
 import { colord } from 'colord';
 
 import { Box } from 'components/foundations/Box';
-import { HTMLInput } from 'components/foundations/Html';
+import { HTML } from 'components/Html';
 import { Copy } from 'components/foundations/Typography';
 import { styled, theme } from 'stitches.config';
 
@@ -18,7 +18,7 @@ export const StyledInputMessage = styled(Form.Message, Copy.Styled, {
   },
 });
 
-export const StyledInput = styled(HTMLInput, {
+export const StyledInput = styled(HTML.Input, {
   boxSizing: 'border-box',
   border: 'none',
   outline: 'none',

@@ -8,7 +8,7 @@ import {
   IconFactoryIconProps_t,
   IconProps_t,
 } from './types';
-import { lookupIcon } from './util';
+import { DEFAULT_ICON_PREFIX, lookupIcon } from './lookup';
 
 export const iconFactory = (
   icon: IconFactoryIconProp_t,
@@ -37,7 +37,10 @@ export const iconFactory = (
   return (
     <Icon
       {...props}
-      icon={iconLookup}
+      icon={{
+        icon: iconLookup.iconName,
+        variant: iconLookup.prefix ?? DEFAULT_ICON_PREFIX,
+      }}
       isDuotone={iconLookup.prefix === 'fad' || props.isDuotone}
     />
   );

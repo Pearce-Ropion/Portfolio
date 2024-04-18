@@ -14,8 +14,9 @@ import {
   textControl,
   themedColorControl,
 } from 'utils/storybook/controls';
-import { lookupIcon } from 'components/foundations/Icon/util';
-import { iconControl, iconPrefixControl } from 'utils/library';
+
+// import { iconControl, iconVariantControl } from './library';
+import { lookupIcon } from './lookup';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.ICON, 'FontAwesomeIcon'),
@@ -26,8 +27,8 @@ export default {
     size: '3x',
   },
   argTypes: {
-    icon: iconControl,
-    prefix: iconPrefixControl,
+    // icon: iconControl,
+    // prefix: iconPrefixControl,
     color: themedColorControl,
     mask: disableControl,
     spin: booleanControl,

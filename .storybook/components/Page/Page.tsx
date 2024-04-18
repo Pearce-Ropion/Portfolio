@@ -1,5 +1,4 @@
-import { StyledPage } from '@storybook/components/Page/styles';
-import { useLayout, useBackground } from '@storybook/utils/hooks';
+import { useLayout, useBackground } from '@sb/utils/hooks';
 
 import { useStoryContext } from 'components/contexts';
 import {
@@ -7,6 +6,7 @@ import {
   OmitComponentVariantProps_t,
 } from 'utils/component';
 
+import { StyledPage } from './styles';
 import { useMergeStyle } from '../../../src/utils/hooks';
 
 export type PageElement_t = HTMLDivElement;
