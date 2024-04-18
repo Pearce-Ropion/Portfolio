@@ -10,4 +10,5 @@ module.exports = {
   },
 
   overrides: [overrides.typescript, overrides.react, overrides.reactHooks],
+  extends: ['plugin:storybook/recommended']
 };
