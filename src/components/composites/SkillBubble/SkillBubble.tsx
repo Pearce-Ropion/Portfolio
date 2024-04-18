@@ -1,12 +1,12 @@
+import { HTML } from 'components/Html';
 import {
   StyledSkillBubble,
   StyledSkillBubbleSkill,
 } from 'components/composites/SkillBubble/styles';
-import { HTMLDivElement_t, HTMLDivProps_t } from 'components/foundations';
 import { createComponentWithRef } from 'utils/component';
 
-export type SkillBubbleElement_t = HTMLDivElement_t;
-export interface SkillBubbleProps_t extends HTMLDivProps_t {
+export type SkillBubbleElement_t = HTML.DivElement_t;
+export interface SkillBubbleProps_t extends HTML.DivProps_t {
   duotone?: boolean;
   inverted?: boolean;
   size: 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge';

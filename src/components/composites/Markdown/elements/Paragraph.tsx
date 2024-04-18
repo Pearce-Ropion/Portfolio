@@ -3,12 +3,12 @@ import { useMemo } from 'react';
 import { useMarkdownContext } from 'components/composites/Markdown/MarkdownContext';
 import { Copy, CopyElement_t, CopyProps_t } from 'components/foundations';
 import { createComponentWithRef } from 'utils/component';
-import { mergeCSS } from 'utils/style/css';
+import { useMergeCSS } from 'utils/hooks';
 
 export const Paragraph = createComponentWithRef<CopyElement_t, CopyProps_t>(
   (props, forwardedRef) => {
     const { inverted } = useMarkdownContext();
-    return <Copy ref={forwardedRef} {...props} inverted={inverted} />;
+    return <Copy ref={forwardedRef} {...props} isInverted={inverted} />;
   },
 );
 
@@ -19,8 +19,8 @@ export const Bold = createComponentWithRef<CopyElement_t, CopyProps_t>(
       <Copy
         ref={forwardedRef}
         {...props}
-        inline
-        inverted={inverted}
+        isInline
+        isInverted={inverted}
         weight="bold"
       />
     );
@@ -30,46 +30,21 @@ export const Bold = createComponentWithRef<CopyElement_t, CopyProps_t>(
 export const Italic = createComponentWithRef<CopyElement_t, CopyProps_t>(
   ({ css, ...rest }, forwardedRef) => {
     const { inverted } = useMarkdownContext();
-    const mergedCSS = useMemo(() => {
-      return mergeCSS(
-        {
-          fontStyle: 'italic',
-        },
-        css,
-      );
-    }, [css]);
-
-    return (
-      <Copy
-        ref={forwardedRef}
-        {...rest}
-        css={mergedCSS}
-        inline
-        inverted={inverted}
-      />
+    const mergedCSS = useMergeCSS(
+      {
+        fontStyle: 'italic',
+      },
+      css,
+      [css],
     );
-  },
-);
-
-export const Underline = createComponentWithRef<CopyElement_t, CopyProps_t>(
-  ({ css, ...rest }, forwardedRef) => {
-    const { inverted } = useMarkdownContext();
-    const mergedCSS = useMemo(() => {
-      return mergeCSS(
-        {
-          textDecoration: 'underline',
-        },
-        css,
-      );
-    }, [css]);
 
     return (
       <Copy
         ref={forwardedRef}
         {...rest}
         css={mergedCSS}
-        inline
-        inverted={inverted}
+        isInline
+        isInverted={inverted}
       />
     );
   },
@@ -83,8 +58,8 @@ export const Caption = createComponentWithRef<CopyElement_t, CopyProps_t>(
       <Copy
         ref={forwardedRef}
         {...props}
-        inline
-        inverted={inverted}
+        isInline
+        isInverted={inverted}
         size="small"
       />
     );
@@ -99,8 +74,8 @@ export const Label = createComponentWithRef<CopyElement_t, CopyProps_t>(
       <Copy
         ref={forwardedRef}
         {...props}
-        inline
-        inverted={inverted}
+        isInline
+        isInverted={inverted}
         size="small"
         weight="bold"
       />

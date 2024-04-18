@@ -1,21 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {
-  Chapter,
-  Foundation,
-  mkStoryComponent,
-  mkStoryTitle,
-} from 'utils/storybook';
-import {
-  IconButton,
-  IconButtonProps_t,
-} from 'components/foundations/IconButton/IconButton';
+import { Chapter, Foundation, mkStoryTitle } from 'utils/storybook';
 import { useInverted } from 'utils/hooks';
 import { iconControl } from 'utils/library';
 
+import { IconButton } from './IconButton';
+
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'IconButton'),
-  component: mkStoryComponent<IconButtonProps_t>(IconButton),
+  component: IconButton,
   args: {
     ...IconButton.defaultProps,
     icon: 'envelope',

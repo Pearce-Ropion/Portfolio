@@ -23,11 +23,11 @@ if (!initialized) {
   initialized = true;
 }
 
-const prefixes = ['fas', 'far', 'fal', 'fat', 'fad'];
+const variants = ['fas', 'far', 'fal', 'fat', 'fad'];
 const icons = Object.keys(library.definitions.fas).sort();
 
-export const iconPrefixControl = selectControl({
-  options: prefixes,
+export const iconVariantControl = selectControl({
+  options: variants,
   labels: {
     fas: 'Solid',
     far: 'Regular',

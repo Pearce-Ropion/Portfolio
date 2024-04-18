@@ -7,7 +7,7 @@ import { tokenToVariable } from 'utils/style/tokens';
 import { StyledIcon } from './styles';
 import { StandardIconElement_t, StandardIconProps_t } from './types';
 import { useFontAwesomeProps } from './useFontAwesomeProps';
-import { lookupIcon } from './util';
+import { lookupIcon } from './lookup';
 
 export const StandardIcon = createComponentWithRef<
   StandardIconElement_t,

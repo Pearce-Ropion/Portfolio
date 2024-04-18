@@ -1,17 +1,16 @@
-import { ElementRef } from 'react';
-
 import {
   StyledSkillsCard,
   StyledSkillsCardIcon,
   StyledSkillsCardTitle,
   StyledSkillsCardSkill,
 } from 'components/composites/SkillsCard/styles';
-import { Box, HTMLDivProps_t, IconProp_t } from 'components/foundations';
+import { Box, IconProp_t } from 'components/foundations';
 import { createComponentWithRef } from 'utils/component';
 import { theme } from 'stitches.config';
+import { HTML } from 'components/Html';
 
-export type SkillsCardElement_t = ElementRef<typeof StyledSkillsCard>;
-export interface SkillsCardProps_t extends HTMLDivProps_t {
+export type SkillsCardElement_t = HTML.DivElement_t;
+export interface SkillsCardProps_t extends HTML.DivProps_t {
   inverted?: boolean;
   icon: IconProp_t;
   skills: string[];
@@ -31,7 +30,6 @@ export const SkillsCard = createComponentWithRef<
     <StyledSkillsCard ref={forwardedRef} {...rest} center direction="column">
       <StyledSkillsCardIcon
         icon={icon}
-        prefix="fad"
         size="4x"
         primaryColor={theme.colors.navy800.computedValue}
         secondaryColor={theme.colors.navy500.computedValue}

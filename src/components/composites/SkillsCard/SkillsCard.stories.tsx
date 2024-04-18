@@ -1,19 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { SkillsCard } from 'components/composites/SkillsCard/SkillsCard';
 import { useInverted } from 'utils/hooks';
 import { iconControl } from 'utils/library';
-import {
-  Chapter,
-  Composite,
-  mkStoryComponent,
-  mkStoryTitle,
-  textControl,
-} from 'utils/storybook';
+import { Chapter, Composite, mkStoryTitle, textControl } from 'utils/storybook';
+
+import { SkillsCard } from './SkillsCard';
 
 export default {
   title: mkStoryTitle(Chapter.COMPOSITE, Composite.COPY, 'SkillsCard'),
-  component: mkStoryComponent(SkillsCard),
+  component: SkillsCard,
   args: {
     ...SkillsCard.defaultProps,
     icon: 'edit',

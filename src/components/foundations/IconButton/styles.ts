@@ -1,49 +1,49 @@
-import { HTMLButton } from 'components/foundations/Html';
+import { Aria } from 'components/aria';
 import { styled } from 'stitches.config';
-import { StyledConfig_t } from 'types/stitches';
+import { shouldForwardStitchesConfig } from 'utils/style/styled';
 
-const styledIconButtonConfig: StyledConfig_t = {
-  shouldForwardStitchesProp: prop => prop === 'disabled',
-};
+const withStyled = styled.withConfig(shouldForwardStitchesConfig('isDisabled'));
+export const StyledIconButton = withStyled(Aria.Button, {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 
-export const StyledIconButton = styled.withConfig(styledIconButtonConfig)(
-  HTMLButton,
-  {
-    borderRadius: '$circle',
-    backgroundColor: '$navy800',
-    border: 'none',
-    outline: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    size: '$10',
-    transition: '$standard',
-    cursor: 'pointer',
+  size: '$10',
+  borderRadius: '$circle',
+  backgroundColor: '$navy800',
 
-    '&:not(:disabled)': {
-      '&:hover, &:focus': {
-        boxShadow: '$level2',
-        transform: 'translateY(-1px)',
+  // Fixes an odd tap effect on some mobile devices
+  WebkitTapHighlightColor: 'transparent',
 
-        '&:active': {
-          transform: 'translateY(0px)',
+  variants: {
+    isDisabled: {
+      true: {
+        cursor: 'default',
+        opacity: 0.4,
+      },
+      false: {
+        cursor: 'pointer',
+        transition: '$standard',
+
+        '&:hover, &:focus': {
+          boxShadow: '$level2',
+          transform: 'translateY(-1px)',
+
+          '&:active': {
+            transform: 'translateY(0px)',
+          },
         },
       },
     },
 
-    variants: {
-      disabled: {
-        true: {
-          cursor: 'default',
-          opacity: 0.4,
-        },
-      },
-
-      inverted: {
-        true: {
-          backgroundColor: '$orange900',
-        },
+    isInverted: {
+      true: {
+        backgroundColor: '$orange900',
       },
     },
   },
-);
+
+  defaultVariants: {
+    isDisabled: false,
+  },
+});

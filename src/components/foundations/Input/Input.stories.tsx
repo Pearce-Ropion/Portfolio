@@ -1,18 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import * as Form from '@radix-ui/react-form';
 
-import { Input } from 'components/foundations/Input/Input';
 import { useInverted } from 'utils/hooks';
-import {
-  Chapter,
-  Foundation,
-  mkStoryComponent,
-  mkStoryTitle,
-} from 'utils/storybook';
+import { Chapter, Foundation, mkStoryTitle } from 'utils/storybook';
+
+import { Input } from './Input';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.CONTROL, 'Input'),
-  component: mkStoryComponent(Input),
+  component: Input,
   args: {
     label: 'First Name',
     name: 'fname',

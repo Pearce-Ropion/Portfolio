@@ -1,30 +1,8 @@
-import { ElementRef, MouseEvent } from 'react';
-
-import {
-  createComponentWithRef,
-  OmitComponentVariantProps_t,
-} from 'utils/component';
-import { StyledIconButton } from 'components/foundations/IconButton/styles';
-import { IconLookupProps_t } from 'components/foundations/Icon/util';
+import { createComponentWithRef } from 'utils/component';
 import { Icon } from 'components/foundations/Icon';
-import { theme } from 'stitches.config';
-import { SegmentEvent_t } from 'utils/events';
-import { useAnalyticsEvent } from 'components/contexts';
-import {
-  ComposedEventHandler_t,
-  useComposedEvent,
-} from 'utils/hooks/useComposedEvent';
 
-export type IconButtonElement_t = ElementRef<typeof StyledIconButton>;
-export interface IconButtonProps_t
-  extends Omit<OmitComponentVariantProps_t<typeof StyledIconButton>, 'prefix'>,
-    Omit<IconLookupProps_t, 'prefix'> {
-  disabled?: boolean;
-  inverted?: boolean;
-  label: string;
-  prefix?: Extract<IconLookupProps_t['prefix'], 'fas' | 'fab'>;
-  segment?: SegmentEvent_t;
-}
+import { StyledIconButton } from './styles';
+import { IconButtonElement_t, IconButtonProps_t } from './types';
 
 interface IconButtonComponents_t {
   Styled: typeof StyledIconButton;
@@ -34,36 +12,12 @@ export const IconButton = createComponentWithRef<
   IconButtonElement_t,
   IconButtonProps_t,
   IconButtonComponents_t
->(
-  (
-    { icon, label, onClick, prefix = 'fas', segment, ...rest },
-    forwardedRef,
-  ) => {
-    const handleClick = useComposedEvent(
-      onClick as ComposedEventHandler_t<MouseEvent<IconButtonElement_t>>,
-      useAnalyticsEvent('button-click', segment),
-    );
-
-    return (
-      <StyledIconButton
-        ref={forwardedRef}
-        aria-label={label}
-        {...rest}
-        onClick={handleClick}
-      >
-        <Icon
-          icon={icon}
-          prefix={prefix}
-          color={theme.colors.neutral0.value}
-          size="2x"
-        />
-      </StyledIconButton>
-    );
-  },
-);
-
-IconButton.defaultProps = {
-  prefix: 'fas',
-};
+>(({ icon, label, ...rest }, forwardedRef) => {
+  return (
+    <StyledIconButton ref={forwardedRef} {...rest} aria-label={label}>
+      <Icon icon={icon} size="2x" />
+    </StyledIconButton>
+  );
+});
 
 IconButton.Styled = StyledIconButton;

@@ -1,18 +1,13 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { SkillBubble } from 'components/composites/SkillBubble/SkillBubble';
 import { useInverted } from 'utils/hooks';
-import {
-  Chapter,
-  Composite,
-  mkStoryComponent,
-  mkStoryTitle,
-  textControl,
-} from 'utils/storybook';
+import { Chapter, Composite, mkStoryTitle, textControl } from 'utils/storybook';
+
+import { SkillBubble } from './SkillBubble';
 
 export default {
   title: mkStoryTitle(Chapter.COMPOSITE, Composite.COPY, 'SkillBubble'),
-  component: mkStoryComponent(SkillBubble),
+  component: SkillBubble,
   args: {
     ...SkillBubble.defaultProps,
     skill: 'Javascript',

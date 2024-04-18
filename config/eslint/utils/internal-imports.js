@@ -4,44 +4,50 @@ const fs = require('fs');
 const importableFileExtensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 /**
+ * @typedef GetInternalImportsOptions
+ * @property {string} [prefix] - a prefix for the import path
+ * @property {string[]} [ignoreImports] - a list if files or directories that
+ * should not be included int he internal imports list
+ *
  * @function getInternalImports
  * @description Get the internal import names to be used for import ordering in eslint
  *
  * @param {string} dirPath - path to get internal imports for
- * @param {string[]} ignoreImports - internal imports to ignore
+ * @param {GetInternalImportsOptions} [options]
  *
  * @returns {string} regex to be passed to 'import/internal-regex' setting in eslint
  */
-function getInternalImports(dirPath, ignoreImports = []) {
-  const internalImports = fs
-    .readdirSync(dirPath)
-    .map(name => {
-      if (ignoreImports.includes(name)) {
-        return;
+function getInternalImports(dirPath, options = {}) {
+  const internalImports = fs.readdirSync(dirPath).reduce((acc, name) => {
+    if (options.ignoreImports?.includes(name)) {
+      return acc;
+    }
+
+    let importName;
+    const parsed = path.parse(name);
+
+    // Directories
+    if (!parsed.ext) {
+      importName = parsed.name;
+    } else if (importableFileExtensions.includes(parsed.ext)) {
+      if (parsed.name === 'index') {
+        return acc;
       }
 
-      const parsed = path.parse(name);
-
-      // Directories
-      if (!parsed.ext) {
-        return parsed.name;
+      // Handle declaration files
+      if (parsed.name.endsWith('.d')) {
+        importName = path.parse(parsed.name).name;
+      } else {
+        importName = parsed.name;
       }
+    }
 
-      // Files
-      if (importableFileExtensions.includes(parsed.ext)) {
-        if (parsed.name === 'index') {
-          return;
-        }
+    if (importName) {
+      acc.push(importName);
+    }
 
-        // Handle declaration files
-        if (parsed.name.endsWith('.d')) {
-          return path.parse(parsed.name).name;
-        }
-
-        return parsed.name;
-      }
-    })
-    .filter(Boolean);
+    return acc;
+  }, []);
 
   // https://regex101.com/r/bWdapV/1
   return `^(${internalImports.join('|')})(\\/|$)`;

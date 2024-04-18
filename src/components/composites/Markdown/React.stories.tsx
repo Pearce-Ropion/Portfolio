@@ -6,8 +6,9 @@ import {
   Composite,
   mkStoryTitle,
 } from 'utils/storybook';
-import { Markdown } from 'components/composites/Markdown/Markdown';
 import { useInverted } from 'utils/hooks';
+
+import { Markdown } from './Markdown';
 
 interface Args_t {
   inverted?: boolean;

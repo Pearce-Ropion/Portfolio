@@ -1,18 +1,19 @@
 import { useCallback } from 'react';
-import { Context as SegmentContext } from '@segment/analytics-next';
+import type { Context as SegmentContext } from '@segment/analytics-next';
 
-import { useAnalytics } from 'components/contexts/Analytics/AnalyticsContext';
+import { useIsStorybookPreview } from 'components/contexts';
 import {
   createPageEvent,
   createTrackEvent,
   SegmentEvent_t,
 } from 'utils/events';
-import { useIsStorybookPreview } from 'components/contexts';
+
+import { useAnalytics } from './AnalyticsContext';
 
 export type UseAnalyticsEvent_t = () => Promise<SegmentContext> | undefined;
 
 export const useAnalyticsEvent = (
-  eventName: string,
+  defaultEventName: string,
   segment?: SegmentEvent_t,
 ): UseAnalyticsEvent_t => {
   const isStorybook = useIsStorybookPreview();
@@ -20,14 +21,15 @@ export const useAnalyticsEvent = (
   const { analytics } = analyticsContext;
 
   return useCallback(() => {
-    if (!isStorybook) {
-      return analytics?.track(createTrackEvent(eventName, segment));
-    }
-  }, [isStorybook, analytics, eventName, segment]);
+    if (isStorybook) return;
+    if (!segment) return;
+
+    return analytics?.track(createTrackEvent(defaultEventName, segment));
+  }, [isStorybook, analytics, defaultEventName, segment]);
 };
 
 export const useAnalyticsPageEvent = (
-  pageName: string,
+  defaultPageName: string,
   segment?: SegmentEvent_t,
 ): UseAnalyticsEvent_t => {
   const isStorybook = useIsStorybookPreview();
@@ -35,8 +37,9 @@ export const useAnalyticsPageEvent = (
   const { analytics } = analyticsContext;
 
   return useCallback(() => {
-    if (!isStorybook) {
-      return analytics?.track(createPageEvent(pageName, segment));
-    }
-  }, [isStorybook, analytics, pageName, segment]);
+    if (isStorybook) return;
+    if (!segment) return;
+
+    return analytics?.track(createPageEvent(defaultPageName, segment));
+  }, [isStorybook, analytics, defaultPageName, segment]);
 };

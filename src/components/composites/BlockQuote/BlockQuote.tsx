@@ -24,7 +24,7 @@ export const BlockQuote = createComponentWithRef<
 >(({ children, inverted, ...rest }, forwardedRef) => {
   return (
     <StyledBlockQuote ref={forwardedRef} {...rest} inverted={inverted}>
-      <Copy inverted={inverted} weight="light">
+      <Copy isInverted={inverted} weight="light">
         {children}
       </Copy>
     </StyledBlockQuote>

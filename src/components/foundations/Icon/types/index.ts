@@ -1,4 +1,10 @@
-export { IconPrefix_t, IconProp_t, IconLookupProps_t } from './lookup';
+export {
+  IconVariant_t,
+  IconName_t,
+  IconProp_t,
+  IconLookup_t,
+  IconLookupProps_t,
+} from './lookup';
 export {
   FontAwesomeIconElement_t,
   FontAwesomeIconDOMProps_t,

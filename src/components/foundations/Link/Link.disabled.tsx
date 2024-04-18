@@ -1,19 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {
-  Chapter,
-  Foundation,
-  mkStoryComponent,
-  mkStoryTitle,
-} from 'utils/storybook';
-import { Link, LinkProps_t } from 'components/foundations/Link/Link';
+import { Chapter, Foundation, mkStoryTitle } from 'utils/storybook';
 import { useInverted } from 'utils/hooks';
+
+import { Link } from './Link';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.NAVIGATION, 'Link'),
-  component: mkStoryComponent<LinkProps_t>(Link),
+  component: Link,
   args: {
-    ...Link.defaultProps,
     children: 'Click Me',
   },
 } as ComponentMeta<typeof Link>;

@@ -1,21 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {
-  Chapter,
-  Composite,
-  mkStoryComponent,
-  mkStoryTitle,
-} from 'utils/storybook';
-import {
-  BlockQuote,
-  BlockQuoteProps_t,
-} from 'components/composites/BlockQuote/BlockQuote';
+import { Chapter, Composite, mkStoryTitle } from 'utils/storybook';
 import { faker } from 'utils/storybook/faker';
 import { useInverted } from 'utils/hooks';
 
+import { BlockQuote } from './BlockQuote';
+
 export default {
   title: mkStoryTitle(Chapter.COMPOSITE, Composite.COPY, 'BlockQuote'),
-  component: mkStoryComponent<BlockQuoteProps_t>(BlockQuote),
+  component: BlockQuote,
   args: {
     ...BlockQuote.defaultProps,
     children: faker.lorem.paragraph(),

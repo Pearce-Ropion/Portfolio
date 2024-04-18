@@ -1,30 +1,27 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Icon, IconProps_t } from 'components/foundations/Icon/Icon';
 import {
   booleanControl,
   Chapter,
   Foundation,
   mkEnumOptions,
-  mkStoryComponent,
   mkStoryTitle,
   rangeControl,
   themedColorControl,
 } from 'utils/storybook';
 import { theme } from 'stitches.config';
-import { iconControl, iconPrefixControl } from 'utils/library';
+import { iconControl } from 'utils/library';
+
+import { Icon } from './Icon';
 
 export default {
   title: mkStoryTitle(Chapter.FOUNDATION, Foundation.ICON, 'Icon'),
-  component: mkStoryComponent<IconProps_t>(Icon),
+  component: Icon,
   args: {
-    ...Icon.defaultProps,
-    prefix: 'fas',
     icon: 'image',
     size: '3x',
   },
   argTypes: {
-    prefix: iconPrefixControl,
     icon: iconControl,
     color: themedColorControl,
     opacity: rangeControl({ min: 0, max: 1, step: 0.1 }),

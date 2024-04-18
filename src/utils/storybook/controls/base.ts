@@ -138,17 +138,17 @@ export const baseEnumControl = (
   { options = [], labels = {}, mapping = {} }: BaseEnumOptions_t = {},
 ): PropOptions_t => setControlType(control, { options }, { labels, mapping });
 
-export const radioControl = (options: EnumControlOptions_t) =>
+export const radioControl = (options: BaseEnumOptions_t) =>
   baseEnumControl('radio', options);
-export const inlineRadioControl = (options: EnumControlOptions_t) =>
+export const inlineRadioControl = (options: BaseEnumOptions_t) =>
   baseEnumControl('inline-radio', options);
-export const checkControl = (options: EnumControlOptions_t) =>
+export const checkControl = (options: BaseEnumOptions_t) =>
   baseEnumControl('check', options);
-export const inlineCheckControl = (options: EnumControlOptions_t) =>
+export const inlineCheckControl = (options: BaseEnumOptions_t) =>
   baseEnumControl('inline-check', options);
-export const selectControl = (options: EnumControlOptions_t) =>
+export const selectControl = (options: BaseEnumOptions_t) =>
   baseEnumControl('select', options);
-export const multiSelectControl = (options: EnumControlOptions_t) =>
+export const multiSelectControl = (options: BaseEnumOptions_t) =>
   baseEnumControl('multi-select', options);
 
 export const fileControl = (accept: FileControlOptions_t['accept']) =>

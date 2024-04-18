@@ -5,7 +5,7 @@ import { createComponentWithRef } from 'utils/component';
 import { DuotoneIcon } from './DuotoneIcon';
 import { StandardIcon } from './StandardIcon';
 import { StyledIcon } from './styles';
-import { lookupIcon } from './util';
+import { lookupIcon } from './lookup';
 import { IconElement_t, IconProps_t } from './types/icon';
 
 interface IconComponents_t {

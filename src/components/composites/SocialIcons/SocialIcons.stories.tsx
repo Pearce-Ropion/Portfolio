@@ -1,20 +1,13 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {
-  Chapter,
-  Composite,
-  mkStoryComponent,
-  mkStoryTitle,
-} from 'utils/storybook';
-import {
-  SocialIcons,
-  SocialIconsProps_t,
-} from 'components/composites/SocialIcons/SocialIcons';
+import { Chapter, Composite, mkStoryTitle } from 'utils/storybook';
 import { useInverted } from 'utils/hooks';
+
+import { SocialIcons } from './SocialIcons';
 
 export default {
   title: mkStoryTitle(Chapter.COMPOSITE, Composite.ICON, 'SocialIcons'),
-  component: mkStoryComponent<SocialIconsProps_t>(SocialIcons),
+  component: SocialIcons,
   args: {
     ...SocialIcons.defaultProps,
   },

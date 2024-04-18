@@ -1,20 +1,13 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import {
-  Chapter,
-  Composite,
-  mkStoryComponent,
-  mkStoryTitle,
-} from 'utils/storybook';
-import { Footer, FooterProps_t } from 'components/sections/Footer/Footer';
+import { Chapter, Composite, mkStoryTitle } from 'utils/storybook';
 import { useInverted } from 'utils/hooks';
+
+import { Footer } from './Footer';
 
 export default {
   title: mkStoryTitle(Chapter.COMPOSITE, Composite.SECTION, 'Footer'),
-  component: mkStoryComponent<FooterProps_t>(Footer),
-  args: {
-    ...Footer.defaultProps,
-  },
+  component: Footer,
 } as ComponentMeta<typeof Footer>;
 
 const Template: ComponentStory<typeof Footer> = args => {

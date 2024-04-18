@@ -1,31 +1,20 @@
-import { HTML } from 'components/foundations/Html';
+import { Aria } from 'components/aria';
 import { styled } from 'stitches.config';
+import { shouldForwardStitchesConfig } from 'utils/style/styled';
 
-export const StyledButton = styled(HTML.Button, {
+const withStyled = styled.withConfig(shouldForwardStitchesConfig('isDisabled'));
+export const StyledButton = withStyled(Aria.Button, {
   display: 'flex',
-  flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
   flexShrink: 0,
+
   borderRadius: '$large',
-  cursor: 'pointer',
-  border: 'none',
-  outline: 'none',
-  transition: '$standard',
   whiteSpace: 'nowrap',
   minWidth: '88px',
 
   // Fixes an odd tap effect on some mobile devices
   WebkitTapHighlightColor: 'transparent',
-
-  '&:hover, &:focus': {
-    boxShadow: '$level2',
-    transform: 'translateY(-1px)',
-
-    '&:active': {
-      transform: 'translateY(0)',
-    },
-  },
 
   variants: {
     isCompact: {
@@ -38,10 +27,18 @@ export const StyledButton = styled(HTML.Button, {
       true: {
         opacity: 0.4,
         cursor: 'default',
+      },
+      false: {
+        cursor: 'pointer',
+        transition: '$standard',
 
-        '$:hover, &:focus': {
-          boxShadow: 'none',
-          transform: 'none',
+        '&:hover, &:focus': {
+          boxShadow: '$level2',
+          transform: 'translateY(-1px)',
+
+          '&:active': {
+            transform: 'translateY(0)',
+          },
         },
       },
     },
@@ -93,6 +90,7 @@ export const StyledButton = styled(HTML.Button, {
   ],
 
   defaultVariants: {
+    isDisabled: false,
     variant: 'primary',
   },
 });

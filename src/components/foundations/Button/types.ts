@@ -1,26 +1,17 @@
 import {
-  CSSProps_t,
-  Children_t,
-  DOMProps_t,
-  StandardDOMEvents_t,
-  StyleDOMProps_t,
-} from 'types/dom';
-import { SegmentEvent_t } from 'utils/events';
+  AriaButtonDOMProps_t,
+  AriaButtonElement_t,
+  AriaButtonImplProps_t,
+} from 'components/aria';
 
-export type ButtonElement_t = HTMLButtonElement;
-export interface ButtonDOMProps_t
-  extends DOMProps_t,
-    Children_t,
-    StyleDOMProps_t,
-    CSSProps_t,
-    StandardDOMEvents_t<ButtonElement_t> {}
+export type ButtonElement_t = AriaButtonElement_t;
 
-export interface ButtonImplProps_t {
+export interface ButtonDOMProps_t extends AriaButtonDOMProps_t {}
+
+export interface ButtonImplProps_t extends AriaButtonImplProps_t {
   isCompact?: boolean;
-  isDisabled?: boolean;
   isFullWidth?: boolean;
   isInverted?: boolean;
-  segment?: SegmentEvent_t;
   variant?: 'primary' | 'secondary';
 }
 

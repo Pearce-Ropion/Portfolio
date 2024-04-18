@@ -1,4 +1,4 @@
-import { BlockQuote } from 'components/composites/Markdown/elements/BlockQuote';
+import { BlockQuote } from './BlockQuote';
 import {
   Bold,
   Caption,
@@ -6,8 +6,8 @@ import {
   Label,
   Paragraph,
   Underline,
-} from 'components/composites/Markdown/elements/Paragraph';
-import { Rule } from 'components/composites/Markdown/elements/Rule';
+} from './Paragraph';
+import { Rule } from './Rule';
 
 export const MarkdownComponents = {
   // a: Link,

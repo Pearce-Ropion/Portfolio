@@ -1,21 +1,15 @@
-import { useMemo } from 'react';
+import { StyledPage } from '@storybook/components/Page/styles';
+import { useLayout, useBackground } from '@storybook/utils/hooks';
 
-import { HTMLDivElement_t } from 'components/foundations';
-import { StyledPage } from 'components/Page/styles';
+import { useStoryContext } from 'components/contexts';
 import {
   createComponentWithRef,
   OmitComponentVariantProps_t,
 } from 'utils/component';
-import { mergeStyle } from 'utils/style/css';
-import { useStoryContext } from 'components/contexts';
-import {
-  // useInverted,
-  useLayout,
-  useBackground,
-  // useComponentName,
-} from 'utils/hooks';
 
-export type PageElement_t = HTMLDivElement_t;
+import { useMergeStyle } from '../../../src/utils/hooks';
+
+export type PageElement_t = HTMLDivElement;
 export interface PageProps_t
   extends Omit<OmitComponentVariantProps_t<typeof StyledPage>, 'color'> {}
 
@@ -34,9 +28,10 @@ export const Page = createComponentWithRef<
   const background = useBackground();
   // const componentName = useComponentName();
 
-  const style = useMemo(() => {
-    return mergeStyle({ backgroundColor: background }, styleProp);
-  }, [background, styleProp]);
+  const style = useMergeStyle({ backgroundColor: background }, styleProp, [
+    background,
+    styleProp,
+  ]);
 
   return (
     <StyledPage
