@@ -10,7 +10,7 @@ export interface AnalyticsContext_t {
 }
 
 export const [AnalyticsContextProvider, useAnalytics] =
-  createContext<AnalyticsContext_t>('Analytics');
+  createContext<AnalyticsContext_t>('Analytics', {});
 
 export const AnalyticsProvider = createMemoComponent<
   ComponentProps<typeof AnalyticsContextProvider>

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useLocation, WindowLocation } from '@reach/router';
+// import { useLocation, WindowLocation } from '@reach/router';
 
 import { BASE_URL } from 'env';
 
@@ -10,15 +10,15 @@ export enum Env {
 }
 
 export const useEnv = (): string => {
-  const { hostname }: WindowLocation = useLocation();
+  // const { hostname }: WindowLocation = useLocation();
 
   return useMemo(() => {
-    if (hostname === 'localhost') {
-      return Env.DEVELOPMENT;
-    } else if (hostname === `staging.${BASE_URL}`) {
-      return Env.STAGING;
-    }
+    // if (hostname === 'localhost') {
+    //   return Env.DEVELOPMENT;
+    // } else if (hostname === `staging.${BASE_URL}`) {
+    //   return Env.STAGING;
+    // }
 
     return Env.PRODUCTION;
-  }, [hostname]);
+  }, []);
 };

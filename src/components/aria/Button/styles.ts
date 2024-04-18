@@ -1,7 +1,9 @@
-import { HTML } from 'components/Html';
+import { Button } from 'react-aria-components';
 import { styled } from 'stitches.config';
+import { shouldForwardStitchesConfig } from 'utils/style/styled';
 
-export const StyledAriaButton = styled(HTML.Button, {
+const withStyled = styled.withConfig(shouldForwardStitchesConfig('isDisabled'));
+export const StyledAriaButton = withStyled(Button, {
   // Reset button styles
   outline: 'none',
   border: 'none',

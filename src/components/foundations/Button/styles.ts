@@ -1,9 +1,9 @@
-import { Aria } from 'components/aria';
+import { Aria, AriaButton } from 'components/aria';
 import { styled } from 'stitches.config';
 import { shouldForwardStitchesConfig } from 'utils/style/styled';
 
 const withStyled = styled.withConfig(shouldForwardStitchesConfig('isDisabled'));
-export const StyledButton = withStyled(Aria.Button, {
+export const StyledButton = withStyled(AriaButton, {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

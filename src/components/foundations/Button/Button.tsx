@@ -11,15 +11,8 @@ export const Button = createComponentWithRef<
   ButtonElement_t,
   ButtonProps_t,
   ButtonComponents_t
->(({ isDisabled, variant = 'primary', ...rest }, forwardedRef) => {
-  return (
-    <StyledButton
-      ref={forwardedRef}
-      {...rest}
-      isDisabled={isDisabled}
-      variant={variant}
-    />
-  );
+>(({ variant = 'primary', ...rest }, forwardedRef) => {
+  return <StyledButton ref={forwardedRef} {...rest} variant={variant} />;
 });
 
 Button.Styled = StyledButton;

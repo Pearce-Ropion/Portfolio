@@ -1,4 +1,4 @@
-import { navigate } from 'gatsby';
+// import { navigate } from 'gatsby';
 import { isPlainObject } from 'lodash';
 
 import { isBrowser } from 'utils/is-browser';
@@ -16,7 +16,7 @@ export const getParams = (search: string): URLSearchParamsObject => {
 };
 
 export const clearParams = async (): Promise<void> => {
-  await navigate(window.location.pathname, { replace: true });
+  // await navigate(window.location.pathname, { replace: true });
 };
 
 export const setParams = async (
@@ -45,7 +45,7 @@ export const setParams = async (
   const searchParamsStr: string = searchParams.toString();
 
   if (searchParamsStr) {
-    await navigate(`?${searchParamsStr}`, { replace: true });
+    // await navigate(`?${searchParamsStr}`, { replace: true });
   } else if (reset) {
     await clearParams();
   }

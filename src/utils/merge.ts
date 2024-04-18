@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+import { CSSProps_t, StyleDOMProps_t } from 'types/dom';
 import { mergeCSS, mergeStyle } from 'utils/hooks';
 import { cx } from 'utils/style/classes';
 
@@ -44,4 +46,30 @@ export function mergeProps(...args: Array<AnyProps_t | undefined>) {
       }
     }, mergedProps);
   }, {});
+}
+
+interface StyleProps_t extends Omit<StyleDOMProps_t, 'tabIndex'>, CSSProps_t {}
+
+export function useStyleProps(props: AnyProps_t, styles: StyleProps_t = {}) {
+  return useMemo(() => {
+    return mergeProps(
+      {
+        className: props.className,
+        css: props.css,
+        style: props.style,
+      },
+      {
+        className: styles.className,
+        css: styles.css,
+        style: styles.style,
+      },
+    );
+  }, [
+    props.className,
+    props.css,
+    props.style,
+    styles.className,
+    styles.css,
+    styles.style,
+  ]);
 }
